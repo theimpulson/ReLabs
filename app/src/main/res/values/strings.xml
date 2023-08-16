@@ -5,4 +5,12 @@
 
 <resources>
     <string name="app_name">ReLabs</string>
+
+    <!-- LoginButton -->
+    <string name="continue_with_xda">Continue with XDA</string>
+    <string name="logging_in">Logging in…</string>
+
+    <!-- LoginScreen -->
+    <string name="welcome">Welcome!</string>
+    <string name="sign_in_hint">to a community of 10 million members</string>
 </resources>
