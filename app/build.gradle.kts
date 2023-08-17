@@ -91,8 +91,13 @@ dependencies {
     // OpenID
     implementation("net.openid:appauth:0.11.1")
 
-    // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    // LifeCycle
+    val lifecycleVersion = "2.6.1"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
     // Material
     implementation("androidx.compose.material:material:1.5.0")
