@@ -3,7 +3,7 @@
   ~ SPDX-License-Identifier: Apache-2.0
   -->
 
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">ReLabs</string>
 
     <!-- LoginButton -->
@@ -13,6 +13,10 @@
     <!-- LoginScreen -->
     <string name="welcome">Welcome!</string>
     <string name="sign_in_hint">to a community of 10 million members</string>
+
+    <!-- NewsScreen -->
+    <string name="news">News</string>
+    <string name="posted_by">Posted by <xliff:g id="author">%1$s</xliff:g></string>
 
     <!-- SettingsScreen -->
     <string name="settings">Settings</string>

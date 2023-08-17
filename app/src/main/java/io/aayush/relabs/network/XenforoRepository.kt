@@ -6,7 +6,9 @@ import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class XenforoRepository @Inject constructor(
     private val xenforoInterface: XenforoInterface
 ) {

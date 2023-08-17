@@ -99,6 +99,9 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
 
+    // RSS-Parser
+    implementation("com.prof18.rssparser:rssparser:5.0.3")
+
     // Browser (Custom Tab)
     implementation("androidx.browser:browser:1.6.0")
 
