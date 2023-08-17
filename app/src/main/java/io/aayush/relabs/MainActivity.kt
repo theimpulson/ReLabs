@@ -8,8 +8,10 @@ package io.aayush.relabs
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material3.Scaffold
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import io.aayush.relabs.ui.components.BottomBar
 import io.aayush.relabs.ui.navigation.SetupNavGraph
 import io.aayush.relabs.ui.theme.ReLabsTheme
 
@@ -20,7 +22,9 @@ class MainActivity : AppCompatActivity() {
         setContent {
             ReLabsTheme {
                 val navController = rememberNavController()
-                SetupNavGraph(navHostController = navController)
+                Scaffold(bottomBar = { BottomBar(navController = navController) }) {
+                    SetupNavGraph(navHostController = navController, paddingValues = it)
+                }
             }
         }
     }

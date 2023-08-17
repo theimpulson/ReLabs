@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.ui.components.LoginButton
@@ -39,7 +40,12 @@ fun LoginScreen(
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
     if (!viewModel.accessToken.isNullOrEmpty()) {
-        navHostController.navigate(Screen.Home.route)
+        navHostController.navigate(Screen.Home.route) {
+            popUpTo(navHostController.graph.findStartDestination().id) {
+                inclusive = true
+            }
+            launchSingleTop = true
+        }
     }
 
     val startActivityForResult = rememberLauncherForActivityResult(
@@ -59,7 +65,10 @@ fun LoginScreen(
                     viewModel.authState.update(res, ex)
                     viewModel.saveAccessToken()
 
-                    navHostController.navigate(Screen.Home.route)
+                    navHostController.navigate(Screen.Home.route) {
+                        popUpTo(navHostController.graph.findStartDestination().id)
+                        launchSingleTop = true
+                    }
                 }
             } catch (exception: Exception) {
                 Log.e(TAG, "Failed to log in", exception)
