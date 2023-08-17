@@ -3,10 +3,13 @@ package io.aayush.relabs.ui.screens.login
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
+import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.aayush.relabs.utils.CommonModule.ACCESS_TOKEN
 import net.openid.appauth.AuthState
 import net.openid.appauth.AuthorizationRequest
 import net.openid.appauth.AuthorizationService
@@ -17,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 @SuppressLint("StaticFieldLeak") // false positive, see https://github.com/google/dagger/issues/3253
 class LoginScreenViewModel @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
     companion object {
@@ -35,6 +39,7 @@ class LoginScreenViewModel @Inject constructor(
         Uri.parse(TOKEN_URL)
     )
     val authState = AuthState(authorizationServiceConfiguration)
+    val accessToken = sharedPreferences.getString(ACCESS_TOKEN, "")
 
     fun getAuthReqIntent(): Intent {
         val authRequestBuilder = AuthorizationRequest.Builder(
@@ -46,5 +51,9 @@ class LoginScreenViewModel @Inject constructor(
 
         authRequestBuilder.setScope(SCOPE)
         return authorizationService.getAuthorizationRequestIntent(authRequestBuilder.build())
+    }
+
+    fun saveAccessToken() {
+        sharedPreferences.edit { putString(ACCESS_TOKEN, authState.accessToken) }
     }
 }

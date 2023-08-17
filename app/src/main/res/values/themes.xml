@@ -6,5 +6,5 @@
 
 <resources>
 
-    <style name="Theme.ReLabs" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.ReLabs" parent="Theme.Material3.DayNight.NoActionBar" />
 </resources>

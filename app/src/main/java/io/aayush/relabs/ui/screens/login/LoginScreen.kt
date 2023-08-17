@@ -21,12 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import io.aayush.relabs.R
 import io.aayush.relabs.ui.components.LoginButton
 import io.aayush.relabs.ui.navigation.Screen
@@ -40,6 +38,10 @@ fun LoginScreen(
     navHostController: NavHostController,
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
+    if (!viewModel.accessToken.isNullOrEmpty()) {
+        navHostController.navigate(Screen.Home.route)
+    }
+
     val startActivityForResult = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),
         onResult = {
@@ -52,7 +54,11 @@ fun LoginScreen(
                     response!!.createTokenExchangeRequest()
                 ) { res, ex ->
                     Log.i(TAG, "Logged in!")
+
+                    // Save AccessToken
                     viewModel.authState.update(res, ex)
+                    viewModel.saveAccessToken()
+
                     navHostController.navigate(Screen.Home.route)
                 }
             } catch (exception: Exception) {
@@ -92,10 +98,4 @@ fun LoginScreen(
             }
         }
     }
-}
-
-@Composable
-@Preview
-private fun LoginScreenPreview() {
-    LoginScreen(rememberNavController())
 }
