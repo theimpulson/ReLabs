@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
@@ -38,6 +39,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -98,7 +100,8 @@ fun SettingsScreen(
                 if (username.isNotBlank()) {
                     Box(
                         modifier = Modifier
-                            .padding(vertical = 10.dp)
+                            .fillMaxWidth()
+                            .padding(10.dp)
                             .background(
                                 color = MaterialTheme.colorScheme.secondaryContainer,
                                 shape = RoundedCornerShape(20.dp)
@@ -136,7 +139,12 @@ fun SettingsScreen(
                                 }
                             }
                             Spacer(modifier = Modifier.height(5.dp))
-                            Text(text = user_title, fontSize = 15.sp, fontWeight = FontWeight.Medium)
+                            Text(
+                                text = user_title,
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Medium,
+                                textAlign = TextAlign.Center
+                            )
                         }
                     }
                 } else {
