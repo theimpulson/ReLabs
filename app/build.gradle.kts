@@ -99,6 +99,9 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
 
+    // Browser (Custom Tab)
+    implementation("androidx.browser:browser:1.6.0")
+
     // Material
     implementation("androidx.compose.material:material:1.5.0")
     implementation("com.google.android.material:material:1.9.0")

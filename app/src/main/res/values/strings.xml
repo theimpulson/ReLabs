@@ -13,4 +13,7 @@
     <!-- LoginScreen -->
     <string name="welcome">Welcome!</string>
     <string name="sign_in_hint">to a community of 10 million members</string>
+
+    <!-- SettingsScreen -->
+    <string name="settings">Settings</string>
 </resources>
