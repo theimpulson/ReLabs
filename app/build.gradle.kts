@@ -7,6 +7,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jlleitschuh.gradle.ktlint")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -58,6 +60,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.10.1")
@@ -84,4 +90,13 @@ dependencies {
 
     // OpenID
     implementation("net.openid:appauth:0.11.1")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
+    // Hilt
+    val hiltVersion = "2.45"
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 }
