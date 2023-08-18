@@ -8,6 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jlleitschuh.gradle.ktlint")
     id("com.google.dagger.hilt.android")
+    id("com.google.relay")
     kotlin("kapt")
 }
 
@@ -62,6 +63,14 @@ android {
 
 kapt {
     correctErrorTypes = true
+}
+
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    filter {
+        exclude {
+            it.file.path.contains("generated")
+        }
+    }
 }
 
 dependencies {
