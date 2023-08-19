@@ -14,7 +14,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -31,7 +31,7 @@ fun ReLabsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
     }
 
     val systemUiController = rememberSystemUiController()
-    SideEffect {
+    LaunchedEffect(key1 = Unit) {
         systemUiController.setSystemBarsColor(colors.background, darkIcons = !darkTheme)
     }
 
