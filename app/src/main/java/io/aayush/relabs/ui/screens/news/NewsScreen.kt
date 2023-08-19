@@ -61,7 +61,11 @@ fun NewsScreen(
             items(articles) { article ->
                 NewsItem(
                     modifier = Modifier.padding(vertical = 10.dp),
-                    backgroundColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.onSecondary else MaterialTheme.colorScheme.secondary,
+                    backgroundColor = if (isSystemInDarkTheme()) {
+                        MaterialTheme.colorScheme.onSecondary
+                    } else {
+                        MaterialTheme.colorScheme.secondary
+                    },
                     thumbnail = rememberAsyncImagePainter(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(article.image)
@@ -69,7 +73,10 @@ fun NewsScreen(
                             .build()
                     ),
                     headline = article.title ?: "",
-                    description = HtmlCompat.fromHtml(article.content ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT).toString(),
+                    description = HtmlCompat.fromHtml(
+                        article.content ?: "",
+                        HtmlCompat.FROM_HTML_MODE_COMPACT
+                    ).toString(),
                     author = stringResource(id = R.string.posted_by, article.author ?: ""),
                     date = article.pubDate ?: "",
                     onClicked = {
