@@ -17,8 +17,8 @@ class RSSNewsImpl @Inject constructor(
 
     companion object {
         private const val FEED_MOBILE = "https://www.xda-developers.com/feed/category/mobile/"
-        private const val FEED_COMPUTING = "www.xda-developers.com/feed/category/computing/"
-        private const val FEED_SMART_HOME = "www.xda-developers.com/feed/category/home/"
+        private const val FEED_COMPUTING = "https://www.xda-developers.com/feed/category/computing/"
+        private const val FEED_SMART_HOME = "https://www.xda-developers.com/feed/category/home/"
     }
 
     suspend fun getMobileFeed(): Result<List<Article>> {

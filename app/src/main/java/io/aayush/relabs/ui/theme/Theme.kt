@@ -41,7 +41,8 @@ fun ReLabsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
             systemUiController.setNavigationBarColor(
                 color = colors.surfaceColorAtElevation(
                     navigationBarElevation
-                ), !darkTheme
+                ),
+                !darkTheme
             )
         }
     }

@@ -15,16 +15,30 @@ class NewsViewModel @Inject constructor(
     private val rssNewsRepository: RSSNewsRepository
 ) : ViewModel() {
 
-    private val _feed = MutableStateFlow<List<Article>>(emptyList())
-    val feed = _feed.asStateFlow()
+    private val _mobileFeed = MutableStateFlow<List<Article>>(emptyList())
+    val mobileFeed = _mobileFeed.asStateFlow()
 
-    init {
-        getArticles()
+    private val _computingFeed = MutableStateFlow<List<Article>>(emptyList())
+    val computingFeed = _computingFeed.asStateFlow()
+
+    private val _smartHomeFeed = MutableStateFlow<List<Article>>(emptyList())
+    val smartHomeFeed = _smartHomeFeed.asStateFlow()
+
+    fun getMobileArticles() {
+        viewModelScope.launch {
+            _mobileFeed.value = rssNewsRepository.getMobileFeed().getOrDefault(emptyList())
+        }
     }
 
-    private fun getArticles() {
+    fun getComputingArticles() {
         viewModelScope.launch {
-            _feed.value = rssNewsRepository.getMobileFeed().getOrDefault(emptyList())
+            _computingFeed.value = rssNewsRepository.getComputingFeed().getOrDefault(emptyList())
+        }
+    }
+
+    fun getSmartHomeArticles() {
+        viewModelScope.launch {
+            _smartHomeFeed.value = rssNewsRepository.getSmartHomeFeed().getOrDefault(emptyList())
         }
     }
 }
