@@ -11,13 +11,20 @@
     <string name="logging_in">Logging in…</string>
 
     <!-- LoginScreen -->
+    <string name="login">Login</string>
     <string name="welcome">Welcome!</string>
     <string name="sign_in_hint">to a community of 10 million members</string>
 
+    <!-- HomeScreen -->
+    <string name="home">Forum</string>
+
+    <!-- AlertsScreen -->
+    <string name="alerts">Alerts</string>
+
     <!-- NewsScreen -->
-    <string name="news">News</string>
+    <string name="news">Portal</string>
     <string name="posted_by">Posted by <xliff:g id="author">%1$s</xliff:g></string>
 
     <!-- SettingsScreen -->
-    <string name="settings">Settings</string>
+    <string name="settings">More</string>
 </resources>
