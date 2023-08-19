@@ -18,9 +18,6 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocalPolice
-import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -37,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -79,8 +77,8 @@ fun SettingsScreen(
                             }
                         }) {
                             Icon(
-                                imageVector = Icons.Filled.OpenInNew,
-                                contentDescription = "Localized description"
+                                painter = painterResource(id = R.drawable.ic_open),
+                                contentDescription = ""
                             )
                         }
                     }
@@ -131,7 +129,7 @@ fun SettingsScreen(
                                 Spacer(modifier = Modifier.width(5.dp))
                                 if (is_staff) {
                                     Image(
-                                        imageVector = Icons.Filled.LocalPolice,
+                                        painter = painterResource(id = R.drawable.ic_mod),
                                         contentDescription = "",
                                         colorFilter = ColorFilter.tint(XDAYellow)
                                     )

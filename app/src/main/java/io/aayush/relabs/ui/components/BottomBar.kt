@@ -3,6 +3,7 @@ package io.aayush.relabs.ui.components
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.Image
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -60,10 +62,7 @@ fun BottomBar(navController: NavHostController) {
                         }
                     },
                     icon = {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = "Navigation Icon"
-                        )
+                        Image(painter = painterResource(id = item.icon), contentDescription = "")
                     }
                 )
             }

@@ -5,20 +5,15 @@
 
 package io.aayush.relabs.ui.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Login
-import androidx.compose.material.icons.rounded.Newspaper
-import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.material.icons.rounded.Settings
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.DrawableRes
+import io.aayush.relabs.R
 
-sealed class Screen(val route: String, val title: String, val icon: ImageVector) {
-    data object Login : Screen(route = "login_screen", title = "Login", icon = Icons.Rounded.Login)
-    data object Home : Screen(route = "home_screen", title = "Home", icon = Icons.Rounded.Home)
-    data object News : Screen(route = "news_screen", title = "News", icon = Icons.Rounded.Newspaper)
+sealed class Screen(val route: String, val title: String, @DrawableRes val icon: Int) {
+    data object Login : Screen(route = "login_screen", title = "Login", icon = R.drawable.ic_login)
+    data object Home : Screen(route = "home_screen", title = "Home", icon = R.drawable.ic_forum)
+    data object News : Screen(route = "news_screen", title = "News", icon = R.drawable.ic_news)
     data object Alerts :
-        Screen(route = "alerts_screen", title = "Alerts", icon = Icons.Rounded.Notifications)
+        Screen(route = "alerts_screen", title = "Alerts", icon = R.drawable.ic_notifications)
     data object Settings :
-        Screen(route = "settings_screen", title = "Settings", icon = Icons.Rounded.Settings)
+        Screen(route = "settings_screen", title = "Settings", icon = R.drawable.ic_more)
 }
