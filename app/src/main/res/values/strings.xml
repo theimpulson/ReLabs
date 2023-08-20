@@ -17,6 +17,9 @@
 
     <!-- HomeScreen -->
     <string name="home">Forum</string>
+    <string name="trending">Trending</string>
+    <string name="watched">Watched</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$d</xliff:g> replies &#8226; <xliff:g id="views">%3$s</xliff:g> views</string>
 
     <!-- AlertsScreen -->
     <string name="alerts">Alerts</string>
