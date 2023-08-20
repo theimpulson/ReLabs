@@ -19,10 +19,14 @@ import io.aayush.relabs.ui.screens.news.NewsScreen
 import io.aayush.relabs.ui.screens.settings.SettingsScreen
 
 @Composable
-fun SetupNavGraph(navHostController: NavHostController, paddingValues: PaddingValues) {
+fun SetupNavGraph(
+    navHostController: NavHostController,
+    paddingValues: PaddingValues,
+    startDestinationRoute: String = Screen.Login.route
+) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.Login.route,
+        startDestination = startDestinationRoute,
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(route = Screen.Login.route) {
