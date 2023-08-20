@@ -106,7 +106,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
 
     // Coil
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    val coilVersion = "2.4.0"
+    implementation("io.coil-kt:coil-compose:$coilVersion")
+    implementation("io.coil-kt:coil-gif:$coilVersion")
 
     // RSS-Parser
     implementation("com.prof18.rssparser:rssparser:5.0.3")

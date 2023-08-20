@@ -1,5 +1,6 @@
 package io.aayush.relabs.ui.components
 
+import android.os.Build
 import android.text.format.DateUtils
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.ImageLoader
 import coil.compose.SubcomposeAsyncImage
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import io.aayush.relabs.R
 import java.util.Date
@@ -43,6 +47,14 @@ fun AlertItem(
                 .placeholder(R.drawable.ic_account)
                 .crossfade(true)
                 .build(),
+            imageLoader = ImageLoader.Builder(LocalContext.current)
+                .components {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        add(ImageDecoderDecoder.Factory())
+                    } else {
+                        add(GifDecoder.Factory())
+                    }
+                }.build(),
             contentDescription = "",
             contentScale = ContentScale.Crop,
             modifier = Modifier
