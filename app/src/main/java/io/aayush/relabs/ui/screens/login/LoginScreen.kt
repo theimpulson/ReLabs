@@ -69,7 +69,9 @@ fun LoginScreen(
                     viewModel.saveAccessToken()
 
                     navHostController.navigate(Screen.Home.route) {
-                        popUpTo(navHostController.graph.findStartDestination().id)
+                        popUpTo(navHostController.graph.findStartDestination().id) {
+                            inclusive = true
+                        }
                         launchSingleTop = true
                     }
                 }
