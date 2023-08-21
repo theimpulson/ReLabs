@@ -75,7 +75,7 @@ fun ThreadPreviewItem(
                 text = stringResource(
                     id = R.string.author_replies_creationDate,
                     author,
-                    totalReplies,
+                    NumberFormat.getInstance(Locale.getDefault()).format(totalReplies),
                     NumberFormat.getInstance(Locale.getDefault()).format(views)
                 ),
                 fontSize = 14.sp,
