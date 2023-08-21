@@ -9,7 +9,6 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -50,10 +49,14 @@ fun LoginButton(
     var clicked by remember { mutableStateOf(false) }
 
     Surface(
-        modifier = modifier.clickable { clicked = !clicked },
+        modifier = modifier,
         shape = shape,
         border = BorderStroke(width = 1.dp, color = borderColor),
-        color = backgroundColor
+        color = backgroundColor,
+        onClick = {
+            clicked = !clicked
+            onClicked()
+        }
     ) {
         Row(
             modifier = Modifier
@@ -65,7 +68,7 @@ fun LoginButton(
                     )
                 ),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
         ) {
             Icon(
                 painter = painterResource(id = icon),
@@ -86,7 +89,6 @@ fun LoginButton(
                     strokeWidth = 2.dp,
                     color = progressIndicatorColor
                 )
-                onClicked()
             }
         }
     }

@@ -106,9 +106,7 @@ fun LoginScreen(
                 )
             }
             LoginButton {
-                if (!viewModel.authState.isAuthorized) {
-                    startActivityForResult.launch(viewModel.getAuthReqIntent())
-                }
+                startActivityForResult.launch(viewModel.getAuthReqIntent())
             }
         }
     }
