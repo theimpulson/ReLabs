@@ -43,7 +43,7 @@ fun LoginButton(
     shape: Shape = Shapes().medium,
     borderColor: Color = Color(0xFFF09613),
     backgroundColor: Color = Color(0xff2a1a24),
-    progressIndicatorColor: Color = MaterialTheme.colorScheme.primary,
+    progressIndicatorColor: Color = Color.White,
     onClicked: () -> Unit
 ) {
     var clicked by remember { mutableStateOf(false) }
