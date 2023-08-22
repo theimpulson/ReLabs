@@ -39,4 +39,14 @@ sealed class Screen(val route: String, @StringRes val title: Int, @DrawableRes v
         title = R.string.settings,
         icon = R.drawable.ic_more
     )
+
+    data object Thread : Screen(
+        route = "thread_screen/{${NavArg.THREAD_ID.name}}",
+        title = R.string.thread,
+        icon = R.drawable.ic_forum
+    ) {
+        fun withID(id: Int): String {
+            return this.route.replace("{${NavArg.THREAD_ID.name}}", id.toString())
+        }
+    }
 }

@@ -33,4 +33,7 @@
 
     <!-- SettingsScreen -->
     <string name="settings">More</string>
+
+    <!-- ThreadScreen -->
+    <string name="thread">Thread</string>
 </resources>
