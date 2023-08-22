@@ -34,6 +34,7 @@ fun AlertItem(
     avatarURL: String = "",
     title: String = "",
     date: Int = 0,
+    unread: Boolean = false,
     onClicked: () -> Unit = {}
 ) {
     Row(
@@ -66,7 +67,11 @@ fun AlertItem(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = title, fontSize = 14.sp)
+            Text(
+                text = title,
+                fontSize = 14.sp,
+                fontWeight = if (unread) FontWeight.SemiBold else FontWeight.Light
+            )
             Text(
                 text = DateUtils.getRelativeTimeSpanString(
                     date.toLong() * 1000L,
