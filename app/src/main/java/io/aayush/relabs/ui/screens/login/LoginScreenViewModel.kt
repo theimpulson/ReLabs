@@ -54,6 +54,6 @@ class LoginScreenViewModel @Inject constructor(
     }
 
     fun saveAccessToken() {
-        sharedPreferences.edit { putString(ACCESS_TOKEN, authState.accessToken) }
+        sharedPreferences.edit(true) { putString(ACCESS_TOKEN, authState.accessToken) }
     }
 }
