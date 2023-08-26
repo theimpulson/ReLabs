@@ -45,7 +45,7 @@ fun SetupNavGraph(
                 }
             )
         ) {
-            ThreadScreen(navHostController, it.arguments!!.getInt(NavArg.THREAD_ID.name).toString())
+            ThreadScreen(navHostController, it.arguments!!.getInt(NavArg.THREAD_ID.name))
         }
     }
 }

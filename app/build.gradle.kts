@@ -107,6 +107,7 @@ dependencies {
 
     // Coil
     val coilVersion = "2.4.0"
+    implementation("io.coil-kt:coil:$coilVersion")
     implementation("io.coil-kt:coil-compose:$coilVersion")
     implementation("io.coil-kt:coil-gif:$coilVersion")
 

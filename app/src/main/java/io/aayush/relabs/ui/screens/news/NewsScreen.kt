@@ -2,7 +2,6 @@ package io.aayush.relabs.ui.screens.news
 
 import android.net.Uri
 import android.util.Log
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -124,8 +123,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                             date = article.pubDate ?: "",
                             onClicked = {
                                 try {
-                                    CustomTabsIntent.Builder()
-                                        .build()
+                                    viewModel.customTabsIntent
                                         .launchUrl(context, Uri.parse(article.link))
                                 } catch (exception: Exception) {
                                     Log.e(TAG, "Failed to open profile", exception)

@@ -3,6 +3,7 @@ package io.aayush.relabs.network
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
+import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import javax.inject.Inject
@@ -70,5 +71,23 @@ class XenforoRepository @Inject constructor(
 
     suspend fun getWatchedThreads(): Threads {
         return xenforoInterface.getWatchedThreads()
+    }
+
+    suspend fun getThreadInfo(
+        id: Int,
+        with_posts: Boolean? = null,
+        page: Int? = null,
+        with_first_post: Boolean? = null,
+        with_last_post: Boolean? = null,
+        order: String? = null
+    ): ThreadInfo {
+        return xenforoInterface.getThreadInfo(
+            id,
+            with_posts,
+            page,
+            with_first_post,
+            with_last_post,
+            order
+        )
     }
 }

@@ -3,9 +3,11 @@ package io.aayush.relabs.network
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
+import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface XenforoInterface {
@@ -51,4 +53,14 @@ interface XenforoInterface {
 
     @GET("threads/audapp-watched/")
     suspend fun getWatchedThreads(): Threads
+
+    @GET("threads/{id}")
+    suspend fun getThreadInfo(
+        @Path("id") id: Int,
+        @Query("with_posts") with_posts: Boolean? = null,
+        @Query("page") page: Int? = null,
+        @Query("with_first_post") with_first_post: Boolean? = null,
+        @Query("with_last_post") with_last_post: Boolean? = null,
+        @Query("order") order: String? = null
+    ): ThreadInfo
 }

@@ -34,6 +34,7 @@ import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.thread.Thread
 import io.aayush.relabs.ui.components.ThreadPreviewItem
+import io.aayush.relabs.ui.navigation.Screen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -98,7 +99,10 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                             totalReplies = thread.reply_count,
                             views = thread.view_count,
                             lastReplyDate = thread.last_post_date,
-                            forum = thread.Forum.title
+                            forum = thread.Forum.title,
+                            onClicked = {
+                                navHostController.navigate(Screen.Thread.withID(thread.thread_id))
+                            }
                         )
                     }
                 }

@@ -1,5 +1,6 @@
 package io.aayush.relabs.ui.screens.news
 
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prof.rssparser.Article
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    private val rssNewsRepository: RSSNewsRepository
+    private val rssNewsRepository: RSSNewsRepository,
+    val customTabsIntent: CustomTabsIntent
 ) : ViewModel() {
 
     private val _mobileFeed = MutableStateFlow<List<Article>>(emptyList())
