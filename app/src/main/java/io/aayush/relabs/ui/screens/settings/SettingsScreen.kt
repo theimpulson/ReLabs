@@ -45,13 +45,13 @@ fun SettingsScreen(
             TopAppBar(
                 title = { Text(text = stringResource(id = R.string.settings)) },
                 actions = {
-                    if (user.me.view_url.isNotBlank()) {
+                    if (user.me?.view_url?.isNotBlank() == true) {
                         val context = LocalContext.current
                         IconButton(onClick = {
                             try {
                                 CustomTabsIntent.Builder()
                                     .build()
-                                    .launchUrl(context, Uri.parse(viewModel.currentUser.value.me.view_url))
+                                    .launchUrl(context, Uri.parse(viewModel.currentUser.value.me?.view_url))
                             } catch (exception: Exception) {
                                 Log.e(TAG, "Failed to open profile", exception)
                             }
@@ -74,8 +74,8 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (user.me.username.isNotBlank()) {
-                UserHeader(user = user.me)
+            if (user.me?.username?.isNotBlank() == true) {
+                UserHeader(user = user.me!!)
             }
         }
     }

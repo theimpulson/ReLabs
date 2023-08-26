@@ -4,7 +4,7 @@ import io.aayush.relabs.network.data.user.User
 
 data class Post(
     val Attachments: List<Attachment> = emptyList(),
-    val User: User = User(),
+    val User: User? = User(),
     val attach_count: Int = 0,
     val can_edit: Boolean = false,
     val can_hard_delete: Boolean = false,

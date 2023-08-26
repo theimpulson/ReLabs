@@ -93,7 +93,7 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                     ) { thread ->
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
-                            avatarURL = thread.User.avatar_urls.values.first() ?: "",
+                            avatarURL = thread.User?.avatar_urls?.values?.first() ?: "",
                             title = thread.title,
                             author = thread.username,
                             totalReplies = thread.reply_count,

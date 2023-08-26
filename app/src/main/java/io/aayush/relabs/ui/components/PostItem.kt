@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -78,7 +79,7 @@ fun PostItem(
             ) {
                 SubcomposeAsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(post.User.avatar_urls.values.first() ?: R.drawable.ic_account)
+                        .data(post.User?.avatar_urls?.values?.first() ?: R.drawable.ic_account)
                         .placeholder(R.drawable.ic_account)
                         .crossfade(true)
                         .build(),
@@ -102,12 +103,14 @@ fun PostItem(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = post.User.username,
+                        text = post.User?.username ?: stringResource(id = R.string.guest),
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
-                    Text(text = post.User.user_title, fontSize = 13.sp, color = Color.White)
+                    if (post.User?.user_title != null) {
+                        Text(text = post.User.user_title, fontSize = 13.sp, color = Color.White)
+                    }
                     Text(
                         text = DateUtils.getRelativeTimeSpanString(
                             post.post_date.toLong() * 1000L,

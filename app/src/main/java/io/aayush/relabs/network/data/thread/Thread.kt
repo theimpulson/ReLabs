@@ -6,7 +6,7 @@ import io.aayush.relabs.network.data.user.User
 
 data class Thread(
     val Forum: Node = Node(),
-    val User: User = User(),
+    val User: User? = User(),
     val can_edit: Boolean = false,
     val can_edit_tags: Boolean = false,
     val can_hard_delete: Boolean = false,

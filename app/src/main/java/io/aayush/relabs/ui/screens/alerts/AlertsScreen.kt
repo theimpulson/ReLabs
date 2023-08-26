@@ -36,7 +36,7 @@ fun AlertsScreen(
             items(alerts) { userAlert ->
                 AlertItem(
                     modifier = Modifier.padding(10.dp),
-                    avatarURL = userAlert.User.avatar_urls.values.first() ?: "",
+                    avatarURL = userAlert.User?.avatar_urls?.values?.first() ?: "",
                     title = userAlert.alert_text,
                     date = userAlert.event_date,
                     unread = userAlert.read_date == 0
