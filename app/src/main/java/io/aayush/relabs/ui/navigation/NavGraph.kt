@@ -5,6 +5,8 @@
 
 package io.aayush.relabs.ui.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -30,7 +32,9 @@ fun SetupNavGraph(
     NavHost(
         navController = navHostController,
         startDestination = startDestinationRoute,
-        modifier = Modifier.padding(paddingValues)
+        modifier = Modifier.padding(paddingValues),
+        enterTransition = { EnterTransition.None },
+        exitTransition = { ExitTransition.None }
     ) {
         composable(route = Screen.Login.route) { LoginScreen(navHostController) }
         composable(route = Screen.Home.route) { HomeScreen(navHostController) }
