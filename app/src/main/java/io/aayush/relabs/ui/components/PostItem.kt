@@ -48,14 +48,13 @@ import java.util.Date
 
 @Composable
 fun PostItem(
-    modifier: Modifier,
     post: Post,
     linkTransformationMethod: LinkTransformationMethod,
     designQuoteSpan: DesignQuoteSpan,
     onClicked: () -> Unit = {}
 ) {
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(10.dp))
             .background(
@@ -124,7 +123,6 @@ fun PostItem(
                 }
             }
             AndroidView(
-                modifier = modifier,
                 factory = {
                     MaterialTextView(it).apply {
                         autoLinkMask = Linkify.WEB_URLS

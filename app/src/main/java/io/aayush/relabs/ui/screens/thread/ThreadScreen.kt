@@ -3,6 +3,7 @@ package io.aayush.relabs.ui.screens.thread
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -121,10 +122,12 @@ fun ThreadScreen(
             Divider(thickness = 1.dp)
 
             HorizontalPager(state = pagerState) {
-                LazyColumn {
+                LazyColumn(
+                    contentPadding = PaddingValues(10.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
                     items(viewModel.posts.getOrElse(pagerState.targetPage) { emptyList() }) { post ->
                         PostItem(
-                            modifier = Modifier.padding(10.dp),
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,
                             designQuoteSpan = viewModel.designQuoteSpan
