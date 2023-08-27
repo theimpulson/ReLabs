@@ -95,19 +95,25 @@ fun ThreadScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconButton(onClick = {
-                    coroutineScope.launch { pagerState.scrollToPage(0) }
-                }) {
+                IconButton(
+                    onClick = {
+                        coroutineScope.launch { pagerState.scrollToPage(0) }
+                    },
+                    enabled = pagerState.settledPage != 0
+                ) {
                     Icon(imageVector = Icons.Filled.KeyboardArrowLeft, contentDescription = "")
                 }
 
                 Text(text = "${pagerState.settledPage + 1}/${pagerState.pageCount}")
 
-                IconButton(onClick = {
-                    coroutineScope.launch {
-                        pagerState.scrollToPage(threadInfo.pagination.last_page)
-                    }
-                }) {
+                IconButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.scrollToPage(threadInfo.pagination.last_page)
+                        }
+                    },
+                    enabled = pagerState.settledPage + 1 != threadInfo.pagination.last_page
+                ) {
                     Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
                 }
             }
