@@ -1,5 +1,6 @@
 package io.aayush.relabs.ui.screens.thread
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,29 +22,28 @@ class ThreadViewModel @Inject constructor(
     val designQuoteSpan: DesignQuoteSpan
 ) : ViewModel() {
 
-    private var currentPage = 0
-
     private val _threadInfo = MutableStateFlow(ThreadInfo())
     val threadInfo = _threadInfo.asStateFlow()
 
-    private val _posts = MutableStateFlow<List<Post>>(mutableListOf())
-    val posts = _posts.asStateFlow()
+    private val _posts = mutableStateListOf<List<Post>>()
+    val posts = _posts
 
     fun getThreadInfo(threadID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             _threadInfo.value = xenforoRepository.getThreadInfo(threadID, with_posts = true)
-            _posts.value = _threadInfo.value.posts
+            _posts.add(threadInfo.value.posts)
         }
     }
 
-    fun getPosts() {
+    fun getPosts(page: Int) {
         if (_threadInfo.value.thread.thread_id != 0) {
             viewModelScope.launch(Dispatchers.IO) {
                 val response = xenforoRepository.getThreadInfo(
                     _threadInfo.value.thread.thread_id,
                     with_posts = true,
-                    page = ++currentPage
+                    page = page
                 )
+                _posts.add(response.posts)
             }
         }
     }
