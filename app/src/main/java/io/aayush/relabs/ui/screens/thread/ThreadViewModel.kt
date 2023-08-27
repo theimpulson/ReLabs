@@ -30,8 +30,12 @@ class ThreadViewModel @Inject constructor(
 
     fun getThreadInfo(threadID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            _threadInfo.value = xenforoRepository.getThreadInfo(threadID, with_posts = true)
-            _posts.add(threadInfo.value.posts)
+            val response = xenforoRepository.getThreadInfo(threadID, with_posts = true)
+            _threadInfo.value = response
+            _posts.add(response.posts)
+
+            // Insert empty lists to allow replacing them with appropriate object when required
+            _posts.addAll((1..response.pagination.last_page).map { emptyList() })
         }
     }
 
@@ -43,7 +47,7 @@ class ThreadViewModel @Inject constructor(
                     with_posts = true,
                     page = page
                 )
-                _posts.add(response.posts)
+                _posts[page - 1] = response.posts
             }
         }
     }
