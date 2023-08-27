@@ -130,7 +130,8 @@ fun ThreadScreen(
                         PostItem(
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,
-                            designQuoteSpan = viewModel.designQuoteSpan
+                            designQuoteSpan = viewModel.designQuoteSpan,
+                            isThreadOwner = post.User?.username == threadInfo.thread.User?.username
                         )
                     }
                 }

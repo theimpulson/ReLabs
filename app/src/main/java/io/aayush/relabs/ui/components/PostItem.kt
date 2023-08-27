@@ -40,6 +40,7 @@ import coil.request.ImageRequest
 import com.google.android.material.textview.MaterialTextView
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.post.Post
+import io.aayush.relabs.ui.theme.XDAYellow
 import io.aayush.relabs.utils.CoilImageGetter
 import io.aayush.relabs.utils.DesignQuoteSpan
 import io.aayush.relabs.utils.LinkTransformationMethod
@@ -51,6 +52,7 @@ fun PostItem(
     post: Post,
     linkTransformationMethod: LinkTransformationMethod,
     designQuoteSpan: DesignQuoteSpan,
+    isThreadOwner: Boolean = false,
     onClicked: () -> Unit = {}
 ) {
     Box(
@@ -101,12 +103,25 @@ fun PostItem(
                     verticalArrangement = Arrangement.Top,
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(
-                        text = post.User?.username ?: stringResource(id = R.string.guest),
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.Start)
+                    ) {
+                        Text(
+                            text = post.User?.username ?: stringResource(id = R.string.guest),
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                        if (isThreadOwner) {
+                            Text(
+                                text = stringResource(id = R.string.op),
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = XDAYellow
+                            )
+                        }
+                    }
                     if (post.User?.user_title != null) {
                         Text(text = post.User.user_title, fontSize = 13.sp, color = Color.White)
                     }

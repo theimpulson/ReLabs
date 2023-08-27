@@ -37,4 +37,5 @@
     <!-- ThreadScreen -->
     <string name="thread">Thread</string>
     <string name="guest">Guest</string>
+    <string name="op" translatable="false">\u2022OP\u2022</string>
 </resources>
