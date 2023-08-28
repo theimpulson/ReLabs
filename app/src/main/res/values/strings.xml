@@ -38,4 +38,6 @@
     <string name="thread">Thread</string>
     <string name="guest">Guest</string>
     <string name="op" translatable="false">\u2022OP\u2022</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> people reacted to this post</string>
+    <string name="you_and_reacted_to">You and <xliff:g id="number">%1$d</xliff:g> people reacted to this post</string>
 </resources>

@@ -134,7 +134,9 @@ fun ThreadScreen(
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,
                             designQuoteSpan = viewModel.designQuoteSpan,
-                            isThreadOwner = post.User?.username == threadInfo.thread.User?.username
+                            isThreadOwner = post.User?.username == threadInfo.thread.User?.username,
+                            reactionScore = post.reaction_score,
+                            reacted = post.is_reacted_to
                         )
                     }
                 }

@@ -3,6 +3,7 @@ package io.aayush.relabs.ui.components
 import android.os.Build
 import android.text.format.DateUtils
 import android.text.util.Linkify
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,9 +25,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -53,6 +57,8 @@ fun PostItem(
     linkTransformationMethod: LinkTransformationMethod,
     designQuoteSpan: DesignQuoteSpan,
     isThreadOwner: Boolean = false,
+    reactionScore: Int = 0,
+    reacted: Boolean = false,
     onClicked: () -> Unit = {}
 ) {
     Box(
@@ -159,6 +165,53 @@ fun PostItem(
                     ).formatBlockQuotes(designQuoteSpan)
                 }
             )
+
+            Column(
+                modifier = Modifier
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    IconButton(onClick = {}, enabled = false) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_comment),
+                            contentDescription = "",
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
+                    }
+                    IconButton(onClick = {}, enabled = false) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_forum),
+                            contentDescription = "",
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
+                    }
+                    IconButton(onClick = {}, enabled = false) {
+                        Image(
+                            painter = painterResource(
+                                id = if (reacted) R.drawable.ic_like_filled else R.drawable.ic_like
+                            ),
+                            contentDescription = "",
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
+                    }
+                }
+
+                if (reactionScore != 0) {
+                    Text(
+                        modifier = Modifier.padding(start = 13.dp, bottom = 10.dp),
+                        text = if (reacted) {
+                            stringResource(id = R.string.you_and_reacted_to, reactionScore - 1)
+                        } else {
+                            stringResource(id = R.string.reacted_to, reactionScore)
+                        },
+                        color = Color.White,
+                        fontWeight = FontWeight.Light,
+                        fontSize = 12.sp
+                    )
+                }
+            }
         }
     }
 }
