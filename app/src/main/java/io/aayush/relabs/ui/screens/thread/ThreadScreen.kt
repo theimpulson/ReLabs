@@ -98,7 +98,7 @@ fun ThreadScreen(
             ) {
                 IconButton(
                     onClick = {
-                        coroutineScope.launch { pagerState.scrollToPage(0) }
+                        coroutineScope.launch { pagerState.animateScrollToPage(0) }
                     },
                     enabled = pagerState.settledPage != 0
                 ) {
@@ -110,7 +110,7 @@ fun ThreadScreen(
                 IconButton(
                     onClick = {
                         coroutineScope.launch {
-                            pagerState.scrollToPage(threadInfo.pagination.last_page)
+                            pagerState.animateScrollToPage(threadInfo.pagination.last_page)
                         }
                     },
                     enabled = pagerState.settledPage + 1 != threadInfo.pagination.last_page
@@ -126,7 +126,7 @@ fun ThreadScreen(
                     contentPadding = PaddingValues(10.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    items(viewModel.posts.getOrElse(pagerState.targetPage) { emptyList() }) { post ->
+                    items(viewModel.posts.getOrElse(it) { emptyList() }) { post ->
                         PostItem(
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,
