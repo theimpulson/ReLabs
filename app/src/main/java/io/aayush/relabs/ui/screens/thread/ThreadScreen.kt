@@ -126,7 +126,10 @@ fun ThreadScreen(
                     contentPadding = PaddingValues(10.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    items(viewModel.posts.getOrElse(it) { emptyList() }) { post ->
+                    items(
+                        items = viewModel.posts.getOrElse(it) { emptyList() },
+                        key = { p -> p.post_id }
+                    ) { post ->
                         PostItem(
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,

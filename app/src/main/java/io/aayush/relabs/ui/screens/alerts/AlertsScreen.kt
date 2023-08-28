@@ -33,7 +33,7 @@ fun AlertsScreen(
         val alerts: List<UserAlert> by viewModel.alerts.collectAsStateWithLifecycle()
 
         LazyColumn(modifier = Modifier.padding(it)) {
-            items(alerts) { userAlert ->
+            items(items = alerts, key = { a -> a.alert_id }) { userAlert ->
                 AlertItem(
                     modifier = Modifier.padding(10.dp),
                     avatarURL = userAlert.User?.avatar_urls?.values?.first() ?: "",

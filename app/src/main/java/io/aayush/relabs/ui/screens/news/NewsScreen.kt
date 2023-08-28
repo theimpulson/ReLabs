@@ -39,6 +39,7 @@ import io.aayush.relabs.R
 import io.aayush.relabs.newsitem.NewsItem
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 private const val TAG = "NewsScreen"
 
@@ -95,11 +96,12 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
             ) {
                 LazyColumn {
                     items(
-                        when (it) {
+                        items = when (it) {
                             0 -> mobileFeed
                             1 -> computingFeed
                             else -> smartHomeFeed
-                        }
+                        },
+                        key = { a -> a.guid ?: UUID.randomUUID() }
                     ) { article ->
                         NewsItem(
                             modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp),

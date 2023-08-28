@@ -86,10 +86,11 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
             ) {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(
-                        when (it) {
+                        items = when (it) {
                             0 -> watchedThreads
                             else -> trendingThreads
-                        }
+                        },
+                        key = { t -> t.thread_id }
                     ) { thread ->
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
