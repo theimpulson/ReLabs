@@ -80,8 +80,8 @@ fun PostItem(
             ) {
                 SubcomposeAsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(post.User?.avatar_urls?.values?.first() ?: R.drawable.ic_account)
-                        .placeholder(R.drawable.ic_account)
+                        .data(post.User?.avatar_urls?.values?.first() ?: R.drawable.ic_account_w)
+                        .placeholder(R.drawable.ic_account_w)
                         .crossfade(true)
                         .build(),
                     imageLoader = ImageLoader.Builder(LocalContext.current)
