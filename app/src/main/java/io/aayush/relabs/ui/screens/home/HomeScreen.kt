@@ -100,6 +100,7 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                             views = thread.view_count,
                             lastReplyDate = thread.last_post_date,
                             forum = thread.Forum.title,
+                            unread = thread.is_unread,
                             onClicked = {
                                 navHostController.navigate(Screen.Thread.withID(thread.thread_id))
                             }

@@ -70,7 +70,7 @@ fun AlertItem(
             Text(
                 text = title,
                 fontSize = 14.sp,
-                fontWeight = if (unread) FontWeight.SemiBold else FontWeight.Light
+                fontWeight = if (unread) FontWeight.Medium else FontWeight.Light
             )
             Text(
                 text = DateUtils.getRelativeTimeSpanString(

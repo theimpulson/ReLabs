@@ -40,6 +40,7 @@ fun ThreadPreviewItem(
     views: Int = 0,
     lastReplyDate: Int = 0,
     forum: String = "",
+    unread: Boolean = false,
     onClicked: () -> Unit = {}
 ) {
     Row(
@@ -74,7 +75,11 @@ fun ThreadPreviewItem(
             verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Top),
             horizontalAlignment = Alignment.Start
         ) {
-            Text(text = title, fontSize = 15.sp, fontWeight = FontWeight.Medium)
+            Text(
+                text = title,
+                fontSize = 15.sp,
+                fontWeight = if (unread) FontWeight.Medium else FontWeight.Light
+            )
             Text(
                 text = stringResource(
                     id = R.string.author_replies_creationDate,
@@ -83,7 +88,7 @@ fun ThreadPreviewItem(
                     NumberFormat.getInstance(Locale.getDefault()).format(views)
                 ),
                 fontSize = 14.sp,
-                fontWeight = FontWeight.Normal
+                fontWeight = if (unread) FontWeight.Normal else FontWeight.Light
             )
             Text(text = forum, fontSize = 13.sp, fontWeight = FontWeight.Light)
         }
