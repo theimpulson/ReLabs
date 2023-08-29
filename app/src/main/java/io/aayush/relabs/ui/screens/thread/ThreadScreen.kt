@@ -50,7 +50,7 @@ fun ThreadScreen(
         viewModel.getThreadInfo(threadID)
     }
 
-    val threadInfo: ThreadInfo by viewModel.threadInfo.collectAsStateWithLifecycle()
+    val threadInfo: ThreadInfo? by viewModel.threadInfo.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -58,7 +58,7 @@ fun ThreadScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = threadInfo.thread.title,
+                        text = threadInfo?.thread?.title ?: "",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -78,7 +78,7 @@ fun ThreadScreen(
             val pagerState = rememberPagerState(
                 initialPage = 0,
                 initialPageOffsetFraction = 0f,
-                pageCount = { threadInfo.pagination.last_page }
+                pageCount = { threadInfo?.pagination?.last_page ?: 0 }
             )
             val coroutineScope = rememberCoroutineScope()
 
@@ -110,10 +110,10 @@ fun ThreadScreen(
                 IconButton(
                     onClick = {
                         coroutineScope.launch {
-                            pagerState.animateScrollToPage(threadInfo.pagination.last_page)
+                            pagerState.animateScrollToPage(threadInfo?.pagination?.last_page ?: 0)
                         }
                     },
-                    enabled = pagerState.settledPage + 1 != threadInfo.pagination.last_page
+                    enabled = pagerState.settledPage + 1 != threadInfo?.pagination?.last_page
                 ) {
                     Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
                 }
@@ -127,14 +127,14 @@ fun ThreadScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     items(
-                        items = viewModel.posts.getOrElse(it) { emptyList() },
+                        items = viewModel.posts.getOrElse(it) { emptyList() } ?: emptyList(),
                         key = { p -> p.post_id }
                     ) { post ->
                         PostItem(
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,
                             designQuoteSpan = viewModel.designQuoteSpan,
-                            isThreadOwner = post.User?.username == threadInfo.thread.User?.username,
+                            isThreadOwner = post.User?.username == threadInfo?.thread?.User?.username,
                             reactionScore = post.reaction_score,
                             reacted = post.is_reacted_to
                         )

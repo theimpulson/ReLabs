@@ -6,6 +6,7 @@ import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -17,7 +18,7 @@ interface XenforoInterface {
     }
 
     @GET("me/")
-    suspend fun getCurrentUser(): Me
+    suspend fun getCurrentUser(): Response<Me>
 
     @GET("alerts/")
     suspend fun getAlerts(
@@ -25,7 +26,7 @@ interface XenforoInterface {
         @Query("cutoff") cutoff: Int? = null,
         @Query("unviewed") unviewed: Boolean? = null,
         @Query("unread") unread: Boolean? = null
-    ): Alerts
+    ): Response<Alerts>
 
     @GET("conversations/")
     suspend fun getConversations(
@@ -34,10 +35,10 @@ interface XenforoInterface {
         @Query("receiver_id") receiver_id: Int? = null,
         @Query("starred") starred: Boolean? = null,
         @Query("unread") unread: Boolean? = null
-    ): Conversations
+    ): Response<Conversations>
 
     @GET("nodes/")
-    suspend fun getNodes(): Nodes
+    suspend fun getNodes(): Response<Nodes>
 
     @GET("threads/")
     suspend fun getThreads(
@@ -49,10 +50,10 @@ interface XenforoInterface {
         @Query("thread_type") thread_type: String? = null,
         @Query("order") order: String? = null,
         @Query("direction") direction: String? = null
-    ): Threads
+    ): Response<Threads>
 
     @GET("threads/audapp-watched/")
-    suspend fun getWatchedThreads(): Threads
+    suspend fun getWatchedThreads(): Response<Threads>
 
     @GET("threads/{id}")
     suspend fun getThreadInfo(
@@ -62,5 +63,5 @@ interface XenforoInterface {
         @Query("with_first_post") with_first_post: Boolean? = null,
         @Query("with_last_post") with_last_post: Boolean? = null,
         @Query("order") order: String? = null
-    ): ThreadInfo
+    ): Response<ThreadInfo>
 }

@@ -16,7 +16,7 @@ class AlertsViewModel @Inject constructor(
     private val xenforoRepository: XenforoRepository
 ) : ViewModel() {
 
-    private val _alerts = MutableStateFlow<List<UserAlert>>(emptyList())
+    private val _alerts = MutableStateFlow<List<UserAlert>?>(emptyList())
     val alerts = _alerts.asStateFlow()
 
     init {
@@ -25,7 +25,7 @@ class AlertsViewModel @Inject constructor(
 
     private fun getAlerts() {
         viewModelScope.launch(Dispatchers.IO) {
-            _alerts.value = xenforoRepository.getAlerts().alerts
+            _alerts.value = xenforoRepository.getAlerts()?.alerts
         }
     }
 }

@@ -15,7 +15,7 @@ class SettingsViewModel @Inject constructor(
     private val xenforoRepository: XenforoRepository
 ) : ViewModel() {
 
-    private val _currentUser = MutableStateFlow(Me())
+    private val _currentUser = MutableStateFlow<Me?>(Me())
     val currentUser = _currentUser.asStateFlow()
 
     init {

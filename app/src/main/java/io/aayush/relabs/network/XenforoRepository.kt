@@ -1,5 +1,6 @@
 package io.aayush.relabs.network
 
+import android.util.Log
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
@@ -14,8 +15,21 @@ class XenforoRepository @Inject constructor(
     private val xenforoInterface: XenforoInterface
 ) {
 
-    suspend fun getCurrentUser(): Me {
-        return xenforoInterface.getCurrentUser()
+    private val TAG = XenforoRepository::class.java.simpleName
+
+    suspend fun getCurrentUser(): Me? {
+        return try {
+            val response = xenforoInterface.getCurrentUser()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch user details!", exception)
+            null
+        }
     }
 
     suspend fun getAlerts(
@@ -23,8 +37,19 @@ class XenforoRepository @Inject constructor(
         cutoff: Int? = null,
         unviewed: Boolean? = null,
         unread: Boolean? = null
-    ): Alerts {
-        return xenforoInterface.getAlerts(page, cutoff, unviewed, unread)
+    ): Alerts? {
+        return try {
+            val response = xenforoInterface.getAlerts(page, cutoff, unviewed, unread)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch alerts!", exception)
+            null
+        }
     }
 
     suspend fun getConversations(
@@ -33,18 +58,40 @@ class XenforoRepository @Inject constructor(
         receiver_id: Int? = null,
         starred: Boolean? = null,
         unread: Boolean? = null
-    ): Conversations {
-        return xenforoInterface.getConversations(
-            page,
-            starter_id,
-            receiver_id,
-            starred,
-            unread
-        )
+    ): Conversations? {
+        return try {
+            val response = xenforoInterface.getConversations(
+                page,
+                starter_id,
+                receiver_id,
+                starred,
+                unread
+            )
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch conversations!", exception)
+            null
+        }
     }
 
-    suspend fun getNodes(): Nodes {
-        return xenforoInterface.getNodes()
+    suspend fun getNodes(): Nodes? {
+        return try {
+            val response = xenforoInterface.getNodes()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch nodes!", exception)
+            null
+        }
     }
 
     suspend fun getThreads(
@@ -56,21 +103,43 @@ class XenforoRepository @Inject constructor(
         thread_type: String? = null,
         order: String? = null,
         direction: String? = null
-    ): Threads {
-        return xenforoInterface.getThreads(
-            page,
-            prefix_id,
-            starter_id,
-            last_days,
-            unread,
-            thread_type,
-            order,
-            direction
-        )
+    ): Threads? {
+        return try {
+            val response = xenforoInterface.getThreads(
+                page,
+                prefix_id,
+                starter_id,
+                last_days,
+                unread,
+                thread_type,
+                order,
+                direction
+            )
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch threads!", exception)
+            null
+        }
     }
 
-    suspend fun getWatchedThreads(): Threads {
-        return xenforoInterface.getWatchedThreads()
+    suspend fun getWatchedThreads(): Threads? {
+        return try {
+            val response = xenforoInterface.getWatchedThreads()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch watched threads!", exception)
+            null
+        }
     }
 
     suspend fun getThreadInfo(
@@ -80,14 +149,25 @@ class XenforoRepository @Inject constructor(
         with_first_post: Boolean? = null,
         with_last_post: Boolean? = null,
         order: String? = null
-    ): ThreadInfo {
-        return xenforoInterface.getThreadInfo(
-            id,
-            with_posts,
-            page,
-            with_first_post,
-            with_last_post,
-            order
-        )
+    ): ThreadInfo? {
+        return try {
+            val response = xenforoInterface.getThreadInfo(
+                id,
+                with_posts,
+                page,
+                with_first_post,
+                with_last_post,
+                order
+            )
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch thread info!", exception)
+            null
+        }
     }
 }

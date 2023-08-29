@@ -22,32 +22,33 @@ class ThreadViewModel @Inject constructor(
     val designQuoteSpan: DesignQuoteSpan
 ) : ViewModel() {
 
-    private val _threadInfo = MutableStateFlow(ThreadInfo())
+    private val _threadInfo = MutableStateFlow<ThreadInfo?>(ThreadInfo())
     val threadInfo = _threadInfo.asStateFlow()
 
-    private val _posts = mutableStateListOf<List<Post>>()
+    private val _posts = mutableStateListOf<List<Post>?>()
     val posts = _posts
 
     fun getThreadInfo(threadID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = xenforoRepository.getThreadInfo(threadID, with_posts = true)
             _threadInfo.value = response
-            _posts.add(response.posts)
+            _posts.add(response?.posts)
 
             // Insert empty lists to allow replacing them with appropriate object when required
-            _posts.addAll((1..response.pagination.last_page).map { emptyList() })
+            response?.pagination?.last_page?.let { _posts.addAll((1..it).map { emptyList() }) }
         }
     }
 
     fun getPosts(page: Int) {
-        if (_threadInfo.value.thread.thread_id != 0) {
+        val threadID = _threadInfo.value?.thread?.thread_id
+        if (threadID != null && threadID != 0) {
             viewModelScope.launch(Dispatchers.IO) {
                 val response = xenforoRepository.getThreadInfo(
-                    _threadInfo.value.thread.thread_id,
+                    threadID,
                     with_posts = true,
                     page = page
                 )
-                _posts[page - 1] = response.posts
+                _posts[page - 1] = response?.posts
             }
         }
     }

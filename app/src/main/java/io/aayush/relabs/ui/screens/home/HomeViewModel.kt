@@ -16,21 +16,21 @@ class HomeViewModel @Inject constructor(
     private val xenforoRepository: XenforoRepository
 ) : ViewModel() {
 
-    private val _trendingThreads = MutableStateFlow<List<Thread>>(emptyList())
+    private val _trendingThreads = MutableStateFlow<List<Thread>?>(emptyList())
     val trendingThreads = _trendingThreads.asStateFlow()
 
-    private val _watchedThreads = MutableStateFlow<List<Thread>>(emptyList())
+    private val _watchedThreads = MutableStateFlow<List<Thread>?>(emptyList())
     val watchedThreads = _watchedThreads.asStateFlow()
 
     fun getTrendingThreads() {
         viewModelScope.launch(Dispatchers.IO) {
-            _trendingThreads.value = xenforoRepository.getThreads().threads
+            _trendingThreads.value = xenforoRepository.getThreads()?.threads
         }
     }
 
     fun getWatchedThreads() {
         viewModelScope.launch(Dispatchers.IO) {
-            _watchedThreads.value = xenforoRepository.getWatchedThreads().threads
+            _watchedThreads.value = xenforoRepository.getWatchedThreads()?.threads
         }
     }
 }

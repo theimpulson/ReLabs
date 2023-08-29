@@ -53,8 +53,8 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
         val tabIndex = pagerState.currentPage
         val coroutineScope = rememberCoroutineScope()
 
-        val watchedThreads: List<Thread> by viewModel.watchedThreads.collectAsStateWithLifecycle()
-        val trendingThreads: List<Thread> by viewModel.trendingThreads.collectAsStateWithLifecycle()
+        val watchedThreads: List<Thread>? by viewModel.watchedThreads.collectAsStateWithLifecycle()
+        val trendingThreads: List<Thread>? by viewModel.trendingThreads.collectAsStateWithLifecycle()
 
         LaunchedEffect(key1 = pagerState) {
             snapshotFlow { pagerState.currentPage }.collect { page ->
@@ -87,8 +87,8 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(
                         items = when (it) {
-                            0 -> watchedThreads
-                            else -> trendingThreads
+                            0 -> watchedThreads ?: emptyList()
+                            else -> trendingThreads ?: emptyList()
                         },
                         key = { t -> t.thread_id }
                     ) { thread ->

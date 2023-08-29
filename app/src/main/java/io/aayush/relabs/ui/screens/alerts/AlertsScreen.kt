@@ -30,10 +30,10 @@ fun AlertsScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.alerts)) }) }
     ) {
-        val alerts: List<UserAlert> by viewModel.alerts.collectAsStateWithLifecycle()
+        val alerts: List<UserAlert>? by viewModel.alerts.collectAsStateWithLifecycle()
 
         LazyColumn(modifier = Modifier.padding(it)) {
-            items(items = alerts, key = { a -> a.alert_id }) { userAlert ->
+            items(items = alerts ?: emptyList(), key = { a -> a.alert_id }) { userAlert ->
                 AlertItem(
                     modifier = Modifier.padding(10.dp),
                     avatarURL = userAlert.User?.avatar_urls?.values?.first() ?: "",
