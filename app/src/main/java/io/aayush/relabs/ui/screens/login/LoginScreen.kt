@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -40,16 +39,6 @@ fun LoginScreen(
     navHostController: NavHostController,
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(key1 = Unit) {
-        if (!viewModel.accessToken.isNullOrEmpty()) {
-            navHostController.navigate(Screen.Home.route) {
-                popUpTo(navHostController.graph.findStartDestination().id) {
-                    inclusive = true
-                }
-                launchSingleTop = true
-            }
-        }
-    }
 
     val startActivityForResult = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),
