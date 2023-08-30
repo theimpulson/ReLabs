@@ -79,18 +79,20 @@ fun ThreadScreen(
             )
         },
         floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = stringResource(id = Screen.Reply.title)) },
-                icon = {
-                    Image(
-                        painter = painterResource(id = Screen.Reply.icon),
-                        contentDescription = ""
-                    )
-                },
-                onClick = {
-                    navHostController.navigate(Screen.Reply.withID(threadID))
-                }
-            )
+            if (threadInfo?.thread?.discussion_open == true) {
+                ExtendedFloatingActionButton(
+                    text = { Text(text = stringResource(id = Screen.Reply.title)) },
+                    icon = {
+                        Image(
+                            painter = painterResource(id = Screen.Reply.icon),
+                            contentDescription = ""
+                        )
+                    },
+                    onClick = {
+                        navHostController.navigate(Screen.Reply.withID(threadID))
+                    }
+                )
+            }
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
