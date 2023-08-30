@@ -25,7 +25,17 @@ class AlertsViewModel @Inject constructor(
 
     private fun getAlerts() {
         viewModelScope.launch(Dispatchers.IO) {
-            _alerts.value = xenforoRepository.getAlerts()?.alerts
+            val listOfAlert = xenforoRepository.getAlerts()?.alerts
+            _alerts.value = listOfAlert
+
+            // Mark unread alerts as read
+            if (listOfAlert?.any { it.read_date == 0 } == true) markAllAlertsRead()
+        }
+    }
+
+    private fun markAllAlertsRead() {
+        viewModelScope.launch(Dispatchers.IO) {
+            xenforoRepository.markAllAlerts(true)
         }
     }
 }

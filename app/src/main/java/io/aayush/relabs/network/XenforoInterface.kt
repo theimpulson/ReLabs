@@ -1,6 +1,7 @@
 package io.aayush.relabs.network
 
 import io.aayush.relabs.network.data.alert.Alerts
+import io.aayush.relabs.network.data.alert.MarkAlert
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostReply
@@ -29,6 +30,12 @@ interface XenforoInterface {
         @Query("unviewed") unviewed: Boolean? = null,
         @Query("unread") unread: Boolean? = null
     ): Response<Alerts>
+
+    @POST("alerts/mark-all/")
+    suspend fun markAllAlerts(
+        @Query("read") read: Boolean = false,
+        @Query("viewed") viewed: Boolean? = null
+    ): Response<MarkAlert>
 
     @GET("conversations/")
     suspend fun getConversations(

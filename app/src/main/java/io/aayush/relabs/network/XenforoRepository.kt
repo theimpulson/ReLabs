@@ -2,6 +2,7 @@ package io.aayush.relabs.network
 
 import android.util.Log
 import io.aayush.relabs.network.data.alert.Alerts
+import io.aayush.relabs.network.data.alert.MarkAlert
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostReply
@@ -29,6 +30,21 @@ class XenforoRepository @Inject constructor(
             }
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to fetch user details!", exception)
+            null
+        }
+    }
+
+    suspend fun markAllAlerts(read: Boolean, viewed: Boolean = false): MarkAlert? {
+        return try {
+            val response = xenforoInterface.markAllAlerts(read, viewed)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to mark alerts!", exception)
             null
         }
     }
