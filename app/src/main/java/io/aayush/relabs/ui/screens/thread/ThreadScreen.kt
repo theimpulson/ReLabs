@@ -106,7 +106,7 @@ fun ThreadScreen(
             LaunchedEffect(key1 = pagerState) {
                 snapshotFlow { pagerState.targetPage }.collect { page ->
                     // XenForo considers current page as 1
-                    if (page != 0) viewModel.getPosts(page + 1)
+                    viewModel.getPosts(page + 1)
                 }
             }
 
