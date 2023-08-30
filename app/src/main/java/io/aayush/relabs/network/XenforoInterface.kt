@@ -3,11 +3,13 @@ package io.aayush.relabs.network
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
+import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -64,4 +66,11 @@ interface XenforoInterface {
         @Query("with_last_post") with_last_post: Boolean? = null,
         @Query("order") order: String? = null
     ): Response<ThreadInfo>
+
+    @POST("posts")
+    suspend fun postReply(
+        @Query("thread_id") threadID: Int,
+        @Query("message") message: String,
+        @Query("attachment_key") attachmentKey: String? = null
+    ): Response<PostReply>
 }

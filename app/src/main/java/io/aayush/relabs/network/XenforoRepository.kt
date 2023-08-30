@@ -4,6 +4,7 @@ import android.util.Log
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
+import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
@@ -167,6 +168,25 @@ class XenforoRepository @Inject constructor(
             }
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to fetch thread info!", exception)
+            null
+        }
+    }
+
+    suspend fun postReply(
+        threadID: Int,
+        message: String,
+        attachmentKey: String? = null
+    ): PostReply? {
+        return try {
+            val response = xenforoInterface.postReply(threadID, message, attachmentKey)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to post reply!", exception)
             null
         }
     }

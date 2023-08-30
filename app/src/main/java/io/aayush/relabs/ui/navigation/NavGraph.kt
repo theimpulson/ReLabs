@@ -20,6 +20,7 @@ import io.aayush.relabs.ui.screens.alerts.AlertsScreen
 import io.aayush.relabs.ui.screens.home.HomeScreen
 import io.aayush.relabs.ui.screens.login.LoginScreen
 import io.aayush.relabs.ui.screens.news.NewsScreen
+import io.aayush.relabs.ui.screens.reply.ReplyScreen
 import io.aayush.relabs.ui.screens.settings.SettingsScreen
 import io.aayush.relabs.ui.screens.thread.ThreadScreen
 
@@ -50,6 +51,16 @@ fun SetupNavGraph(
             )
         ) {
             ThreadScreen(navHostController, it.arguments!!.getInt(NavArg.THREAD_ID.name))
+        }
+        composable(
+            route = Screen.Reply.route,
+            arguments = listOf(
+                navArgument(NavArg.THREAD_ID.name) {
+                    type = NavType.IntType
+                }
+            )
+        ) {
+            ReplyScreen(navHostController, it.arguments!!.getInt(NavArg.THREAD_ID.name))
         }
     }
 }

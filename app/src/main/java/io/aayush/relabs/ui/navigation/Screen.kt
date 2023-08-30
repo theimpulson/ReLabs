@@ -49,4 +49,14 @@ sealed class Screen(val route: String, @StringRes val title: Int, @DrawableRes v
             return this.route.replace("{${NavArg.THREAD_ID.name}}", id.toString())
         }
     }
+
+    data object Reply : Screen(
+        route = "reply_screen/{${NavArg.THREAD_ID.name}}",
+        title = R.string.reply,
+        icon = R.drawable.ic_quick_reply
+    ) {
+        fun withID(id: Int): String {
+            return this.route.replace("{${NavArg.THREAD_ID.name}}", id.toString())
+        }
+    }
 }

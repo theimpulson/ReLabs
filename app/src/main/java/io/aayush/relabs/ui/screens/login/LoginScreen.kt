@@ -39,7 +39,6 @@ fun LoginScreen(
     navHostController: NavHostController,
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
-
     val startActivityForResult = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),
         onResult = {
