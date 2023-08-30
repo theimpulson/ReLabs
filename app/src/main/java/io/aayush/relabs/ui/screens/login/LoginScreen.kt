@@ -16,6 +16,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -39,6 +43,8 @@ fun LoginScreen(
     navHostController: NavHostController,
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
+    var loginInProgress by remember { mutableStateOf(false) }
+
     val startActivityForResult = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult(),
         onResult = {
@@ -64,6 +70,7 @@ fun LoginScreen(
                     }
                 }
             } catch (exception: Exception) {
+                loginInProgress = false
                 Log.e(TAG, "Failed to log in", exception)
             }
         }
@@ -93,7 +100,8 @@ fun LoginScreen(
                     fontWeight = FontWeight.Bold
                 )
             }
-            LoginButton {
+            LoginButton(inProgress = loginInProgress) {
+                loginInProgress = true
                 startActivityForResult.launch(viewModel.getAuthReqIntent())
             }
         }

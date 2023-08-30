@@ -22,8 +22,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,17 +41,15 @@ fun LoginButton(
     borderColor: Color = Color(0xFFF09613),
     backgroundColor: Color = Color(0xff2a1a24),
     progressIndicatorColor: Color = Color.White,
+    inProgress: Boolean = false,
     onClicked: () -> Unit
 ) {
-    var clicked by remember { mutableStateOf(false) }
-
     Surface(
         modifier = modifier,
         shape = shape,
         border = BorderStroke(width = 1.dp, color = borderColor),
         color = backgroundColor,
         onClick = {
-            clicked = !clicked
             onClicked()
         }
     ) {
@@ -76,11 +72,11 @@ fun LoginButton(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = if (clicked) stringResource(id = R.string.logging_in) else stringResource(id = R.string.continue_with_xda),
+                text = if (inProgress) stringResource(id = R.string.logging_in) else stringResource(id = R.string.continue_with_xda),
                 color = Color.White
             )
             Spacer(modifier = Modifier.width(16.dp))
-            if (clicked) {
+            if (inProgress) {
                 CircularProgressIndicator(
                     modifier = Modifier
                         .height(16.dp)
