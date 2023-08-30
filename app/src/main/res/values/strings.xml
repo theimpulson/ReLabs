@@ -43,4 +43,5 @@
 
     <!-- ReplyScreen -->
     <string name="reply">Reply</string>
+    <string name="follow_rules">Remember to read &amp; follow the XDA Forum Rules!</string>
 </resources>
