@@ -119,7 +119,7 @@ fun ReplyScreen(
                 value = text,
                 onValueChange = { newText -> text = newText },
                 enabled = !posting,
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(10.dp)
             )
         }
     }

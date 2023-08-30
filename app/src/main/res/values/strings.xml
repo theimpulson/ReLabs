@@ -44,4 +44,5 @@
     <!-- ReplyScreen -->
     <string name="reply">Reply</string>
     <string name="follow_rules">Remember to read &amp; follow the XDA Forum Rules!</string>
+    <string name="sent_from">\n\n\nSent from <xliff:g id="device">%1$s</xliff:g> using ReLabs</string>
 </resources>
