@@ -204,7 +204,11 @@ fun PostItem(
                     Text(
                         modifier = Modifier.padding(start = 13.dp, bottom = 10.dp),
                         text = if (reacted) {
-                            stringResource(id = R.string.you_and_reacted_to, reactionScore - 1)
+                            if (reactionScore - 1 == 0) {
+                                stringResource(id = R.string.you_reacted_to, reactionScore)
+                            } else {
+                                stringResource(id = R.string.you_and_reacted_to, reactionScore - 1)
+                            }
                         } else {
                             stringResource(id = R.string.reacted_to, reactionScore)
                         },
