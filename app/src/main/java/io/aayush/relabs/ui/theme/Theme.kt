@@ -18,7 +18,7 @@ import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import io.aayush.relabs.ui.components.rememberSystemUiController
 
 @Composable
 fun ReLabsTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {

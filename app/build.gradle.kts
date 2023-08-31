@@ -91,9 +91,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    // Accompanist
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.0-alpha")
-
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.0")
 
