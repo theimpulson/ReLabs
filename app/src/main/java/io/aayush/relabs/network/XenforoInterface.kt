@@ -5,6 +5,7 @@ import io.aayush.relabs.network.data.alert.MarkAlert
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostReply
+import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
@@ -80,4 +81,10 @@ interface XenforoInterface {
         @Query("message") message: String,
         @Query("attachment_key") attachmentKey: String? = null
     ): Response<PostReply>
+
+    @POST("posts/{id}/react")
+    suspend fun postReact(
+        @Path("id") postID: Int,
+        @Query("reaction_id") reactionID: Int
+    ): Response<PostReact>
 }

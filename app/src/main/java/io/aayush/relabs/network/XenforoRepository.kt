@@ -6,6 +6,8 @@ import io.aayush.relabs.network.data.alert.MarkAlert
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostReply
+import io.aayush.relabs.network.data.react.PostReact
+import io.aayush.relabs.network.data.react.React
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
@@ -203,6 +205,21 @@ class XenforoRepository @Inject constructor(
             }
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to post reply!", exception)
+            null
+        }
+    }
+
+    suspend fun postReact(postID: Int, reactID: React): PostReact? {
+        return try {
+            val response = xenforoInterface.postReact(postID, reactID.ordinal + 1)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to react to the post!", exception)
             null
         }
     }

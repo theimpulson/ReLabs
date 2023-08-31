@@ -59,7 +59,9 @@ fun PostItem(
     isThreadOwner: Boolean = false,
     reactionScore: Int = 0,
     reacted: Boolean = false,
-    onClicked: () -> Unit = {}
+    onReact: () -> Unit = {},
+    onQuote: () -> Unit = {},
+    onMultiQuote: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -187,7 +189,7 @@ fun PostItem(
                             colorFilter = ColorFilter.tint(Color.White)
                         )
                     }
-                    IconButton(onClick = {}, enabled = false) {
+                    IconButton(onClick = { onReact() }) {
                         Image(
                             painter = painterResource(
                                 id = if (reacted) R.drawable.ic_like_filled else R.drawable.ic_like

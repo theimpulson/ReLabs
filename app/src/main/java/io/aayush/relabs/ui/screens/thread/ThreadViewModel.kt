@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.aayush.relabs.network.XenforoRepository
 import io.aayush.relabs.network.data.post.Post
+import io.aayush.relabs.network.data.react.React
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.utils.DesignQuoteSpan
 import io.aayush.relabs.utils.LinkTransformationMethod
@@ -50,6 +51,13 @@ class ThreadViewModel @Inject constructor(
                 )
                 _posts[page - 1] = response?.posts
             }
+        }
+    }
+
+    fun reactToPost(page: Int, post: Post) {
+        viewModelScope.launch {
+            val react = xenforoRepository.postReact(post.post_id, React.Like)
+            if (react?.success == true) getPosts(page + 1)
         }
     }
 }

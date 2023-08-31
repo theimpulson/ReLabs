@@ -13,7 +13,7 @@ data class Post(
     val can_view_attachments: Boolean = false,
     val is_first_post: Boolean = false,
     val is_last_post: Boolean = false,
-    val is_reacted_to: Boolean = false,
+    var is_reacted_to: Boolean = false,
     val is_unread: Boolean = false,
     val last_edit_date: Int = 0,
     val message: String = String(),

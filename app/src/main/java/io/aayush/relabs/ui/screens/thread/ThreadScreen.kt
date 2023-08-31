@@ -157,7 +157,8 @@ fun ThreadScreen(
                             designQuoteSpan = viewModel.designQuoteSpan,
                             isThreadOwner = post.User?.username == threadInfo?.thread?.User?.username,
                             reactionScore = post.reaction_score,
-                            reacted = post.is_reacted_to
+                            reacted = post.is_reacted_to,
+                            onReact = { viewModel.reactToPost(pagerState.settledPage, post) }
                         )
                     }
                 }
