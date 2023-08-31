@@ -4,7 +4,7 @@
   -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">ReLabs</string>
+    <string name="app_name" translatable="false">ReLabs</string>
 
     <!-- LoginButton -->
     <string name="continue_with_xda">Continue with XDA</string>
@@ -12,8 +12,7 @@
 
     <!-- LoginScreen -->
     <string name="login">Login</string>
-    <string name="welcome">Welcome!</string>
-    <string name="sign_in_hint">to a community of 10 million members</string>
+    <string name="login_info">Please sign in to continue</string>
 
     <!-- HomeScreen -->
     <string name="home">Forum</string>

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +22,8 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak") // false positive, see https://github.com/google/dagger/issues/3253
 class LoginScreenViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences,
+    val customTabsIntent: CustomTabsIntent
 ) : ViewModel() {
 
     companion object {

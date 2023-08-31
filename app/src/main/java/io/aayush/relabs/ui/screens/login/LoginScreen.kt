@@ -89,13 +89,13 @@ fun LoginScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = R.string.welcome),
-                    fontSize = 40.sp,
+                    text = stringResource(id = R.string.app_name),
+                    fontSize = 45.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = stringResource(id = R.string.sign_in_hint),
+                    text = stringResource(id = R.string.login_info),
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold
                 )
