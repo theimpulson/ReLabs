@@ -10,7 +10,12 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -50,7 +55,11 @@ fun SetupNavGraph(
                 }
             )
         ) {
-            ThreadScreen(navHostController, it.arguments!!.getInt(NavArg.THREAD_ID.name))
+            ThreadScreen(
+                navHostController = navHostController,
+                threadID = it.arguments!!.getInt(NavArg.THREAD_ID.name),
+                viewModel = it.sharedThreadViewModel(navController = navHostController)
+            )
         }
         composable(
             route = Screen.Reply.route,
@@ -60,7 +69,17 @@ fun SetupNavGraph(
                 }
             )
         ) {
-            ReplyScreen(navHostController, it.arguments!!.getInt(NavArg.THREAD_ID.name))
+            ReplyScreen(
+                navHostController = navHostController,
+                threadID = it.arguments!!.getInt(NavArg.THREAD_ID.name),
+                viewModel = it.sharedThreadViewModel(navController = navHostController)
+            )
         }
     }
+}
+
+@Composable
+inline fun <reified T : ViewModel> NavBackStackEntry.sharedThreadViewModel(navController: NavController): T {
+    val parentEntry = remember(this) { navController.getBackStackEntry(Screen.Thread.route) }
+    return hiltViewModel(parentEntry)
 }

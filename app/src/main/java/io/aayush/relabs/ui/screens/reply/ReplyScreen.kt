@@ -38,6 +38,7 @@ import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.ui.navigation.Screen
+import io.aayush.relabs.ui.screens.thread.ThreadViewModel
 import io.aayush.relabs.ui.theme.XDAYellow
 
 @Composable
@@ -45,7 +46,7 @@ import io.aayush.relabs.ui.theme.XDAYellow
 fun ReplyScreen(
     navHostController: NavHostController,
     threadID: Int,
-    viewModel: ReplyViewModel = hiltViewModel()
+    viewModel: ThreadViewModel = hiltViewModel()
 ) {
     var text by remember { mutableStateOf("") }
     var posting by remember { mutableStateOf(false) }

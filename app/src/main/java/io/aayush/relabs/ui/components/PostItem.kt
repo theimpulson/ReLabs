@@ -175,14 +175,14 @@ fun PostItem(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ) {
-                    IconButton(onClick = {}, enabled = false) {
+                    IconButton(onClick = { onQuote() }) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_comment),
                             contentDescription = "",
                             colorFilter = ColorFilter.tint(Color.White)
                         )
                     }
-                    IconButton(onClick = {}, enabled = false) {
+                    IconButton(onClick = { onMultiQuote() }) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_forum),
                             contentDescription = "",

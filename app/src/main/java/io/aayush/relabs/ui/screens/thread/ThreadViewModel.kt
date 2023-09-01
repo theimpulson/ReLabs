@@ -1,11 +1,17 @@
 package io.aayush.relabs.ui.screens.thread
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.os.Build
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import io.aayush.relabs.R
 import io.aayush.relabs.network.XenforoRepository
 import io.aayush.relabs.network.data.post.Post
+import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.React
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.utils.DesignQuoteSpan
@@ -17,11 +23,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+@SuppressLint("StaticFieldLeak") // false positive, see https://github.com/google/dagger/issues/3253
 class ThreadViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val xenforoRepository: XenforoRepository,
     val linkTransformationMethod: LinkTransformationMethod,
     val designQuoteSpan: DesignQuoteSpan
 ) : ViewModel() {
+
+    val postsToQuote = MutableStateFlow<MutableList<Post>>(mutableListOf())
+
+    private val _postReply = MutableStateFlow<PostReply?>(PostReply())
+    val postReply = _postReply.asStateFlow()
 
     private val _threadInfo = MutableStateFlow<ThreadInfo?>(ThreadInfo())
     val threadInfo = _threadInfo.asStateFlow()
@@ -58,6 +71,23 @@ class ThreadViewModel @Inject constructor(
         viewModelScope.launch {
             val react = xenforoRepository.postReact(post.post_id, React.Like)
             if (react?.success == true) getPosts(page + 1)
+        }
+    }
+
+    fun postReply(threadID: Int, message: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val header = postsToQuote.value.map {
+                context.getString(
+                    R.string.quote,
+                    it.User?.username,
+                    it.post_id,
+                    it.user_id,
+                    it.message
+                )
+            }
+            val footer = context.getString(R.string.sent_from, Build.MODEL)
+            _postReply.value =
+                xenforoRepository.postReply(threadID, "${header.joinToString("")}${message}$footer")
         }
     }
 }
