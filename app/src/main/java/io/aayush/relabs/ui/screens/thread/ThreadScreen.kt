@@ -24,11 +24,14 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
@@ -60,7 +63,9 @@ fun ThreadScreen(
         viewModel.getThreadInfo(threadID)
     }
 
+    val snackBarHostState = remember { SnackbarHostState() }
     val threadInfo: ThreadInfo? by viewModel.threadInfo.collectAsStateWithLifecycle()
+    val postsToQuote = remember { viewModel.postsToQuote }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -98,7 +103,8 @@ fun ThreadScreen(
                     }
                 )
             }
-        }
+        },
+        snackbarHost = { SnackbarHost(snackBarHostState) }
     ) {
         Column(modifier = Modifier.padding(it)) {
             val pagerState = rememberPagerState(
@@ -170,13 +176,29 @@ fun ThreadScreen(
                             isThreadOpen = threadInfo?.thread?.discussion_open ?: true,
                             reactionScore = post.reaction_score,
                             reacted = post.is_reacted_to,
+                            quoted = post in postsToQuote,
                             onReact = { viewModel.reactToPost(pagerState.settledPage, post) },
                             onQuote = {
-                                viewModel.postsToQuote.value.add(post)
+                                viewModel.postsToQuote.add(post)
                                 navHostController.navigate(Screen.Reply.withID(threadID))
                             },
                             onMultiQuote = {
-                                viewModel.postsToQuote.value.add(post)
+                                val quoted = if (post !in postsToQuote) {
+                                    viewModel.postsToQuote.add(post)
+                                    true
+                                } else {
+                                    viewModel.postsToQuote.remove(post)
+                                    false
+                                }
+                                coroutineScope.launch {
+                                    snackBarHostState.showSnackbar(
+                                        message = if (quoted) {
+                                            context.getString(R.string.added_quote_list)
+                                        } else {
+                                            context.getString(R.string.removed_quote_list)
+                                        }
+                                    )
+                                }
                             },
                             onShare = {
                                 val intent = Intent().apply {

@@ -62,6 +62,7 @@ fun PostItem(
     isThreadOpen: Boolean = true,
     reactionScore: Int = 0,
     reacted: Boolean = false,
+    quoted: Boolean = false,
     onReact: () -> Unit = {},
     onQuote: () -> Unit = {},
     onMultiQuote: () -> Unit = {},
@@ -189,7 +190,13 @@ fun PostItem(
                         }
                         IconButton(onClick = { onMultiQuote() }) {
                             Image(
-                                painter = painterResource(id = R.drawable.ic_forum),
+                                painter = painterResource(
+                                    id = if (quoted) {
+                                        R.drawable.ic_chat_add_filled
+                                    } else {
+                                        R.drawable.ic_chat_add
+                                    }
+                                ),
                                 contentDescription = "",
                                 colorFilter = ColorFilter.tint(Color.White)
                             )

@@ -31,7 +31,7 @@ class ThreadViewModel @Inject constructor(
     val designQuoteSpan: DesignQuoteSpan
 ) : ViewModel() {
 
-    val postsToQuote = MutableStateFlow<MutableList<Post>>(mutableListOf())
+    val postsToQuote = mutableStateListOf<Post>()
 
     private val _postReply = MutableStateFlow<PostReply?>(PostReply())
     val postReply = _postReply.asStateFlow()
@@ -76,7 +76,7 @@ class ThreadViewModel @Inject constructor(
 
     fun postReply(threadID: Int, message: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val header = postsToQuote.value.map {
+            val header = postsToQuote.map {
                 context.getString(
                     R.string.quote,
                     it.User?.username,
