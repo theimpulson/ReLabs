@@ -40,8 +40,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.network.data.thread.ThreadInfo
+import io.aayush.relabs.ui.components.ErrorScreen
 import io.aayush.relabs.ui.components.PostItem
 import io.aayush.relabs.ui.navigation.Screen
+import io.aayush.relabs.utils.Error
 import kotlinx.coroutines.launch
 
 @Composable
@@ -108,6 +110,10 @@ fun ThreadScreen(
                     // XenForo considers current page as 1
                     viewModel.getPosts(page + 1)
                 }
+            }
+
+            if (threadInfo == null) {
+                ErrorScreen(error = Error.EMPTY, retry = { viewModel.getThreadInfo(threadID) })
             }
 
             Row(
