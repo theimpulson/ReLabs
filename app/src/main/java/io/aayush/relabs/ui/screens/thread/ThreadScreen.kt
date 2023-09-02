@@ -148,7 +148,8 @@ fun ThreadScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     items(
-                        items = viewModel.posts.getOrElse(it) { emptyList() } ?: emptyList(),
+                        items = viewModel.posts.getOrElse(it) { emptyList() }
+                            ?.filter { p -> p.message_state != "deleted" } ?: emptyList(),
                         key = { p -> p.post_id }
                     ) { post ->
                         PostItem(
