@@ -1,5 +1,6 @@
 package io.aayush.relabs.ui.screens.thread
 
+import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +33,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -39,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import io.aayush.relabs.R
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.ui.components.ErrorScreen
 import io.aayush.relabs.ui.components.PostItem
@@ -104,6 +107,7 @@ fun ThreadScreen(
                 pageCount = { threadInfo?.pagination?.last_page ?: 0 }
             )
             val coroutineScope = rememberCoroutineScope()
+            val context = LocalContext.current
 
             LaunchedEffect(key1 = pagerState) {
                 snapshotFlow { pagerState.targetPage }.collect { page ->
@@ -173,6 +177,17 @@ fun ThreadScreen(
                             },
                             onMultiQuote = {
                                 viewModel.postsToQuote.value.add(post)
+                            },
+                            onShare = {
+                                val intent = Intent().apply {
+                                    action = Intent.ACTION_SEND
+                                    putExtra(
+                                        Intent.EXTRA_TEXT,
+                                        context.getString(R.string.share_post_header, post.view_url)
+                                    )
+                                    type = "text/plain"
+                                }
+                                context.startActivity(Intent.createChooser(intent, null))
                             }
                         )
                     }

@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -62,7 +64,8 @@ fun PostItem(
     reacted: Boolean = false,
     onReact: () -> Unit = {},
     onQuote: () -> Unit = {},
-    onMultiQuote: () -> Unit = {}
+    onMultiQuote: () -> Unit = {},
+    onShare: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -197,6 +200,13 @@ fun PostItem(
                             painter = painterResource(
                                 id = if (reacted) R.drawable.ic_like_filled else R.drawable.ic_like
                             ),
+                            contentDescription = "",
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
+                    }
+                    IconButton(onClick = { onShare() }) {
+                        Image(
+                            imageVector = Icons.Filled.Share,
                             contentDescription = "",
                             colorFilter = ColorFilter.tint(Color.White)
                         )
