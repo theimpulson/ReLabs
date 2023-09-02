@@ -34,7 +34,7 @@ interface XenforoInterface {
 
     @POST("alerts/mark-all/")
     suspend fun markAllAlerts(
-        @Query("read") read: Boolean = false,
+        @Query("read") read: Boolean? = null,
         @Query("viewed") viewed: Boolean? = null
     ): Response<MarkAlert>
 

@@ -36,7 +36,7 @@ class XenforoRepository @Inject constructor(
         }
     }
 
-    suspend fun markAllAlerts(read: Boolean, viewed: Boolean? = null): MarkAlert? {
+    suspend fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null): MarkAlert? {
         return try {
             val response = xenforoInterface.markAllAlerts(read, viewed)
             if (response.isSuccessful) {
