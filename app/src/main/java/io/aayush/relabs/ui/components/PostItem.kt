@@ -57,6 +57,7 @@ fun PostItem(
     linkTransformationMethod: LinkTransformationMethod,
     designQuoteSpan: DesignQuoteSpan,
     isThreadOwner: Boolean = false,
+    isThreadOpen: Boolean = true,
     reactionScore: Int = 0,
     reacted: Boolean = false,
     onReact: () -> Unit = {},
@@ -175,19 +176,21 @@ fun PostItem(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ) {
-                    IconButton(onClick = { onQuote() }) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_comment),
-                            contentDescription = "",
-                            colorFilter = ColorFilter.tint(Color.White)
-                        )
-                    }
-                    IconButton(onClick = { onMultiQuote() }) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_forum),
-                            contentDescription = "",
-                            colorFilter = ColorFilter.tint(Color.White)
-                        )
+                    if (isThreadOpen) {
+                        IconButton(onClick = { onQuote() }) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_comment),
+                                contentDescription = "",
+                                colorFilter = ColorFilter.tint(Color.White)
+                            )
+                        }
+                        IconButton(onClick = { onMultiQuote() }) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_forum),
+                                contentDescription = "",
+                                colorFilter = ColorFilter.tint(Color.White)
+                            )
+                        }
                     }
                     IconButton(onClick = { onReact() }) {
                         Image(

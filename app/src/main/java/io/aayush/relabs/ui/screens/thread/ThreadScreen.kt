@@ -157,6 +157,7 @@ fun ThreadScreen(
                             linkTransformationMethod = viewModel.linkTransformationMethod,
                             designQuoteSpan = viewModel.designQuoteSpan,
                             isThreadOwner = post.User?.username == threadInfo?.thread?.User?.username,
+                            isThreadOpen = threadInfo?.thread?.discussion_open ?: true,
                             reactionScore = post.reaction_score,
                             reacted = post.is_reacted_to,
                             onReact = { viewModel.reactToPost(pagerState.settledPage, post) },
