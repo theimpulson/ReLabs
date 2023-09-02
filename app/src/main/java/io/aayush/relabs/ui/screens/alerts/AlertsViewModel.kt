@@ -21,21 +21,23 @@ class AlertsViewModel @Inject constructor(
 
     init {
         getAlerts()
+        markAllAlerts(viewed = true)
     }
 
     private fun getAlerts() {
         viewModelScope.launch(Dispatchers.IO) {
             val listOfAlert = xenforoRepository.getAlerts()?.alerts
             _alerts.value = listOfAlert
-
-            // Mark unread alerts as viewed
-            markAllAlertsViewed()
         }
     }
 
-    private fun markAllAlertsViewed() {
+    fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null) {
         viewModelScope.launch(Dispatchers.IO) {
-            xenforoRepository.markAllAlerts(viewed = true)
+            val markAlert = xenforoRepository.markAllAlerts(read, viewed)
+
+            if (read == true && markAlert?.success == true) {
+                getAlerts()
+            }
         }
     }
 }
