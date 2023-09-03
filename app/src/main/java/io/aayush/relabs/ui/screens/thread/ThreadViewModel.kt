@@ -90,4 +90,10 @@ class ThreadViewModel @Inject constructor(
                 xenforoRepository.postReply(threadID, "${header.joinToString("")}${message}$footer")
         }
     }
+
+    fun markThreadAsRead(threadID: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            xenforoRepository.markThreadAsRead(threadID)
+        }
+    }
 }

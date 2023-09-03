@@ -1,7 +1,7 @@
 package io.aayush.relabs.network
 
 import io.aayush.relabs.network.data.alert.Alerts
-import io.aayush.relabs.network.data.alert.MarkAlert
+import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostReply
@@ -36,7 +36,7 @@ interface XenforoInterface {
     suspend fun markAllAlerts(
         @Query("read") read: Boolean? = null,
         @Query("viewed") viewed: Boolean? = null
-    ): Response<MarkAlert>
+    ): Response<MarkResponse>
 
     @GET("conversations/")
     suspend fun getConversations(
@@ -74,6 +74,9 @@ interface XenforoInterface {
         @Query("with_last_post") with_last_post: Boolean? = null,
         @Query("order") order: String? = null
     ): Response<ThreadInfo>
+
+    @POST("threads/{id}/mark-read")
+    suspend fun markThreadAsRead(@Path("id") id: Int): Response<MarkResponse>
 
     @POST("posts")
     suspend fun postReply(

@@ -50,6 +50,7 @@ import io.aayush.relabs.ui.components.ErrorScreen
 import io.aayush.relabs.ui.components.PostItem
 import io.aayush.relabs.ui.navigation.Screen
 import io.aayush.relabs.utils.Error
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @Composable
@@ -119,6 +120,11 @@ fun ThreadScreen(
                 snapshotFlow { pagerState.targetPage }.collect { page ->
                     // XenForo considers current page as 1
                     viewModel.getPosts(page + 1)
+
+                    // Mark thread as read if this is last page
+                    if (pagerState.settledPage == pagerState.pageCount) {
+                        viewModel.markThreadAsRead(threadID)
+                    }
                 }
             }
 

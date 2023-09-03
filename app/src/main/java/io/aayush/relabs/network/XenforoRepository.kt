@@ -2,7 +2,7 @@ package io.aayush.relabs.network
 
 import android.util.Log
 import io.aayush.relabs.network.data.alert.Alerts
-import io.aayush.relabs.network.data.alert.MarkAlert
+import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostReply
@@ -36,7 +36,7 @@ class XenforoRepository @Inject constructor(
         }
     }
 
-    suspend fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null): MarkAlert? {
+    suspend fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null): MarkResponse? {
         return try {
             val response = xenforoInterface.markAllAlerts(read, viewed)
             if (response.isSuccessful) {
@@ -186,6 +186,21 @@ class XenforoRepository @Inject constructor(
             }
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to fetch thread info!", exception)
+            null
+        }
+    }
+
+    suspend fun markThreadAsRead(threadID: Int): MarkResponse? {
+        return try {
+            val response = xenforoInterface.markThreadAsRead(threadID)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to mark thread as read!", exception)
             null
         }
     }
