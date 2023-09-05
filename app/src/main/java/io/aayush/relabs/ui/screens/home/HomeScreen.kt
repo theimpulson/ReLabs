@@ -32,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
+import io.aayush.relabs.network.data.thread.DiscussionState
 import io.aayush.relabs.network.data.thread.Thread
 import io.aayush.relabs.ui.components.ThreadPreviewItem
 import io.aayush.relabs.ui.navigation.Screen
@@ -87,7 +88,10 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(
                         items = when (it) {
-                            0 -> watchedThreads ?: emptyList()
+                            0 -> watchedThreads
+                                ?.filter { t -> t.discussion_state == DiscussionState.VISIBLE }
+                                ?: emptyList()
+
                             else -> trendingThreads ?: emptyList()
                         },
                         key = { t -> t.thread_id }

@@ -15,7 +15,7 @@ data class Thread(
     val can_view_attachments: Boolean = false,
     val custom_fields: CustomFields = CustomFields(),
     val discussion_open: Boolean = false,
-    val discussion_state: String = String(),
+    val discussion_state: DiscussionState = DiscussionState.MODERATED,
     val discussion_type: String = String(),
     val first_post_id: Int = 0,
     val first_post_reaction_score: Int = 0,
