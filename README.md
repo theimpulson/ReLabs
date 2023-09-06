@@ -3,6 +3,8 @@
 ReLabs is an unofficial, FOSS client for [XDA (a.k.a XDA Developers)](https://forum.xda-developers.com/) written in Kotlin
 and JetPack Compose and is licensed under Apache2.0.
 
+<a href='https://play.google.com/store/apps/details?id=io.aayush.relabs'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="20%" width="20%" /></a>
+
 ## Development
 
 XDA underwent couple of major migrations during 2021-2022 that changed how the website and forums behaved (references below).
