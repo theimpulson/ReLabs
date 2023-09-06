@@ -45,7 +45,7 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
         modifier = Modifier.fillMaxSize(),
         topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.home)) }) }
     ) {
-        val tabData = listOf(R.string.watched, R.string.trending)
+        val tabData = listOf(R.string.watched, R.string.whats_new)
         val pagerState = rememberPagerState(
             initialPage = 0,
             initialPageOffsetFraction = 0f,
