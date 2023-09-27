@@ -1,4 +1,4 @@
-package io.aayush.relabs.ui.screens.settings
+package io.aayush.relabs.ui.screens.more
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SettingsViewModel @Inject constructor(
+class MoreViewModel @Inject constructor(
     private val xenforoRepository: XenforoRepository
 ) : ViewModel() {
 

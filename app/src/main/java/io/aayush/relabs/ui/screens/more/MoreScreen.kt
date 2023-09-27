@@ -1,4 +1,4 @@
-package io.aayush.relabs.ui.screens.settings
+package io.aayush.relabs.ui.screens.more
 
 import android.net.Uri
 import android.util.Log
@@ -33,9 +33,9 @@ private const val TAG = "SettingsScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun MoreScreen(
     navHostController: NavHostController,
-    viewModel: SettingsViewModel = hiltViewModel()
+    viewModel: MoreViewModel = hiltViewModel()
 ) {
     val user: Me? by viewModel.currentUser.collectAsStateWithLifecycle()
 
@@ -43,7 +43,7 @@ fun SettingsScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.settings)) },
+                title = { Text(text = stringResource(id = R.string.more)) },
                 actions = {
                     if (user?.me?.view_url?.isNotBlank() == true) {
                         val context = LocalContext.current

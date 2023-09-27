@@ -34,9 +34,9 @@ sealed class Screen(val route: String, @StringRes val title: Int, @DrawableRes v
         icon = R.drawable.ic_notifications
     )
 
-    data object Settings : Screen(
-        route = "settings_screen",
-        title = R.string.settings,
+    data object More : Screen(
+        route = "more_screen",
+        title = R.string.more,
         icon = R.drawable.ic_more
     )
 

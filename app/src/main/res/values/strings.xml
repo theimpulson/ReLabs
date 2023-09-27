@@ -30,8 +30,8 @@
     <string name="computing">Computing</string>
     <string name="smart_home">Smart Home</string>
 
-    <!-- SettingsScreen -->
-    <string name="settings">More</string>
+    <!-- MoreScreen -->
+    <string name="more">More</string>
 
     <!-- ThreadScreen -->
     <string name="thread">Thread</string>

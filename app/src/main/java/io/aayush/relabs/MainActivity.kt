@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         Screen.ThreadPreview.route,
         Screen.Alerts.route,
         Screen.News.route,
-        Screen.Settings.route
+        Screen.More.route
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

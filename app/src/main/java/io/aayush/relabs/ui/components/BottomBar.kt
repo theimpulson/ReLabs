@@ -25,7 +25,7 @@ fun BottomBar(navController: NavHostController) {
         Screen.ThreadPreview,
         Screen.News,
         Screen.Alerts,
-        Screen.Settings
+        Screen.More
     )
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
 
@@ -33,7 +33,7 @@ fun BottomBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     when (navBackStackEntry?.destination?.route) {
-        Screen.ThreadPreview.route, Screen.News.route, Screen.Alerts.route, Screen.Settings.route -> {
+        Screen.ThreadPreview.route, Screen.News.route, Screen.Alerts.route, Screen.More.route -> {
             bottomBarState.value = true
         }
 
