@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package io.aayush.relabs.ui.screens.home
+package io.aayush.relabs.ui.screens.threadpreview
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -40,10 +40,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
-fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
+fun ThreadPreviewScreen(
+    navHostController: NavHostController,
+    viewModel: ThreadPreviewViewModel = hiltViewModel()
+) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.home)) }) }
+        topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.thread_preview)) }) }
     ) {
         val tabData = listOf(R.string.watched, R.string.whats_new)
         val pagerState = rememberPagerState(
@@ -69,17 +72,13 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
         Column(modifier = Modifier.padding(it)) {
             TabRow(selectedTabIndex = tabIndex) {
                 tabData.forEachIndexed { index, _ ->
-                    Tab(
-                        selected = tabIndex == index,
-                        onClick = {
-                            coroutineScope.launch {
-                                pagerState.animateScrollToPage(index)
-                            }
-                        },
-                        text = {
-                            Text(text = stringResource(id = tabData[index]))
+                    Tab(selected = tabIndex == index, onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(index)
                         }
-                    )
+                    }, text = {
+                            Text(text = stringResource(id = tabData[index]))
+                        })
                 }
             }
             HorizontalPager(
@@ -88,9 +87,10 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(
                         items = when (it) {
-                            0 -> watchedThreads
-                                ?.filter { t -> t.discussion_state == DiscussionState.VISIBLE }
-                                ?: emptyList()
+                            0 ->
+                                watchedThreads
+                                    ?.filter { t -> t.discussion_state == DiscussionState.VISIBLE }
+                                    ?: emptyList()
 
                             else -> trendingThreads ?: emptyList()
                         },

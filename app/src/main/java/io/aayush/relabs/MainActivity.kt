@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
 
     val topRoutes = listOf(
-        Screen.Home.route,
+        Screen.ThreadPreview.route,
         Screen.Alerts.route,
         Screen.News.route,
         Screen.Settings.route
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 val currentBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute by remember {
                     derivedStateOf {
-                        currentBackStackEntry?.destination?.route ?: Screen.Home.route
+                        currentBackStackEntry?.destination?.route ?: Screen.ThreadPreview.route
                     }
                 }
 
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     SetupNavGraph(
                         navHostController = navController,
                         paddingValues = it,
-                        if (accessToken.isNotBlank()) Screen.Home.route else Screen.Login.route
+                        if (accessToken.isNotBlank()) Screen.ThreadPreview.route else Screen.Login.route
                     )
                 }
 

@@ -62,7 +62,7 @@ fun LoginScreen(
                     viewModel.authState.update(res, ex)
                     viewModel.saveAccessToken()
 
-                    navHostController.navigate(Screen.Home.route) {
+                    navHostController.navigate(Screen.ThreadPreview.route) {
                         popUpTo(navHostController.graph.findStartDestination().id) {
                             inclusive = true
                         }

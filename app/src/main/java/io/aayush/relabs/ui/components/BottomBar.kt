@@ -22,7 +22,7 @@ import io.aayush.relabs.ui.navigation.Screen
 @Composable
 fun BottomBar(navController: NavHostController) {
     val screens = listOf(
-        Screen.Home,
+        Screen.ThreadPreview,
         Screen.News,
         Screen.Alerts,
         Screen.Settings
@@ -33,7 +33,7 @@ fun BottomBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     when (navBackStackEntry?.destination?.route) {
-        Screen.Home.route, Screen.News.route, Screen.Alerts.route, Screen.Settings.route -> {
+        Screen.ThreadPreview.route, Screen.News.route, Screen.Alerts.route, Screen.Settings.route -> {
             bottomBarState.value = true
         }
 

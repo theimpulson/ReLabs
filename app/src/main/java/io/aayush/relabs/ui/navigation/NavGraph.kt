@@ -22,12 +22,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import io.aayush.relabs.ui.screens.alerts.AlertsScreen
-import io.aayush.relabs.ui.screens.home.HomeScreen
 import io.aayush.relabs.ui.screens.login.LoginScreen
 import io.aayush.relabs.ui.screens.news.NewsScreen
 import io.aayush.relabs.ui.screens.reply.ReplyScreen
 import io.aayush.relabs.ui.screens.settings.SettingsScreen
 import io.aayush.relabs.ui.screens.thread.ThreadScreen
+import io.aayush.relabs.ui.screens.threadpreview.ThreadPreviewScreen
 
 @Composable
 fun SetupNavGraph(
@@ -43,7 +43,7 @@ fun SetupNavGraph(
         exitTransition = { ExitTransition.None }
     ) {
         composable(route = Screen.Login.route) { LoginScreen(navHostController) }
-        composable(route = Screen.Home.route) { HomeScreen(navHostController) }
+        composable(route = Screen.ThreadPreview.route) { ThreadPreviewScreen(navHostController) }
         composable(route = Screen.Alerts.route) { AlertsScreen(navHostController) }
         composable(route = Screen.News.route) { NewsScreen(navHostController) }
         composable(route = Screen.Settings.route) { SettingsScreen(navHostController) }
