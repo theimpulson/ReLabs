@@ -54,4 +54,7 @@
     <string name="retry">Retry</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nothing here!</string>
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Failed to fetch information!</string>
+
+    <!-- ForumPreviewScreen -->
+    <string name="forum_preview">Forums</string>
 </resources>

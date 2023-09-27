@@ -17,23 +17,17 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import io.aayush.relabs.ui.navigation.Screen
+import io.aayush.relabs.MainActivity
 
 @Composable
 fun BottomBar(navController: NavHostController) {
-    val screens = listOf(
-        Screen.ThreadPreview,
-        Screen.News,
-        Screen.Alerts,
-        Screen.More
-    )
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
     when (navBackStackEntry?.destination?.route) {
-        Screen.ThreadPreview.route, Screen.News.route, Screen.Alerts.route, Screen.More.route -> {
+        in MainActivity.topRoutes.map { it.route } -> {
             bottomBarState.value = true
         }
 
@@ -46,7 +40,7 @@ fun BottomBar(navController: NavHostController) {
         exit = slideOutVertically(targetOffsetY = { it })
     ) {
         NavigationBar {
-            screens.forEachIndexed { _, item ->
+            MainActivity.topRoutes.forEachIndexed { _, item ->
                 NavigationBarItem(
                     selected = currentDestination?.hierarchy?.any {
                         it.route == item.route

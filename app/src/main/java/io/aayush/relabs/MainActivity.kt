@@ -33,15 +33,18 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        val topRoutes: List<Screen> = listOf(
+            Screen.ThreadPreview,
+            Screen.News,
+            Screen.ForumPreview,
+            Screen.Alerts,
+            Screen.More
+        )
+    }
+
     @Inject
     lateinit var sharedPreferences: SharedPreferences
-
-    val topRoutes = listOf(
-        Screen.ThreadPreview.route,
-        Screen.Alerts.route,
-        Screen.News.route,
-        Screen.More.route
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 LaunchedEffect(key1 = currentRoute) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
                         val navigationBarElevation = NavigationBarDefaults.Elevation
-                        val navigationBarColor = if (currentRoute in topRoutes) {
+                        val navigationBarColor = if (topRoutes.any { it.route == currentRoute }) {
                             colorScheme.surfaceColorAtElevation(navigationBarElevation)
                         } else {
                             colorScheme.background

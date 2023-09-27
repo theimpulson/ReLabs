@@ -59,4 +59,10 @@ sealed class Screen(val route: String, @StringRes val title: Int, @DrawableRes v
             return this.route.replace("{${NavArg.THREAD_ID.name}}", id.toString())
         }
     }
+
+    data object ForumPreview : Screen(
+        route = "forum_preview_screen",
+        title = R.string.forum_preview,
+        icon = R.drawable.ic_phone
+    )
 }
