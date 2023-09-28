@@ -26,4 +26,6 @@ Support for [XDA Portal](https://www.xda-developers.com/) is also present using 
 
 Don't see your preferred language? Click on the widget below to help translate ReLabs!
 
-![Translation status](https://hosted.weblate.org/widget/relabs/android/287x66-grey.png)
+<a href="https://hosted.weblate.org/engage/relabs/">
+    <img src="https://hosted.weblate.org/widget/relabs/android/287x66-grey.png" alt="Translation status" />
+</a>
