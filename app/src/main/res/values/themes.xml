@@ -6,5 +6,12 @@
 
 <resources>
 
-    <style name="Theme.ReLabs" parent="Theme.Material3.DayNight.NoActionBar" />
+    <!-- Base application theme. -->
+    <style name="BaseTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?android:colorBackground</item>
+        <item name="android:navigationBarColor">?android:colorBackground</item>
+    </style>
+
+    <!-- Inherit base theme to allow overriding Light Theme as per API levels -->
+    <style name="Theme.ReLabs" parent="BaseTheme" />
 </resources>
