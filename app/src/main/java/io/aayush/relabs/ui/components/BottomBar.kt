@@ -13,6 +13,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.util.fastForEachIndexed
+import androidx.compose.ui.util.fastMap
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -27,7 +29,7 @@ fun BottomBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     when (navBackStackEntry?.destination?.route) {
-        in MainActivity.topRoutes.map { it.route } -> {
+        in MainActivity.topRoutes.fastMap { it.route } -> {
             bottomBarState.value = true
         }
 
@@ -40,7 +42,7 @@ fun BottomBar(navController: NavHostController) {
         exit = slideOutVertically(targetOffsetY = { it })
     ) {
         NavigationBar {
-            MainActivity.topRoutes.forEachIndexed { _, item ->
+            MainActivity.topRoutes.fastForEachIndexed { _, item ->
                 NavigationBarItem(
                     selected = currentDestination?.hierarchy?.any {
                         it.route == item.route

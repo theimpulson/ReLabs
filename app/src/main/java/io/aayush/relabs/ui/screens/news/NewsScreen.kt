@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastForEachIndexed
 import androidx.core.text.HtmlCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -37,7 +38,6 @@ import coil.size.Scale
 import com.prof.rssparser.Article
 import io.aayush.relabs.R
 import io.aayush.relabs.newsitem.NewsItem
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.UUID
 
@@ -77,7 +77,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
 
         Column(modifier = Modifier.padding(it)) {
             TabRow(selectedTabIndex = tabIndex) {
-                tabData.forEachIndexed { index, _ ->
+                tabData.fastForEachIndexed { index, _ ->
                     Tab(
                         selected = tabIndex == index,
                         onClick = {

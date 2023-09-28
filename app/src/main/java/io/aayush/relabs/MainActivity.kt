@@ -19,6 +19,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.util.fastAny
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -76,11 +77,12 @@ class MainActivity : AppCompatActivity() {
                 LaunchedEffect(key1 = currentRoute) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
                         val navigationBarElevation = NavigationBarDefaults.Elevation
-                        val navigationBarColor = if (topRoutes.any { it.route == currentRoute }) {
-                            colorScheme.surfaceColorAtElevation(navigationBarElevation)
-                        } else {
-                            colorScheme.background
-                        }
+                        val navigationBarColor =
+                            if (topRoutes.fastAny { it.route == currentRoute }) {
+                                colorScheme.surfaceColorAtElevation(navigationBarElevation)
+                            } else {
+                                colorScheme.background
+                            }
                         systemUiController.setNavigationBarColor(navigationBarColor, !darkTheme)
                     }
                 }

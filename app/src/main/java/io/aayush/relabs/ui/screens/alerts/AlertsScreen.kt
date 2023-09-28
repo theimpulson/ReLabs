@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastAny
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -39,7 +40,7 @@ fun AlertsScreen(
                 actions = {
                     IconButton(
                         onClick = { viewModel.markAllAlerts(read = true) },
-                        enabled = alerts?.any { it.read_date == 0 } == true
+                        enabled = alerts?.fastAny { it.read_date == 0 } == true
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_done_all),

@@ -28,6 +28,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastForEachIndexed
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -71,7 +72,7 @@ fun ThreadPreviewScreen(
 
         Column(modifier = Modifier.padding(it)) {
             TabRow(selectedTabIndex = tabIndex) {
-                tabData.forEachIndexed { index, _ ->
+                tabData.fastForEachIndexed { index, _ ->
                     Tab(selected = tabIndex == index, onClick = {
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(index)
