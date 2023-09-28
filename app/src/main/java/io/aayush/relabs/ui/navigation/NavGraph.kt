@@ -34,7 +34,7 @@ import io.aayush.relabs.ui.screens.threadpreview.ThreadPreviewScreen
 fun SetupNavGraph(
     navHostController: NavHostController,
     paddingValues: PaddingValues,
-    startDestinationRoute: String = Screen.Login.route
+    startDestinationRoute: String = Screen.ThreadPreview.route
 ) {
     NavHost(
         navController = navHostController,

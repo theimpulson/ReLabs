@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     SetupNavGraph(
                         navHostController = navController,
                         paddingValues = it,
-                        if (accessToken.isNotBlank()) Screen.ThreadPreview.route else Screen.Login.route
+                        if (accessToken.isBlank()) Screen.Login.route else Screen.ThreadPreview.route
                     )
                 }
 
