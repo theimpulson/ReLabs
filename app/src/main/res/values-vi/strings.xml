@@ -1,2 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reply">Phản hồi</string>
+    <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Trích xuất thông tin thất bại!</string>
+    <string name="thread">Chủ đề</string>
+    <string name="you_reacted_to">Bạn đã phản ứng với bài đăng này</string>
+    <string name="login_info">Vui lòng đăng nhập để tiếp tục</string>
+    <string name="watched">Đã xem</string>
+    <string name="news">Tin tức</string>
+    <string name="posted_by">Đăng bởi <xliff:g id="author">%1$s</xliff:g></string>
+    <string name="smart_home">Nhà thông minh</string>
+    <string name="logging_in">Đang đăng nhập…</string>
+    <string name="retry">Thử lại</string>
+    <string name="computing">Máy tính</string>
+    <string name="sent_from">
+\n
+\n
+\nGửi từ <xliff:g id="device">%1$s</xliff:g> bằng ReLabs</string>
+    <string name="continue_with_xda">Tiếp tục bằng XDA</string>
+    <string name="forum_preview">Diễn đàn</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> người đã phản ứng với bài đăng này</string>
+    <string name="more">Thêm</string>
+    <string name="whats_new">Có gì mới</string>
+    <string name="share_post_header">Xem bài đăng này trên diễn đàn XDA:
+\n
+\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> • <xliff:g id="replies">%2$s</xliff:g> phản hồi • <xliff:g id="views">%3$s</xliff:g> lượt xem</string>
+    <string name="added_quote_list">Đã thêm vào danh sách trích dẫn!</string>
+    <string name="thread_preview">Chủ đề</string>
+    <string name="follow_rules">Nhớ đọc và tuân theo Quy định Diễn đàn XDA!</string>
+    <string name="guest">Khách</string>
+    <string name="login">Đăng nhập</string>
+    <string name="alerts">Thông báo</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Không có gì ở đây!</string>
+    <string name="you_and_reacted_to">Bạn và <xliff:g id="number">%1$d</xliff:g> người khác đã phản ứng với bài đăng này</string>
+    <string name="mobile">Di động</string>
+    <string name="removed_quote_list">Đã xóa khỏi danh sách trích dẫn!</string>
+</resources>
