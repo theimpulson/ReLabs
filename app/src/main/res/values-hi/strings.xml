@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="login_info">कृपया जारी रखने के लिए साइन इन करें</string>
+    <string name="logging_in">प्रवेश किया…</string>
+    <string name="continue_with_xda">XDA के साथ जारी रखें</string>
+    <string name="whats_new">नया</string>
+    <string name="thread_preview">Threads</string>
+    <string name="login">लॉग इन</string>
+</resources>
