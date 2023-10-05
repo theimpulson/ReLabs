@@ -1,6 +1,6 @@
 # ReLabs
 
-ReLabs is an unofficial, FOSS client for [XDA (a.k.a XDA Developers)](https://forum.xda-developers.com/) written in Kotlin
+ReLabs is an unofficial, FOSS client for [XDA (a.k.a XDA Developers)](https://xdaforums.com/) written in Kotlin
 and JetPack Compose and is licensed under Apache2.0.
 
 <a href='https://play.google.com/store/apps/details?id=io.aayush.relabs'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="20%" width="20%" /></a>
@@ -10,7 +10,7 @@ and JetPack Compose and is licensed under Apache2.0.
 XDA underwent couple of major migrations during 2021-2022 that changed how the website and forums behaved (references below).
 
 - [Big Changes To XDA Forums are Here](https://www.xda-developers.com/big-changes-to-xda-forums-are-coming-soon/)
-- [Welcome to XDA 2021!](https://forum.xda-developers.com/t/closed-welcome-to-xda-2021.4197018/)
+- [Welcome to XDA 2021!](https://xdaforums.com/t/closed-welcome-to-xda-2021.4197018/)
 - [Welcome to the new XDA!](https://www.xda-developers.com/welcome-to-the-new-xda/)
 
 The new XDA Forums is now based upon [XenForo](https://xenforo.com/) which has a [public REST API documentation](https://xenforo.com/community/pages/api-endpoints/).

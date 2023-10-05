@@ -18,7 +18,7 @@ import retrofit2.http.Query
 interface XenforoInterface {
 
     companion object {
-        const val BASE_URL = "https://forum.xda-developers.com/api/"
+        const val BASE_URL = "https://xdaforums.com/api/"
     }
 
     @GET("me/")

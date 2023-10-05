@@ -28,8 +28,8 @@ class LoginScreenViewModel @Inject constructor(
 
     companion object {
         // Taken from official XDA app for oauth2 login
-        private const val AUTHORIZATION_URL = "https://forum.xda-developers.com/audapi/oauth2/authorize"
-        private const val TOKEN_URL = "https://forum.xda-developers.com/api/audapi-oauth2/token"
+        private const val AUTHORIZATION_URL = "https://xdaforums.com/audapi/oauth2/authorize"
+        private const val TOKEN_URL = "https://xdaforums.com/api/audapi-oauth2/token"
         private const val CLIENT_ID = "com.xda.labs.play"
         private const val REDIRECT_URI = "com.xda.labs.play.native://--/"
         private const val SCOPE = "audapp:user"
