@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="login_info">कृपया जारी रखने के लिए साइन इन करें</string>
-    <string name="logging_in">प्रवेश किया…</string>
+<!--
+  ~ SPDX-FileCopyrightText: 2023 Aayush Gupta
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- LoginButton -->
     <string name="continue_with_xda">XDA के साथ जारी रखें</string>
-    <string name="whats_new">नया</string>
-    <string name="thread_preview">Threads</string>
+    <string name="logging_in">प्रवेश किया…</string>
+    <!-- LoginScreen -->
     <string name="login">लॉग इन</string>
+    <string name="login_info">कृपया जारी रखने के लिए साइन इन करें</string>
+    <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Threads</string>
+    <string name="whats_new">नया</string>
+    <!-- AlertsScreen -->
+    <!-- NewsScreen -->
+    <!-- MoreScreen -->
+    <!-- ThreadScreen -->
+    <!-- ReplyScreen -->
+    <!-- ErrorScreen -->
+    <!-- ForumPreviewScreen -->
 </resources>
