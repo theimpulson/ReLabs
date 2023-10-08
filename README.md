@@ -21,11 +21,3 @@ This app uses OAuth2 endpoints and parameters extracted from the official app to
 to allow them to interact with XDA Forums. Custom API endpoints will be used where possible.
 
 Support for [XDA Portal](https://www.xda-developers.com/) is also present using the RSS Feed that was made public in one of the reference links above.
-
-## Translations
-
-Don't see your preferred language? Click on the widget below to help translate ReLabs!
-
-<a href="https://hosted.weblate.org/engage/relabs/">
-    <img src="https://hosted.weblate.org/widget/relabs/android/287x66-grey.png" alt="Translation status" />
-</a>
