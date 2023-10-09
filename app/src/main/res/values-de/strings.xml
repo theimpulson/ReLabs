@@ -5,12 +5,29 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
+    <string name="continue_with_xda">Mit XDA fortfahren</string>
+    <string name="logging_in">Einloggend in…</string>
     <!-- LoginScreen -->
+    <string name="login">Log-in</string>
+    <string name="login_info">Bitte melden Sie sich an um fortzufahren</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Threads</string>
+    <string name="whats_new">Was ist neu?</string>
+    <string name="watched">Abonniert</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> replies &#8226; <xliff:g id="views">%3$s</xliff:g> Seitenabrufe</string>
     <!-- AlertsScreen -->
+    <string name="alerts">Benachrichtigungen</string>
     <!-- NewsScreen -->
+    <string name="news">Portal</string>
+    <string name="posted_by">Gepostet von <xliff:g id="author">%1$s</xliff:g></string>
+    <string name="mobile">Handy</string>
+    <string name="computing">Computer</string>
+    <string name="smart_home">Smarthome</string>
     <!-- MoreScreen -->
+    <string name="more">Mehr</string>
     <!-- ThreadScreen -->
+    <string name="thread">Thread</string>
+    <string name="guest">Gast</string>
     <!-- ReplyScreen -->
     <!-- ErrorScreen -->
     <!-- ForumPreviewScreen -->
