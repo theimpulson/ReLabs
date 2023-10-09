@@ -30,7 +30,7 @@
     <string name="guest">Host</string>
     <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> reagoval/o na tento příspěvek</string>
     <string name="you_and_reacted_to">Vy a <xliff:g id="number">%1$d</xliff:g> další/ch jste reagovali na tento příspěvek</string>
-    <string name="you_reacted_to">Reagoval jste na tento příspěvek</string>
+    <string name="you_reacted_to">Reagovali jste na tento příspěvek</string>
     <string name="share_post_header">Podívejte se na tento příspěvek ve fóru XDA:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
     <string name="added_quote_list">Přidáno do seznamu citací!</string>
     <string name="removed_quote_list">Odstraněno ze seznamu citací!</string>
