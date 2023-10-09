@@ -5,12 +5,27 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
+    <string name="continue_with_xda">Nastavi s XDA</string>
+    <string name="logging_in">Prijava…</string>
     <!-- LoginScreen -->
+    <string name="login">Prijava</string>
+    <string name="login_info">Molimo prijavite se za nastavak</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Teme</string>
+    <string name="whats_new">Novosti</string>
+    <string name="watched">Praćen</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> odgovora &#8226; <xliff:g id="views">%3$s</xliff:g> pregleda</string>
     <!-- AlertsScreen -->
+    <string name="alerts">Upozorenja</string>
     <!-- NewsScreen -->
+    <string name="news">Portal</string>
+    <string name="posted_by">Objava od <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
+    <string name="more">Više</string>
     <!-- ThreadScreen -->
+    <string name="thread">Tema</string>
+    <string name="guest">Gost</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> korisnika je reagiralo na ovaj post</string>
     <!-- ReplyScreen -->
     <!-- ErrorScreen -->
     <!-- ForumPreviewScreen -->
