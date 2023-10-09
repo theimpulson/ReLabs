@@ -20,13 +20,28 @@
     <!-- NewsScreen -->
     <string name="news">Portal</string>
     <string name="posted_by">Objava od <xliff:g id="author">%1$s</xliff:g></string>
+    <string name="mobile">Mobile</string>
+    <string name="computing">Computing</string>
+    <string name="smart_home">Smart Home</string>
     <!-- MoreScreen -->
     <string name="more">Više</string>
     <!-- ThreadScreen -->
     <string name="thread">Tema</string>
     <string name="guest">Gost</string>
     <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> korisnika je reagiralo na ovaj post</string>
+    <string name="you_and_reacted_to">Vi i <xliff:g id="number">%1$d</xliff:g> korisnika je reagiralo na ovu objavu</string>
+    <string name="you_reacted_to">Reagirali ste na objavu</string>
+    <string name="share_post_header">Pogledajte ovu objavu na XDA forumima:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="added_quote_list">Dodaj na listu citata!</string>
+    <string name="removed_quote_list">Ukloni sa liste citata!</string>
     <!-- ReplyScreen -->
+    <string name="reply">Odgovori</string>
+    <string name="follow_rules">Nemojte zaboraviti pročitati i pratiti pravila XDA Foruma!</string>
+    <string name="sent_from">\n\n\nPoslano sa <xliff:g id="device">%1$s</xliff:g> koristeći ReLabs</string>
     <!-- ErrorScreen -->
+    <string name="retry">Pokušaj ponovo</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nedostupno!</string>
+    <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Pristup podacima nije moguć!</string>
     <!-- ForumPreviewScreen -->
+    <string name="forum_preview">Forumi</string>
 </resources>
