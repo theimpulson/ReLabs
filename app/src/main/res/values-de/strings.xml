@@ -6,10 +6,10 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
     <string name="continue_with_xda">Mit XDA fortfahren</string>
-    <string name="logging_in">Einloggend in…</string>
+    <string name="logging_in">Anmelden…</string>
     <!-- LoginScreen -->
-    <string name="login">Log-in</string>
-    <string name="login_info">Bitte melden Sie sich an um fortzufahren</string>
+    <string name="login">Einloggen</string>
+    <string name="login_info">Bitte melden Sie sich an, um fortzufahren</string>
     <!-- ThreadPreviewScreen -->
     <string name="thread_preview">Threads</string>
     <string name="whats_new">Was ist neu?</string>
