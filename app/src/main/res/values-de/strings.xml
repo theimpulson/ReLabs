@@ -28,7 +28,20 @@
     <!-- ThreadScreen -->
     <string name="thread">Thread</string>
     <string name="guest">Gast</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> Leute reagierten auf diesen Beitrag</string>
+    <string name="you_and_reacted_to">Sie und <xliff:g id="number">%1$d</xliff:g> andere reagierten auf diesen Beitrag</string>
+    <string name="you_reacted_to">Sie reagierten auf diesen Beitrag</string>
+    <string name="share_post_header">Sehen Sie sich diesen Beitrag auf XDA an:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="added_quote_list">Zur Zitatliste hinzugefügt!</string>
+    <string name="removed_quote_list">Von der Zitatliste entfernt!</string>
     <!-- ReplyScreen -->
+    <string name="reply">Antworten</string>
+    <string name="follow_rules">Denken Sie daran, &amp; zu lesen; folgen Sie den XDA Forumregeln!</string>
+    <string name="sent_from">\n\n\nGesendet von <xliff:g id="device">%1$s</xliff:g> via ReLabs</string>
     <!-- ErrorScreen -->
+    <string name="retry">Erneut versuchen</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nichts hier!</string>
+    <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Fehler beim Abrufen von Informationen!</string>
     <!-- ForumPreviewScreen -->
+    <string name="forum_preview">Foren</string>
 </resources>
