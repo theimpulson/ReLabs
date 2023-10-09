@@ -14,7 +14,7 @@
     <string name="thread_preview">Threads</string>
     <string name="whats_new">Was ist neu?</string>
     <string name="watched">Abonniert</string>
-    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> replies &#8226; <xliff:g id="views">%3$s</xliff:g> Seitenabrufe</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> Antworten &#8226; <xliff:g id="views">%3$s</xliff:g> Aufrufe</string>
     <!-- AlertsScreen -->
     <string name="alerts">Benachrichtigungen</string>
     <!-- NewsScreen -->
