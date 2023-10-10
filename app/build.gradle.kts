@@ -6,10 +6,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
     id("org.jlleitschuh.gradle.ktlint")
     id("com.google.dagger.hilt.android")
     id("com.google.relay")
-    kotlin("kapt")
 }
 
 android {
@@ -70,10 +70,6 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
     filter {
         exclude {
@@ -129,8 +125,8 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
 
     // Hilt
-    val hiltVersion = "2.48"
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    val hiltVersion = "2.48.1"
+    ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
