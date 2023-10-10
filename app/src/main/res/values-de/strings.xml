@@ -8,10 +8,10 @@
     <string name="continue_with_xda">Mit XDA fortfahren</string>
     <string name="logging_in">Anmelden…</string>
     <!-- LoginScreen -->
-    <string name="login">Einloggen</string>
+    <string name="login">Anmeldung</string>
     <string name="login_info">Bitte melden Sie sich an, um fortzufahren</string>
     <!-- ThreadPreviewScreen -->
-    <string name="thread_preview">Threads</string>
+    <string name="thread_preview">Themen</string>
     <string name="whats_new">Was ist neu?</string>
     <string name="watched">Abonniert</string>
     <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> Antworten &#8226; <xliff:g id="views">%3$s</xliff:g> Aufrufe</string>
@@ -26,7 +26,7 @@
     <!-- MoreScreen -->
     <string name="more">Mehr</string>
     <!-- ThreadScreen -->
-    <string name="thread">Thread</string>
+    <string name="thread">Thema</string>
     <string name="guest">Gast</string>
     <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> Leute reagierten auf diesen Beitrag</string>
     <string name="you_and_reacted_to">Sie und <xliff:g id="number">%1$d</xliff:g> andere reagierten auf diesen Beitrag</string>
