@@ -8,7 +8,7 @@
     <string name="continue_with_xda">Pokračovat s XDA</string>
     <string name="logging_in">Přihlašování…</string>
     <!-- LoginScreen -->
-    <string name="login">Přihlásit</string>
+    <string name="login">Login</string>
     <string name="login_info">Pro pokračování se prosím přihlaste</string>
     <!-- ThreadPreviewScreen -->
     <string name="thread_preview">Vlákna</string>
