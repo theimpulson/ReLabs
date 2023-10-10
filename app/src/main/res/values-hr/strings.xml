@@ -8,7 +8,7 @@
     <string name="continue_with_xda">Continue with XDA</string>
     <string name="logging_in">Logging in…</string>
     <!-- LoginScreen -->
-    <string name="login">Prijava</string>
+    <string name="login">Prijavi se</string>
     <string name="login_info">Molimo prijavite se za nastavak</string>
     <!-- ThreadPreviewScreen -->
     <string name="thread_preview">Teme</string>
