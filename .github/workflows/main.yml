@@ -24,7 +24,7 @@ jobs:
       -   name: Upload binaries to release
           uses: svenstaro/upload-release-action@v2
           with:
-            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            repo_token: ${{ secrets.RELEASE_TOKEN }}
             file: app/build/outputs/apk/continuous/app-continuous.apk
             asset_name: io.aayush.relabs_continuous_minAPI21.apk
             prerelease: true
