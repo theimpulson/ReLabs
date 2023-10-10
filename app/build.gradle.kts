@@ -68,6 +68,9 @@ android {
     androidResources {
         generateLocaleConfig = true
     }
+    lint {
+        lintConfig = file("lint.xml")
+    }
 }
 
 configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
