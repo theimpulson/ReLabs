@@ -1,5 +1,8 @@
 name: Build
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -15,11 +18,15 @@ jobs:
             java-version: 17
             cache: 'gradle'
 
-      -   name: Generate debug build
-          run: ./gradlew assembleDebug
+      -   name: Generate continuous build
+          run: ./gradlew assembleContinuous
 
-      -   name: Upload APK
-          uses: actions/upload-artifact@v3
+      -   name: Upload binaries to release
+          uses: svenstaro/upload-release-action@v2
           with:
-            name: app_debug
-            path: app/build/outputs/apk/debug/app-debug.apk
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            file: app/build/outputs/apk/continuous/app-continuous.apk
+            asset_name: io.aayush.relabs_continuous_minAPI21.apk
+            prerelease: true
+            overwrite: true
+            release_name: Continuous Build
