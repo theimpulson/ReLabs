@@ -5,14 +5,12 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
-    <string name="continue_with_xda">XDA के साथ जारी रखें</string>
-    <string name="logging_in">प्रवेश किया…</string>
+    <string name="continue_with_xda">Ga verder met XDA</string>
+    <string name="logging_in">Aan het inloggen…</string>
     <!-- LoginScreen -->
-    <string name="login">लॉग इन</string>
-    <string name="login_info">कृपया जारी रखने के लिए साइन इन करें</string>
+    <string name="login">Inloggen</string>
+    <string name="login_info">Gelieve in te loggen om verder te gaan</string>
     <!-- ThreadPreviewScreen -->
-    <string name="thread_preview">Threads</string>
-    <string name="whats_new">नया</string>
     <!-- AlertsScreen -->
     <!-- NewsScreen -->
     <!-- MoreScreen -->
