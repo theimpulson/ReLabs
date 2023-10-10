@@ -26,10 +26,10 @@
     <!-- MoreScreen -->
     <string name="more">Mehr</string>
     <!-- ThreadScreen -->
-    <string name="thread">Thema</string>
+    <string name="thread">Thread</string>
     <string name="guest">Gast</string>
-    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> Leute reagierten auf diesen Beitrag</string>
-    <string name="you_and_reacted_to">Sie und <xliff:g id="number">%1$d</xliff:g> andere reagierten auf diesen Beitrag</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> Nutzer reagierten auf diesen Beitrag</string>
+    <string name="you_and_reacted_to">Du und <xliff:g id="number">%1$d</xliff:g> andere(r) reagierten auf diesen Beitrag</string>
     <string name="you_reacted_to">Du hast auf diesen Beitrag reagiert</string>
     <string name="share_post_header">Sieh dir diesen Beitrag auf XDA an:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
     <string name="added_quote_list">Zur Zitatliste hinzugefügt!</string>
@@ -37,7 +37,7 @@
     <!-- ReplyScreen -->
     <string name="reply">Antworten</string>
     <string name="follow_rules">Denke daran, &amp; zu lesen; folge den XDA Forumregeln!</string>
-    <string name="sent_from">\n\n\nGesendet von <xliff:g id="device">%1$s</xliff:g> via ReLabs</string>
+    <string name="sent_from">\n\n\nSent from <xliff:g id="device">%1$s</xliff:g> using ReLabs</string>
     <!-- ErrorScreen -->
     <string name="retry">Erneut versuchen</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nichts hier!</string>
