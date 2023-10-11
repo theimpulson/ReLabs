@@ -47,7 +47,7 @@
     <!-- ReplyScreen -->
     <string name="reply">Reply</string>
     <string name="follow_rules">Remember to read &amp; follow the XDA Forum Rules!</string>
-    <string name="sent_from">\n\n\nSent from <xliff:g id="device">%1$s</xliff:g> using ReLabs</string>
+    <string name="sent_from" translatable="false">\n\n\nSent from <xliff:g id="device">%1$s</xliff:g> using ReLabs</string>
     <string name="quote" translatable="false">[QUOTE="<xliff:g id="author_username">%1$s</xliff:g>, post: <xliff:g id="last_post_id">%2$d</xliff:g>, member: <xliff:g id="author_id">%3$d</xliff:g>"]\n<xliff:g id="message">%4$s</xliff:g>\n[/QUOTE]\n</string>
 
     <!-- ErrorScreen -->

@@ -31,17 +31,12 @@
     <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> người đã phản ứng với bài đăng này</string>
     <string name="you_and_reacted_to">Bạn và <xliff:g id="number">%1$d</xliff:g> người khác đã phản ứng với bài đăng này</string>
     <string name="you_reacted_to">Bạn đã phản ứng với bài đăng này</string>
-    <string name="share_post_header">Xem bài đăng này trên diễn đàn XDA:
-\n
-\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="share_post_header">Xem bài đăng này trên diễn đàn XDA:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
     <string name="added_quote_list">Đã thêm vào danh sách trích dẫn!</string>
     <string name="removed_quote_list">Đã xóa khỏi danh sách trích dẫn!</string>
     <!-- ReplyScreen -->
     <string name="reply">Phản hồi</string>
     <string name="follow_rules">Nhớ đọc và tuân theo Quy định Diễn đàn XDA!</string>
-    <string name="sent_from">\n
-\n
-\nGửi từ <xliff:g id="device">%1$s</xliff:g> bằng ReLabs</string>
     <!-- ErrorScreen -->
     <string name="retry">Thử lại</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Không có gì ở đây!</string>

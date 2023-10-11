@@ -37,7 +37,6 @@
     <!-- ReplyScreen -->
     <string name="reply">Odpovědět</string>
     <string name="follow_rules">Nezapomeňte si přečíst a dodržovat pravidla fóra XDA!</string>
-    <string name="sent_from">\n\n\nOdesláno z <xliff:g id="device">%1$s</xliff:g> pomocí ReLabs</string>
     <!-- ErrorScreen -->
     <string name="retry">Opakovat</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nic tady není!</string>

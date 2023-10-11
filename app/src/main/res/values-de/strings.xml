@@ -37,8 +37,6 @@
     <!-- ReplyScreen -->
     <string name="reply">Antworten</string>
     <string name="follow_rules">Denke daran, &amp; zu lesen; folge den XDA Forumregeln!</string>
-    <string name="sent_from">\n\n\nSent from <xliff:g id="device">%1$s</xliff:g> using ReLabs</string>
-    <!-- ErrorScreen -->
     <string name="retry">Erneut versuchen</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nichts hier!</string>
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Fehler beim Abrufen von Informationen!</string>
