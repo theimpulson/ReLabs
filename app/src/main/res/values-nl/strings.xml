@@ -36,7 +36,7 @@
     <string name="removed_quote_list">Verwijderd van de citatielijst!</string>
     <!-- ReplyScreen -->
     <string name="reply">Antwoorden</string>
-    <string name="follow_rules">Vergeet niet om de &amp; te lezen, volg de XDA Forum Regels!</string>
+    <string name="follow_rules">Vergeet niet om de XDA Forum Regels te lezen &amp; ze op te volgen!</string>
     <!-- ErrorScreen -->
     <string name="retry">Opnieuw proberen</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Niets hier!</string>
