@@ -2,6 +2,7 @@ package io.aayush.relabs.ui.components
 
 import android.os.Build
 import android.text.format.DateUtils
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -38,7 +39,7 @@ fun AlertItem(
     onClicked: () -> Unit = {}
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.clickable { onClicked() },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start
     ) {

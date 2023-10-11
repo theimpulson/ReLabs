@@ -5,6 +5,7 @@ import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
+import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.react.React
@@ -186,6 +187,21 @@ class XenforoRepository @Inject constructor(
             }
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to fetch thread info!", exception)
+            null
+        }
+    }
+
+    suspend fun getPostInfo(id: Int): PostInfo? {
+        return try {
+            val response = xenforoInterface.getPostInfo(id)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to fetch post info!", exception)
             null
         }
     }

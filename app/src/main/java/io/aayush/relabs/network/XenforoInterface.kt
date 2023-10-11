@@ -4,6 +4,7 @@ import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.node.Nodes
+import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.thread.ThreadInfo
@@ -74,6 +75,9 @@ interface XenforoInterface {
         @Query("with_last_post") with_last_post: Boolean? = null,
         @Query("order") order: String? = null
     ): Response<ThreadInfo>
+
+    @GET("posts/{id}")
+    suspend fun getPostInfo(@Path("id") id: Int): Response<PostInfo>
 
     @POST("threads/{id}/mark-read")
     suspend fun markThreadAsRead(@Path("id") id: Int): Response<MarkResponse>
