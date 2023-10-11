@@ -37,7 +37,6 @@
     <!-- ReplyScreen -->
     <string name="reply">Odgovori</string>
     <string name="follow_rules">Nemojte zaboraviti pročitati i pratiti pravila XDA Foruma!</string>
-    <string name="sent_from">\n\n\nPoslano sa <xliff:g id="device">%1$s</xliff:g> koristeći ReLabs</string>
     <!-- ErrorScreen -->
     <string name="retry">Pokušaj ponovo</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nedostupno!</string>
