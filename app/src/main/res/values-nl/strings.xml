@@ -39,7 +39,7 @@
     <string name="follow_rules">Vergeet niet om de &amp; te lezen, volg de XDA Forum Regels!</string>
     <!-- ErrorScreen -->
     <string name="retry">Opnieuw proberen</string>
-    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Niets hier! ¯\_ (ツ)_/¯</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Niets hier!</string>
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Mislukt om informatie op te halen!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Forums</string>
