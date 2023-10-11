@@ -37,7 +37,6 @@
     <!-- ReplyScreen -->
     <string name="reply">Balas</string>
     <string name="follow_rules">Ingatlah untuk membaca &amp; ikuti Aturan Forum XDA!</string>
-    <string name="sent_from">\n\n\nDikirim dari <xliff:g id="device">%1$s</xliff:g> menggunakan ReLabs</string>
     <!-- ErrorScreen -->
     <string name="retry">Coba lagi</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Tidak ada sesuatu di sini!</string>
