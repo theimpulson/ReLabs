@@ -37,7 +37,6 @@
     <!-- ReplyScreen -->
     <string name="reply">Répondre</string>
     <string name="follow_rules">N\'oubliez pas de lire &amp; suivez les règles du forum XDA-Developers !</string>
-    <string name="sent_from">\n\n\nEnvoyé depuis <xliff:g id="device">%1$s</xliff:g> en utilisant ReLabs</string>
     <!-- ErrorScreen -->
     <string name="retry">Réessayer</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Hmmm, c\'est bien vide par ici !</string>
