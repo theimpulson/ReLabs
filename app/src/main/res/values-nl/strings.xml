@@ -11,8 +11,18 @@
     <string name="login">Inloggen</string>
     <string name="login_info">Gelieve in te loggen om verder te gaan</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Onderwerpen</string>
+    <string name="whats_new">Wat is er nieuw</string>
+    <string name="watched">Bekeken</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> antwoord(en) &#8226; <xliff:g id="views">%3$s</xliff:g> keer bekeken</string>
     <!-- AlertsScreen -->
+    <string name="alerts">Meldingen</string>
     <!-- NewsScreen -->
+    <string name="news">Portaal</string>
+    <string name="posted_by">Geplaatst door <xliff:g id="author">%1$s</xliff:g></string>
+    <string name="mobile">Mobiel</string>
+    <string name="computing">Berekenen</string>
+    <string name="smart_home">Smart Home</string>
     <!-- MoreScreen -->
     <!-- ThreadScreen -->
     <!-- ReplyScreen -->
