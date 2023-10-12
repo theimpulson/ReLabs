@@ -136,7 +136,11 @@ fun PostItem(
                         }
                     }
                     if (post.User?.user_title != null) {
-                        Text(text = post.User.user_title, fontSize = 13.sp, color = Color.White)
+                        Text(
+                            text = post.User.user_title,
+                            fontSize = 13.sp,
+                            color = post.User.userTitle.color
+                        )
                     }
                     Text(
                         text = DateUtils.getRelativeTimeSpanString(

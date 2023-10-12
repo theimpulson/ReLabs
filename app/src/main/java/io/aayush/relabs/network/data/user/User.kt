@@ -60,4 +60,18 @@ data class User(
     val vote_score: Int = 0,
     val warning_points: Int = 0,
     val website: String = String()
-)
+) {
+    val userTitle: UserTitle
+        get() {
+            return with(user_title) {
+                when {
+                    contains(Regex("(Admin|Lead)")) -> UserTitle.Admin
+                    contains(Regex("(SM|Sr//. Mod|Senior Mod|Senior Moderator|Moderator Emeritus)")) -> UserTitle.SM
+                    contains(Regex("(FSM|Forum Moderator)")) -> UserTitle.FSM
+                    contains(Regex("(RD|Recognized Developer)")) -> UserTitle.RD
+                    contains(Regex("(RC|Recognized Contributor)")) -> UserTitle.RC
+                    else -> UserTitle.Member
+                }
+            }
+        }
+}
