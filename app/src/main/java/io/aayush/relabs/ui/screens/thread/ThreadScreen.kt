@@ -145,10 +145,30 @@ fun ThreadScreen(
                     },
                     enabled = pagerState.settledPage != 0
                 ) {
+                    Icon(painter = painterResource(id = R.drawable.ic_previous), contentDescription = "")
+                }
+
+                IconButton(
+                    onClick = {
+                        coroutineScope.launch { pagerState.animateScrollToPage(pagerState.settledPage - 1) }
+                    },
+                    enabled = pagerState.settledPage != 0
+                ) {
                     Icon(imageVector = Icons.Filled.KeyboardArrowLeft, contentDescription = "")
                 }
 
                 Text(text = "${pagerState.settledPage + 1}/${pagerState.pageCount}")
+
+                IconButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(pagerState.settledPage + 1)
+                        }
+                    },
+                    enabled = pagerState.settledPage + 1 != threadInfo?.pagination?.last_page
+                ) {
+                    Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
+                }
 
                 IconButton(
                     onClick = {
@@ -158,7 +178,7 @@ fun ThreadScreen(
                     },
                     enabled = pagerState.settledPage + 1 != threadInfo?.pagination?.last_page
                 ) {
-                    Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
+                    Icon(painter = painterResource(id = R.drawable.ic_next), contentDescription = "")
                 }
             }
 
