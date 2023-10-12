@@ -14,7 +14,7 @@
     <string name="thread_preview">Chủ đề</string>
     <string name="whats_new">Có gì mới</string>
     <string name="watched">Đã xem</string>
-    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> • <xliff:g id="replies">%2$s</xliff:g> phản hồi • <xliff:g id="views">%3$s</xliff:g> lượt xem</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> phản hồi &#8226; <xliff:g id="views">%3$s</xliff:g> lượt xem</string>
     <!-- AlertsScreen -->
     <string name="alerts">Thông báo</string>
     <!-- NewsScreen -->
