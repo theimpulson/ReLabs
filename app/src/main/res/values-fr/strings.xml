@@ -36,7 +36,7 @@
     <string name="removed_quote_list">Retiré de la liste des citations !</string>
     <!-- ReplyScreen -->
     <string name="reply">Répondre</string>
-    <string name="follow_rules">N\'oubliez pas de lire &amp; suivez les règles du forum XDA-Developers !</string>
+    <string name="follow_rules">N\'oubliez pas de lire &amp; suivre les règles du forum XDA-Developers !</string>
     <!-- ErrorScreen -->
     <string name="retry">Réessayer</string>
     <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Hmmm, c\'est bien vide par ici !</string>
