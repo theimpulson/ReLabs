@@ -23,6 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -50,7 +51,6 @@ import io.aayush.relabs.ui.components.ErrorScreen
 import io.aayush.relabs.ui.components.PostItem
 import io.aayush.relabs.ui.navigation.Screen
 import io.aayush.relabs.utils.Error
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @Composable
@@ -76,7 +76,8 @@ fun ThreadScreen(
                     Text(
                         text = threadInfo?.thread?.title ?: "",
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.titleMedium
                     )
                 },
                 navigationIcon = {
