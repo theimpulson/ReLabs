@@ -20,9 +20,6 @@
     <!-- NewsScreen -->
     <string name="news">Portal</string>
     <string name="posted_by">Posté par <xliff:g id="author">%1$s</xliff:g></string>
-    <string name="mobile">Téléphone</string>
-    <string name="computing">Ordinateur</string>
-    <string name="smart_home">Maison connectée</string>
     <!-- MoreScreen -->
     <string name="more">Plus</string>
     <!-- ThreadScreen -->

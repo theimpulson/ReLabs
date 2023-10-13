@@ -17,30 +17,31 @@ class NewsViewModel @Inject constructor(
     val customTabsIntent: CustomTabsIntent
 ) : ViewModel() {
 
-    private val _mobileFeed = MutableStateFlow<List<Article>>(emptyList())
-    val mobileFeed = _mobileFeed.asStateFlow()
+    private val _xdaPortalFeed = MutableStateFlow<List<Article>>(emptyList())
+    val xdaPortalFeed = _xdaPortalFeed.asStateFlow()
 
-    private val _computingFeed = MutableStateFlow<List<Article>>(emptyList())
-    val computingFeed = _computingFeed.asStateFlow()
+    private val _google9to5Feed = MutableStateFlow<List<Article>>(emptyList())
+    val google9to5Feed = _google9to5Feed.asStateFlow()
 
-    private val _smartHomeFeed = MutableStateFlow<List<Article>>(emptyList())
-    val smartHomeFeed = _smartHomeFeed.asStateFlow()
+    private val _androidDevsFeed = MutableStateFlow<List<Article>>(emptyList())
+    val androidDevsFeed = _androidDevsFeed.asStateFlow()
 
-    fun getMobileArticles() {
+    fun getXDAPortalArticles() {
         viewModelScope.launch {
-            _mobileFeed.value = rssNewsRepository.getMobileFeed().getOrDefault(emptyList())
+            _xdaPortalFeed.value = rssNewsRepository.getXDAPortalFeed().getOrDefault(emptyList())
         }
     }
 
-    fun getComputingArticles() {
+    fun get9to5GoogleArticles() {
         viewModelScope.launch {
-            _computingFeed.value = rssNewsRepository.getComputingFeed().getOrDefault(emptyList())
+            _google9to5Feed.value = rssNewsRepository.get9to5GoogleFeed().getOrDefault(emptyList())
         }
     }
 
-    fun getSmartHomeArticles() {
+    fun getAndroidDevelopersArticles() {
         viewModelScope.launch {
-            _smartHomeFeed.value = rssNewsRepository.getSmartHomeFeed().getOrDefault(emptyList())
+            _androidDevsFeed.value =
+                rssNewsRepository.getAndroidDevsFeed().getOrDefault(emptyList())
         }
     }
 }

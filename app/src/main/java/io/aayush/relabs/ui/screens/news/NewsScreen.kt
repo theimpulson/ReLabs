@@ -50,7 +50,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         modifier = Modifier.fillMaxSize(),
         topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.news)) }) }
     ) {
-        val tabData = listOf(R.string.mobile, R.string.computing, R.string.smart_home)
+        val tabData = listOf(R.string.android_devs, R.string.google_9to5, R.string.xda_portal)
         val pagerState = rememberPagerState(
             initialPage = 0,
             initialPageOffsetFraction = 0f,
@@ -59,18 +59,18 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         val tabIndex = pagerState.currentPage
         val coroutineScope = rememberCoroutineScope()
 
-        val mobileFeed: List<Article> by viewModel.mobileFeed.collectAsStateWithLifecycle()
-        val computingFeed: List<Article> by viewModel.computingFeed.collectAsStateWithLifecycle()
-        val smartHomeFeed: List<Article> by viewModel.smartHomeFeed.collectAsStateWithLifecycle()
+        val xdaPortalFeed: List<Article> by viewModel.xdaPortalFeed.collectAsStateWithLifecycle()
+        val google9to5Feed: List<Article> by viewModel.google9to5Feed.collectAsStateWithLifecycle()
+        val androidDevsFeed: List<Article> by viewModel.androidDevsFeed.collectAsStateWithLifecycle()
 
         val context = LocalContext.current
 
         LaunchedEffect(key1 = pagerState) {
             snapshotFlow { pagerState.currentPage }.collect { page ->
                 when (page) {
-                    0 -> viewModel.getMobileArticles()
-                    1 -> viewModel.getComputingArticles()
-                    2 -> viewModel.getSmartHomeArticles()
+                    0 -> viewModel.getAndroidDevelopersArticles()
+                    1 -> viewModel.get9to5GoogleArticles()
+                    2 -> viewModel.getXDAPortalArticles()
                 }
             }
         }
@@ -97,9 +97,9 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                 LazyColumn {
                     items(
                         items = when (it) {
-                            0 -> mobileFeed
-                            1 -> computingFeed
-                            else -> smartHomeFeed
+                            0 -> androidDevsFeed
+                            1 -> google9to5Feed
+                            else -> xdaPortalFeed
                         },
                         key = { a -> a.guid ?: UUID.randomUUID() }
                     ) { article ->
@@ -118,8 +118,8 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                             ),
                             headline = article.title ?: "",
                             description = HtmlCompat.fromHtml(
-                                article.content ?: "",
-                                HtmlCompat.FROM_HTML_MODE_COMPACT
+                                article.description?.replace(Regex("(<(/)img>)|(<img.+?>)"), "")
+                                    ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT
                             ).toString(),
                             author = stringResource(id = R.string.posted_by, article.author ?: ""),
                             date = article.pubDate ?: "",

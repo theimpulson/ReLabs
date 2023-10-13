@@ -24,11 +24,11 @@
     <string name="alerts">Alerts</string>
 
     <!-- NewsScreen -->
-    <string name="news">Portal</string>
+    <string name="news">News</string>
+    <string name="xda_portal" translatable="false">XDA Portal</string>
+    <string name="google_9to5" translatable="false">9to5Google</string>
+    <string name="android_devs" translatable="false">Android Devs</string>
     <string name="posted_by">Posted by <xliff:g id="author">%1$s</xliff:g></string>
-    <string name="mobile">Mobile</string>
-    <string name="computing">Computing</string>
-    <string name="smart_home">Smart Home</string>
 
     <!-- MoreScreen -->
     <string name="more">More</string>

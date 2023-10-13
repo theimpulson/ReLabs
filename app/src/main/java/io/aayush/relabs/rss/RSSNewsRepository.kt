@@ -7,15 +7,15 @@ class RSSNewsRepository @Inject constructor(
     private val rssNewsImpl: RSSNewsImpl
 ) {
 
-    suspend fun getMobileFeed(): Result<List<Article>> {
-        return rssNewsImpl.getMobileFeed()
+    suspend fun getXDAPortalFeed(): Result<List<Article>> {
+        return rssNewsImpl.getXDAPortalFeed()
     }
 
-    suspend fun getComputingFeed(): Result<List<Article>> {
-        return rssNewsImpl.getComputingFeed()
+    suspend fun get9to5GoogleFeed(): Result<List<Article>> {
+        return rssNewsImpl.get9to5GoogleFeed()
     }
 
-    suspend fun getSmartHomeFeed(): Result<List<Article>> {
-        return rssNewsImpl.getSmartHomeFeed()
+    suspend fun getAndroidDevsFeed(): Result<List<Article>> {
+        return rssNewsImpl.getAndroidDevsFeed()
     }
 }

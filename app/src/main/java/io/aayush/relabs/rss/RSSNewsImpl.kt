@@ -16,39 +16,39 @@ class RSSNewsImpl @Inject constructor(
     private val TAG = RSSNewsImpl::class.java.simpleName
 
     companion object {
-        private const val FEED_MOBILE = "https://www.xda-developers.com/feed/category/mobile/"
-        private const val FEED_COMPUTING = "https://www.xda-developers.com/feed/category/computing/"
-        private const val FEED_SMART_HOME = "https://www.xda-developers.com/feed/category/home/"
+        private const val FEED_XDA_PORTAL = "https://www.xda-developers.com/feed/category/mobile/"
+        private const val FEED_9TO5GOOGLE = "https://9to5google.com/feed/"
+        private const val FEED_ANDROID_DEVS = "https://feeds.feedburner.com/blogspot/hsDu"
     }
 
-    suspend fun getMobileFeed(): Result<List<Article>> {
+    suspend fun getXDAPortalFeed(): Result<List<Article>> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext Result.success(parser.getChannel(FEED_MOBILE).articles)
+                return@withContext Result.success(parser.getChannel(FEED_XDA_PORTAL).articles)
             } catch (exception: Exception) {
-                Log.e(TAG, "Failed to fetch mobile rss feed!", exception)
+                Log.e(TAG, "Failed to fetch xda portal rss feed!", exception)
                 return@withContext Result.failure(exception)
             }
         }
     }
 
-    suspend fun getComputingFeed(): Result<List<Article>> {
+    suspend fun get9to5GoogleFeed(): Result<List<Article>> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext Result.success(parser.getChannel(FEED_COMPUTING).articles)
+                return@withContext Result.success(parser.getChannel(FEED_9TO5GOOGLE).articles)
             } catch (exception: Exception) {
-                Log.e(TAG, "Failed to fetch mobile rss feed!", exception)
+                Log.e(TAG, "Failed to fetch 9to5Google rss feed!", exception)
                 return@withContext Result.failure(exception)
             }
         }
     }
 
-    suspend fun getSmartHomeFeed(): Result<List<Article>> {
+    suspend fun getAndroidDevsFeed(): Result<List<Article>> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext Result.success(parser.getChannel(FEED_SMART_HOME).articles)
+                return@withContext Result.success(parser.getChannel(FEED_ANDROID_DEVS).articles)
             } catch (exception: Exception) {
-                Log.e(TAG, "Failed to fetch mobile rss feed!", exception)
+                Log.e(TAG, "Failed to fetch android developers rss feed!", exception)
                 return@withContext Result.failure(exception)
             }
         }
