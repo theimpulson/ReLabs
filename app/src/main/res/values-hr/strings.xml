@@ -20,9 +20,6 @@
     <!-- NewsScreen -->
     <string name="news">Portal</string>
     <string name="posted_by">Objava od <xliff:g id="author">%1$s</xliff:g></string>
-    <string name="mobile">Mobile</string>
-    <string name="computing">Computing</string>
-    <string name="smart_home">Smart Home</string>
     <!-- MoreScreen -->
     <string name="more">Više</string>
     <!-- ThreadScreen -->
