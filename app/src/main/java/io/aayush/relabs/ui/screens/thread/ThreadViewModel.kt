@@ -3,6 +3,7 @@ package io.aayush.relabs.ui.screens.thread
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -94,6 +95,21 @@ class ThreadViewModel @Inject constructor(
     fun markThreadAsRead(threadID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             xenforoRepository.markThreadAsRead(threadID)
+        }
+    }
+
+    fun watchThread(threadID: Int) {
+        Log.d("AAYUSH", "OK $threadID")
+        viewModelScope.launch {
+            val response = xenforoRepository.watchThread(threadID)
+            if (response?.success == true) getThreadInfo(threadID)
+        }
+    }
+
+    fun unwatchThread(threadID: Int) {
+        viewModelScope.launch {
+            val response = xenforoRepository.unwatchThread(threadID)
+            if (response?.success == true) getThreadInfo(threadID)
         }
     }
 }

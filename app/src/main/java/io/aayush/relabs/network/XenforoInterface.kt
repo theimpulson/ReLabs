@@ -8,6 +8,7 @@ import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.thread.ThreadInfo
+import io.aayush.relabs.network.data.thread.ThreadWatchResponse
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import retrofit2.Response
@@ -65,6 +66,12 @@ interface XenforoInterface {
 
     @GET("threads/audapp-watched/")
     suspend fun getWatchedThreads(): Response<Threads>
+
+    @POST("threads/{id}/audapp-watch")
+    suspend fun watchThread(@Path("id") threadID: Int): Response<ThreadWatchResponse>
+
+    @POST("threads/{id}/audapp-unwatch")
+    suspend fun unwatchThread(@Path("id") threadID: Int): Response<ThreadWatchResponse>
 
     @GET("threads/{id}")
     suspend fun getThreadInfo(

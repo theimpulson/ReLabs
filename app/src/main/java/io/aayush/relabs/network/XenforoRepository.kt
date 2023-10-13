@@ -10,6 +10,7 @@ import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.react.React
 import io.aayush.relabs.network.data.thread.ThreadInfo
+import io.aayush.relabs.network.data.thread.ThreadWatchResponse
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import javax.inject.Inject
@@ -158,6 +159,36 @@ class XenforoRepository @Inject constructor(
             }
         } catch (exception: Exception) {
             Log.e(TAG, "Failed to fetch watched threads!", exception)
+            null
+        }
+    }
+
+    suspend fun watchThread(threadID: Int): ThreadWatchResponse? {
+        return try {
+            val response = xenforoInterface.watchThread(threadID)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to watch thread!", exception)
+            null
+        }
+    }
+
+    suspend fun unwatchThread(threadID: Int): ThreadWatchResponse? {
+        return try {
+            val response = xenforoInterface.unwatchThread(threadID)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                null
+            }
+        } catch (exception: Exception) {
+            Log.e(TAG, "Failed to unwatch thread!", exception)
             null
         }
     }

@@ -87,6 +87,28 @@ fun ThreadScreen(
                             contentDescription = ""
                         )
                     }
+                },
+                actions = {
+                    if (threadInfo?.thread?.thread_id != 0) {
+                        IconButton(onClick = {
+                            if (threadInfo?.thread?.is_watching == true) {
+                                viewModel.unwatchThread(threadInfo?.thread?.thread_id ?: 0)
+                            } else {
+                                viewModel.watchThread(threadInfo?.thread?.thread_id ?: 0)
+                            }
+                        }) {
+                            Icon(
+                                painter = painterResource(
+                                    id = if (threadInfo?.thread?.is_watching == true) {
+                                        R.drawable.ic_watch_filled
+                                    } else {
+                                        R.drawable.ic_watch
+                                    }
+                                ),
+                                contentDescription = ""
+                            )
+                        }
+                    }
                 }
             )
         },
