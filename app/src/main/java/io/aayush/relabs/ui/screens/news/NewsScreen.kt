@@ -35,7 +35,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
-import com.prof.rssparser.Article
+import com.prof18.rssparser.model.RssItem
 import io.aayush.relabs.R
 import io.aayush.relabs.newsitem.NewsItem
 import kotlinx.coroutines.launch
@@ -59,9 +59,9 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         val tabIndex = pagerState.currentPage
         val coroutineScope = rememberCoroutineScope()
 
-        val xdaPortalFeed: List<Article> by viewModel.xdaPortalFeed.collectAsStateWithLifecycle()
-        val google9to5Feed: List<Article> by viewModel.google9to5Feed.collectAsStateWithLifecycle()
-        val androidDevsFeed: List<Article> by viewModel.androidDevsFeed.collectAsStateWithLifecycle()
+        val xdaPortalFeed: List<RssItem> by viewModel.xdaPortalFeed.collectAsStateWithLifecycle()
+        val google9to5Feed: List<RssItem> by viewModel.google9to5Feed.collectAsStateWithLifecycle()
+        val androidDevsFeed: List<RssItem> by viewModel.androidDevsFeed.collectAsStateWithLifecycle()
 
         val context = LocalContext.current
 
@@ -119,7 +119,8 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                             headline = article.title ?: "",
                             description = HtmlCompat.fromHtml(
                                 article.description?.replace(Regex("(<(/)img>)|(<img.+?>)"), "")
-                                    ?: "", HtmlCompat.FROM_HTML_MODE_COMPACT
+                                    ?: "",
+                                HtmlCompat.FROM_HTML_MODE_COMPACT
                             ).toString(),
                             author = stringResource(id = R.string.posted_by, article.author ?: ""),
                             date = article.pubDate ?: "",

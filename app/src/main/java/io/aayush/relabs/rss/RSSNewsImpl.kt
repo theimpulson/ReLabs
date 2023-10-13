@@ -1,8 +1,8 @@
 package io.aayush.relabs.rss
 
 import android.util.Log
-import com.prof.rssparser.Article
-import com.prof.rssparser.Parser
+import com.prof18.rssparser.RssParser
+import com.prof18.rssparser.model.RssItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 class RSSNewsImpl @Inject constructor(
-    private val parser: Parser
+    private val parser: RssParser
 ) {
 
     private val TAG = RSSNewsImpl::class.java.simpleName
@@ -21,10 +21,10 @@ class RSSNewsImpl @Inject constructor(
         private const val FEED_ANDROID_DEVS = "https://feeds.feedburner.com/blogspot/hsDu"
     }
 
-    suspend fun getXDAPortalFeed(): Result<List<Article>> {
+    suspend fun getXDAPortalFeed(): Result<List<RssItem>> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext Result.success(parser.getChannel(FEED_XDA_PORTAL).articles)
+                return@withContext Result.success(parser.getRssChannel(FEED_XDA_PORTAL).items)
             } catch (exception: Exception) {
                 Log.e(TAG, "Failed to fetch xda portal rss feed!", exception)
                 return@withContext Result.failure(exception)
@@ -32,10 +32,10 @@ class RSSNewsImpl @Inject constructor(
         }
     }
 
-    suspend fun get9to5GoogleFeed(): Result<List<Article>> {
+    suspend fun get9to5GoogleFeed(): Result<List<RssItem>> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext Result.success(parser.getChannel(FEED_9TO5GOOGLE).articles)
+                return@withContext Result.success(parser.getRssChannel(FEED_9TO5GOOGLE).items)
             } catch (exception: Exception) {
                 Log.e(TAG, "Failed to fetch 9to5Google rss feed!", exception)
                 return@withContext Result.failure(exception)
@@ -43,10 +43,10 @@ class RSSNewsImpl @Inject constructor(
         }
     }
 
-    suspend fun getAndroidDevsFeed(): Result<List<Article>> {
+    suspend fun getAndroidDevsFeed(): Result<List<RssItem>> {
         return withContext(Dispatchers.IO) {
             try {
-                return@withContext Result.success(parser.getChannel(FEED_ANDROID_DEVS).articles)
+                return@withContext Result.success(parser.getRssChannel(FEED_ANDROID_DEVS).items)
             } catch (exception: Exception) {
                 Log.e(TAG, "Failed to fetch android developers rss feed!", exception)
                 return@withContext Result.failure(exception)

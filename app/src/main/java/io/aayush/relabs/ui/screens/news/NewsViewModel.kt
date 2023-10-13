@@ -3,7 +3,7 @@ package io.aayush.relabs.ui.screens.news
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prof.rssparser.Article
+import com.prof18.rssparser.model.RssItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.aayush.relabs.rss.RSSNewsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,13 +17,13 @@ class NewsViewModel @Inject constructor(
     val customTabsIntent: CustomTabsIntent
 ) : ViewModel() {
 
-    private val _xdaPortalFeed = MutableStateFlow<List<Article>>(emptyList())
+    private val _xdaPortalFeed = MutableStateFlow<List<RssItem>>(emptyList())
     val xdaPortalFeed = _xdaPortalFeed.asStateFlow()
 
-    private val _google9to5Feed = MutableStateFlow<List<Article>>(emptyList())
+    private val _google9to5Feed = MutableStateFlow<List<RssItem>>(emptyList())
     val google9to5Feed = _google9to5Feed.asStateFlow()
 
-    private val _androidDevsFeed = MutableStateFlow<List<Article>>(emptyList())
+    private val _androidDevsFeed = MutableStateFlow<List<RssItem>>(emptyList())
     val androidDevsFeed = _androidDevsFeed.asStateFlow()
 
     fun getXDAPortalArticles() {
