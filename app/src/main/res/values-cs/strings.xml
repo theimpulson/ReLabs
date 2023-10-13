@@ -20,9 +20,6 @@
     <!-- NewsScreen -->
     <string name="news">Portál</string>
     <string name="posted_by">Zveřejnil/a <xliff:g id="author">%1$s</xliff:g></string>
-    <string name="mobile">Mobily</string>
-    <string name="computing">Výpočetní technika</string>
-    <string name="smart_home">Chytrá domácnost</string>
     <!-- MoreScreen -->
     <string name="more">Další</string>
     <!-- ThreadScreen -->
