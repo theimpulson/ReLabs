@@ -125,7 +125,7 @@ dependencies {
 
     // Material
     implementation("androidx.compose.material:material:1.5.3")
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.10.0")
 
     // Hilt
     val hiltVersion = "2.48.1"
