@@ -27,6 +27,8 @@ jobs:
             github_token: ${{ secrets.RELEASE_TOKEN }}
             tag_name: continuous
 
+      -   run: sleep 20s
+
       -   name: Upload binaries to release
           uses: svenstaro/upload-release-action@v2
           with:
