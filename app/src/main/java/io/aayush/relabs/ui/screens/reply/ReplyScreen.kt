@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
@@ -37,6 +40,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.post.PostReply
+import io.aayush.relabs.ui.components.PostItem
 import io.aayush.relabs.ui.navigation.Screen
 import io.aayush.relabs.ui.screens.thread.ThreadViewModel
 import io.aayush.relabs.ui.theme.XDAYellow
@@ -100,6 +104,7 @@ fun ReplyScreen(
         Column(
             modifier = Modifier
                 .padding(it)
+                .verticalScroll(state = rememberScrollState())
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top)
@@ -122,6 +127,22 @@ fun ReplyScreen(
                 enabled = !posting,
                 shape = RoundedCornerShape(10.dp)
             )
+            if (viewModel.postsToQuote.isNotEmpty()) {
+                Divider(modifier = Modifier.padding(15.dp))
+                Column(
+                    modifier = Modifier.padding(horizontal = 15.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top)
+                ) {
+                    viewModel.postsToQuote.forEach { post ->
+                        PostItem(
+                            post = post,
+                            linkTransformationMethod = viewModel.linkTransformationMethod,
+                            designQuoteSpan = viewModel.designQuoteSpan,
+                            shouldShowReactions = false
+                        )
+                    }
+                }
+            }
         }
     }
 }

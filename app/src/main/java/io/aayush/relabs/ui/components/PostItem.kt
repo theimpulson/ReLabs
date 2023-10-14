@@ -60,6 +60,7 @@ fun PostItem(
     designQuoteSpan: DesignQuoteSpan,
     isThreadOwner: Boolean = false,
     isThreadOpen: Boolean = true,
+    shouldShowReactions: Boolean = true,
     reactionScore: Int = 0,
     reacted: Boolean = false,
     quoted: Boolean = false,
@@ -176,6 +177,8 @@ fun PostItem(
                     ).formatBlockQuotes(designQuoteSpan)
                 }
             )
+
+            if (!shouldShowReactions) return@Column
 
             Column(
                 modifier = Modifier
