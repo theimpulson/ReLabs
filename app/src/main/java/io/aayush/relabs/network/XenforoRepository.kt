@@ -13,6 +13,7 @@ import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.ThreadWatchResponse
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
+import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,33 +25,11 @@ class XenforoRepository @Inject constructor(
     private val TAG = XenforoRepository::class.java.simpleName
 
     suspend fun getCurrentUser(): Me? {
-        return try {
-            val response = xenforoInterface.getCurrentUser()
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch user details!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.getCurrentUser() }
     }
 
     suspend fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null): MarkResponse? {
-        return try {
-            val response = xenforoInterface.markAllAlerts(read, viewed)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to mark alerts!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.markAllAlerts(read, viewed) }
     }
 
     suspend fun getAlerts(
@@ -59,18 +38,7 @@ class XenforoRepository @Inject constructor(
         unviewed: Boolean? = null,
         unread: Boolean? = null
     ): Alerts? {
-        return try {
-            val response = xenforoInterface.getAlerts(page, cutoff, unviewed, unread)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch alerts!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.getAlerts(page, cutoff, unviewed, unread) }
     }
 
     suspend fun getConversations(
@@ -80,39 +48,19 @@ class XenforoRepository @Inject constructor(
         starred: Boolean? = null,
         unread: Boolean? = null
     ): Conversations? {
-        return try {
-            val response = xenforoInterface.getConversations(
+        return safeExecute {
+            xenforoInterface.getConversations(
                 page,
                 starter_id,
                 receiver_id,
                 starred,
                 unread
             )
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch conversations!", exception)
-            null
         }
     }
 
     suspend fun getNodes(): Nodes? {
-        return try {
-            val response = xenforoInterface.getNodes()
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch nodes!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.getNodes() }
     }
 
     suspend fun getThreads(
@@ -125,8 +73,8 @@ class XenforoRepository @Inject constructor(
         order: String? = null,
         direction: String? = null
     ): Threads? {
-        return try {
-            val response = xenforoInterface.getThreads(
+        return safeExecute {
+            xenforoInterface.getThreads(
                 page,
                 prefix_id,
                 starter_id,
@@ -136,61 +84,19 @@ class XenforoRepository @Inject constructor(
                 order,
                 direction
             )
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch threads!", exception)
-            null
         }
     }
 
     suspend fun getWatchedThreads(): Threads? {
-        return try {
-            val response = xenforoInterface.getWatchedThreads()
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch watched threads!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.getWatchedThreads() }
     }
 
     suspend fun watchThread(threadID: Int): ThreadWatchResponse? {
-        return try {
-            val response = xenforoInterface.watchThread(threadID)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to watch thread!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.watchThread(threadID) }
     }
 
     suspend fun unwatchThread(threadID: Int): ThreadWatchResponse? {
-        return try {
-            val response = xenforoInterface.unwatchThread(threadID)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to unwatch thread!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.unwatchThread(threadID) }
     }
 
     suspend fun getThreadInfo(
@@ -201,8 +107,8 @@ class XenforoRepository @Inject constructor(
         with_last_post: Boolean? = null,
         order: String? = null
     ): ThreadInfo? {
-        return try {
-            val response = xenforoInterface.getThreadInfo(
+        return safeExecute {
+            xenforoInterface.getThreadInfo(
                 id,
                 with_posts,
                 page,
@@ -210,46 +116,15 @@ class XenforoRepository @Inject constructor(
                 with_last_post,
                 order
             )
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch thread info!", exception)
-            null
         }
     }
 
     suspend fun getPostInfo(id: Int): PostInfo? {
-        return try {
-            val response = xenforoInterface.getPostInfo(id)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to fetch post info!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.getPostInfo(id) }
     }
 
     suspend fun markThreadAsRead(threadID: Int): MarkResponse? {
-        return try {
-            val response = xenforoInterface.markThreadAsRead(threadID)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to mark thread as read!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.markThreadAsRead(threadID) }
     }
 
     suspend fun postReply(
@@ -257,31 +132,24 @@ class XenforoRepository @Inject constructor(
         message: String,
         attachmentKey: String? = null
     ): PostReply? {
-        return try {
-            val response = xenforoInterface.postReply(threadID, message, attachmentKey)
-            if (response.isSuccessful) {
-                response.body()
-            } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
-                null
-            }
-        } catch (exception: Exception) {
-            Log.e(TAG, "Failed to post reply!", exception)
-            null
-        }
+        return safeExecute { xenforoInterface.postReply(threadID, message, attachmentKey) }
     }
 
     suspend fun postReact(postID: Int, reactID: React): PostReact? {
+        return safeExecute { xenforoInterface.postReact(postID, reactID.ordinal + 1) }
+    }
+
+    private inline fun <T> safeExecute(block: () -> Response<T>): T? {
         return try {
-            val response = xenforoInterface.postReact(postID, reactID.ordinal + 1)
+            val response = block()
             if (response.isSuccessful) {
                 response.body()
             } else {
-                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()}")
+                Log.i(TAG, "Status: ${response.code()}, ${response.errorBody()?.string()}")
                 null
             }
         } catch (exception: Exception) {
-            Log.e(TAG, "Failed to react to the post!", exception)
+            Log.e(TAG, "Failed to execute retrofit call!", exception)
             null
         }
     }
