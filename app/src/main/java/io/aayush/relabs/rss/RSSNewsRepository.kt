@@ -18,4 +18,8 @@ class RSSNewsRepository @Inject constructor(
     suspend fun getAndroidDevsFeed(): Result<List<RssItem>> {
         return rssNewsImpl.getAndroidDevsFeed()
     }
+
+    suspend fun getArsTechFeed(): Result<List<RssItem>> {
+        return rssNewsImpl.getArsTechFeed()
+    }
 }

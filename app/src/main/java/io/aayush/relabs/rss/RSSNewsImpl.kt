@@ -17,6 +17,7 @@ class RSSNewsImpl @Inject constructor(
 
     companion object {
         private const val FEED_XDA_PORTAL = "https://www.xda-developers.com/feed/category/mobile/"
+        private const val FEED_ARS_TECH = "https://feeds.arstechnica.com/arstechnica/index"
         private const val FEED_9TO5GOOGLE = "https://9to5google.com/feed/"
         private const val FEED_ANDROID_DEVS = "https://feeds.feedburner.com/blogspot/hsDu"
     }
@@ -27,6 +28,17 @@ class RSSNewsImpl @Inject constructor(
                 return@withContext Result.success(parser.getRssChannel(FEED_XDA_PORTAL).items)
             } catch (exception: Exception) {
                 Log.e(TAG, "Failed to fetch xda portal rss feed!", exception)
+                return@withContext Result.failure(exception)
+            }
+        }
+    }
+
+    suspend fun getArsTechFeed(): Result<List<RssItem>> {
+        return withContext(Dispatchers.IO) {
+            try {
+                return@withContext Result.success(parser.getRssChannel(FEED_ARS_TECH).items)
+            } catch (exception: Exception) {
+                Log.e(TAG, "Failed to fetch arstechnica rss feed!", exception)
                 return@withContext Result.failure(exception)
             }
         }
