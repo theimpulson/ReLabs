@@ -1,6 +1,7 @@
 package io.aayush.relabs.rss
 
 import com.prof18.rssparser.model.RssItem
+import io.aayush.relabs.rss.data.RssFeed
 import javax.inject.Inject
 
 class RSSNewsRepository @Inject constructor(
@@ -8,18 +9,18 @@ class RSSNewsRepository @Inject constructor(
 ) {
 
     suspend fun getXDAPortalFeed(): Result<List<RssItem>> {
-        return rssNewsImpl.getXDAPortalFeed()
+        return rssNewsImpl.getFeed(RssFeed.XDA)
     }
 
     suspend fun get9to5GoogleFeed(): Result<List<RssItem>> {
-        return rssNewsImpl.get9to5GoogleFeed()
+        return rssNewsImpl.getFeed(RssFeed.Google9To5)
     }
 
     suspend fun getAndroidDevsFeed(): Result<List<RssItem>> {
-        return rssNewsImpl.getAndroidDevsFeed()
+        return rssNewsImpl.getFeed(RssFeed.AndroidDevs)
     }
 
     suspend fun getArsTechFeed(): Result<List<RssItem>> {
-        return rssNewsImpl.getArsTechFeed()
+        return rssNewsImpl.getFeed(RssFeed.ArsTech)
     }
 }
