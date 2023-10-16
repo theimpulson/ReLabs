@@ -26,6 +26,7 @@
     <!-- NewsScreen -->
     <string name="news">News</string>
     <string name="xda_portal" translatable="false">XDA Portal</string>
+    <string name="arstech" translatable="false">ArsTechnica</string>
     <string name="google_9to5" translatable="false">9to5Google</string>
     <string name="android_devs" translatable="false">Android Devs</string>
     <string name="posted_by">Posted by <xliff:g id="author">%1$s</xliff:g></string>
