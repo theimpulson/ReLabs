@@ -27,6 +27,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import io.aayush.relabs.R
+import io.aayush.relabs.ui.extensions.shimmer
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -41,7 +42,8 @@ fun ThreadPreviewItem(
     lastReplyDate: Int = 0,
     forum: String = "",
     unread: Boolean = false,
-    onClicked: () -> Unit = {}
+    onClicked: () -> Unit = {},
+    loading: Boolean = false
 ) {
     Row(
         modifier = modifier
@@ -69,6 +71,7 @@ fun ThreadPreviewItem(
             modifier = Modifier
                 .requiredSize(64.dp)
                 .clip(CircleShape)
+                .shimmer(loading)
         )
         Spacer(modifier = Modifier.width(10.dp))
         Column(
@@ -78,19 +81,36 @@ fun ThreadPreviewItem(
             Text(
                 text = title,
                 fontSize = 15.sp,
-                fontWeight = if (unread) FontWeight.Medium else FontWeight.Light
+                fontWeight = if (unread) FontWeight.Medium else FontWeight.Light,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .shimmer(loading)
             )
             Text(
-                text = stringResource(
-                    id = R.string.author_replies_creationDate,
-                    author,
-                    NumberFormat.getInstance(Locale.getDefault()).format(totalReplies),
-                    NumberFormat.getInstance(Locale.getDefault()).format(views)
-                ),
+                text = if (author.isNotBlank()) {
+                    stringResource(
+                        id = R.string.author_replies_creationDate,
+                        author,
+                        NumberFormat.getInstance(Locale.getDefault()).format(totalReplies),
+                        NumberFormat.getInstance(Locale.getDefault()).format(views)
+                    )
+                } else {
+                    String()
+                },
                 fontSize = 14.sp,
-                fontWeight = if (unread) FontWeight.Normal else FontWeight.Light
+                fontWeight = if (unread) FontWeight.Normal else FontWeight.Light,
+                modifier = Modifier
+                    .fillMaxWidth(if (author.isBlank()) 0.75F else 1F)
+                    .shimmer(loading)
             )
-            Text(text = forum, fontSize = 13.sp, fontWeight = FontWeight.Light)
+            Text(
+                text = forum,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .fillMaxWidth(if (forum.isBlank()) 0.5F else 1F)
+                    .shimmer(loading)
+            )
         }
     }
 }

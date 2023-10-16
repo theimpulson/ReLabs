@@ -58,6 +58,7 @@ fun ThreadPreviewScreen(
         val tabIndex = pagerState.currentPage
         val coroutineScope = rememberCoroutineScope()
 
+        val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
         val watchedThreads: List<Thread>? by viewModel.watchedThreads.collectAsStateWithLifecycle()
         val trendingThreads: List<Thread>? by viewModel.trendingThreads.collectAsStateWithLifecycle()
 
@@ -85,6 +86,15 @@ fun ThreadPreviewScreen(
             HorizontalPager(
                 state = pagerState
             ) {
+                if (loading) {
+                    LazyColumn(modifier = Modifier.fillMaxHeight()) {
+                        items(20) {
+                            ThreadPreviewItem(modifier = Modifier.padding(10.dp), loading = true)
+                        }
+                    }
+                    return@HorizontalPager
+                }
+
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(
                         items = when (it) {
