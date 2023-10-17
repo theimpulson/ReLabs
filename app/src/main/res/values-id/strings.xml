@@ -18,7 +18,7 @@
     <!-- AlertsScreen -->
     <string name="alerts">Pemberitahuan</string>
     <!-- NewsScreen -->
-    <string name="news">Portal</string>
+    <string name="news">Berita</string>
     <string name="posted_by">Diposting oleh <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
     <string name="more">Lainnya</string>
