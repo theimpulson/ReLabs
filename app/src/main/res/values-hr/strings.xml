@@ -5,8 +5,8 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
-    <string name="continue_with_xda">Continue with XDA</string>
-    <string name="logging_in">Logging in…</string>
+    <string name="continue_with_xda">Nastavi s XDA</string>
+    <string name="logging_in">Prijava…</string>
     <!-- LoginScreen -->
     <string name="login">Prijavi se</string>
     <string name="login_info">Molimo prijavite se za nastavak</string>
