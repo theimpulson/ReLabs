@@ -18,7 +18,7 @@
     <!-- AlertsScreen -->
     <string name="alerts">Meldungen</string>
     <!-- NewsScreen -->
-    <string name="news">Portal</string>
+    <string name="news">News</string>
     <string name="posted_by">Gepostet von <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
     <string name="more">Mehr</string>
