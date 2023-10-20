@@ -18,7 +18,7 @@
     <!-- AlertsScreen -->
     <string name="alerts">Upozornění</string>
     <!-- NewsScreen -->
-    <string name="news">Portál</string>
+    <string name="news">Novinky</string>
     <string name="posted_by">Zveřejnil/a <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
     <string name="more">Další</string>
