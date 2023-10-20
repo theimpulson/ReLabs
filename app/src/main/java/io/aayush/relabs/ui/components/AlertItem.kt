@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -27,16 +28,18 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import io.aayush.relabs.R
+import io.aayush.relabs.ui.extensions.shimmer
 import java.util.Date
 
 @Composable
 fun AlertItem(
     modifier: Modifier = Modifier,
     avatarURL: String = "",
-    title: String = "",
+    title: String = "\n\n",
     date: Int = 0,
     unread: Boolean = false,
-    onClicked: () -> Unit = {}
+    onClicked: () -> Unit = {},
+    loading: Boolean = false
 ) {
     Row(
         modifier = modifier.clickable { onClicked() },
@@ -62,25 +65,36 @@ fun AlertItem(
             modifier = Modifier
                 .requiredSize(64.dp)
                 .clip(CircleShape)
+                .shimmer(loading)
         )
         Spacer(modifier = Modifier.width(10.dp))
         Column(
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Top),
             horizontalAlignment = Alignment.Start
         ) {
             Text(
                 text = title,
                 fontSize = 14.sp,
-                fontWeight = if (unread) FontWeight.Medium else FontWeight.Light
+                fontWeight = if (unread) FontWeight.Medium else FontWeight.Light,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .shimmer(loading)
             )
             Text(
-                text = DateUtils.getRelativeTimeSpanString(
-                    date.toLong() * 1000L,
-                    Date().time,
-                    DateUtils.MINUTE_IN_MILLIS
-                ).toString(),
+                text = if (date != 0) {
+                    DateUtils.getRelativeTimeSpanString(
+                        date.toLong() * 1000L,
+                        Date().time,
+                        DateUtils.MINUTE_IN_MILLIS
+                    ).toString()
+                } else {
+                    String()
+                },
                 fontSize = 13.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .fillMaxWidth(if (date == 0) 0.25F else 1F)
+                    .shimmer(loading)
             )
         }
     }

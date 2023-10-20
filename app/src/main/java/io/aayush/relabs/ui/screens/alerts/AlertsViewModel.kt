@@ -17,6 +17,9 @@ class AlertsViewModel @Inject constructor(
     private val xenforoRepository: XenforoRepository
 ) : ViewModel() {
 
+    private val _loading = MutableStateFlow(false)
+    val loading = _loading.asStateFlow()
+
     val postInfo = MutableStateFlow(PostInfo())
 
     private val _alerts = MutableStateFlow<List<UserAlert>?>(emptyList())
@@ -29,8 +32,7 @@ class AlertsViewModel @Inject constructor(
 
     private fun getAlerts() {
         viewModelScope.launch(Dispatchers.IO) {
-            val listOfAlert = xenforoRepository.getAlerts()?.alerts
-            _alerts.value = listOfAlert
+            fetch { _alerts.value = xenforoRepository.getAlerts()?.alerts }
         }
     }
 
@@ -47,6 +49,15 @@ class AlertsViewModel @Inject constructor(
     fun getPostInfo(postID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             postInfo.value = xenforoRepository.getPostInfo(postID) ?: PostInfo()
+        }
+    }
+
+    private inline fun <T> fetch(block: () -> T): T? {
+        return try {
+            _loading.value = true
+            block()
+        } finally {
+            _loading.value = false
         }
     }
 }

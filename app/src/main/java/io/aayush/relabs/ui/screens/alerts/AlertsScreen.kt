@@ -33,6 +33,7 @@ fun AlertsScreen(
     navHostController: NavHostController,
     viewModel: AlertsViewModel = hiltViewModel()
 ) {
+    val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
     val alerts: List<UserAlert>? by viewModel.alerts.collectAsStateWithLifecycle()
     val postInfo: PostInfo by viewModel.postInfo.collectAsStateWithLifecycle()
 
@@ -62,6 +63,15 @@ fun AlertsScreen(
             )
         }
     ) {
+        if (loading) {
+            LazyColumn(modifier = Modifier.padding(it)) {
+                items(20) {
+                    AlertItem(modifier = Modifier.padding(10.dp), loading = true)
+                }
+            }
+            return@Scaffold
+        }
+
         LazyColumn(modifier = Modifier.padding(it)) {
             items(items = alerts ?: emptyList(), key = { a -> a.alert_id }) { userAlert ->
                 AlertItem(
