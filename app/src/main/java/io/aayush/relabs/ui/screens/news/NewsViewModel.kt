@@ -17,6 +17,9 @@ class NewsViewModel @Inject constructor(
     val customTabsIntent: CustomTabsIntent
 ) : ViewModel() {
 
+    private val _loading = MutableStateFlow(false)
+    val loading = _loading.asStateFlow()
+
     private val _xdaPortalFeed = MutableStateFlow<List<RssItem>>(emptyList())
     val xdaPortalFeed = _xdaPortalFeed.asStateFlow()
 
@@ -30,28 +33,51 @@ class NewsViewModel @Inject constructor(
     val androidDevsFeed = _androidDevsFeed.asStateFlow()
 
     fun getXDAPortalArticles() {
+        if (!xdaPortalFeed.value.isNullOrEmpty()) return
         viewModelScope.launch {
-            _xdaPortalFeed.value = rssNewsRepository.getXDAPortalFeed().getOrDefault(emptyList())
+            fetch {
+                _xdaPortalFeed.value =
+                    rssNewsRepository.getXDAPortalFeed().getOrDefault(emptyList())
+            }
         }
     }
 
     fun get9to5GoogleArticles() {
+        if (!google9to5Feed.value.isNullOrEmpty()) return
         viewModelScope.launch {
-            _google9to5Feed.value = rssNewsRepository.get9to5GoogleFeed().getOrDefault(emptyList())
+            fetch {
+                _google9to5Feed.value =
+                    rssNewsRepository.get9to5GoogleFeed().getOrDefault(emptyList())
+            }
         }
     }
 
     fun getAndroidDevelopersArticles() {
+        if (!androidDevsFeed.value.isNullOrEmpty()) return
         viewModelScope.launch {
-            _androidDevsFeed.value =
-                rssNewsRepository.getAndroidDevsFeed().getOrDefault(emptyList())
+            fetch {
+                _androidDevsFeed.value =
+                    rssNewsRepository.getAndroidDevsFeed().getOrDefault(emptyList())
+            }
         }
     }
 
     fun getArsTechArticles() {
+        if (!arsTechFeed.value.isNullOrEmpty()) return
         viewModelScope.launch {
-            _arsTechFeed.value =
-                rssNewsRepository.getArsTechFeed().getOrDefault(emptyList())
+            fetch {
+                _arsTechFeed.value =
+                    rssNewsRepository.getArsTechFeed().getOrDefault(emptyList())
+            }
+        }
+    }
+
+    private inline fun <T> fetch(block: () -> T): T? {
+        return try {
+            _loading.value = true
+            block()
+        } finally {
+            _loading.value = false
         }
     }
 }

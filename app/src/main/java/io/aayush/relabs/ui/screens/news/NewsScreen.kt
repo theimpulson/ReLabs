@@ -38,6 +38,7 @@ import coil.size.Scale
 import com.prof18.rssparser.model.RssItem
 import io.aayush.relabs.R
 import io.aayush.relabs.newsitem.NewsItem
+import io.aayush.relabs.ui.extensions.shimmer
 import kotlinx.coroutines.launch
 import java.util.UUID
 
@@ -59,6 +60,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         val tabIndex = pagerState.currentPage
         val coroutineScope = rememberCoroutineScope()
 
+        val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
         val xdaPortalFeed: List<RssItem> by viewModel.xdaPortalFeed.collectAsStateWithLifecycle()
         val arsTechFeed: List<RssItem> by viewModel.arsTechFeed.collectAsStateWithLifecycle()
         val google9to5Feed: List<RssItem> by viewModel.google9to5Feed.collectAsStateWithLifecycle()
@@ -96,6 +98,20 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
             HorizontalPager(
                 state = pagerState
             ) {
+                if (loading) {
+                    LazyColumn {
+                        items(20) {
+                            // TODO: Drop figma & relay
+                            NewsItem(
+                                modifier = Modifier
+                                    .padding(vertical = 10.dp, horizontal = 10.dp)
+                                    .shimmer(true)
+                            )
+                        }
+                    }
+                    return@HorizontalPager
+                }
+
                 LazyColumn {
                     items(
                         items = when (it) {
