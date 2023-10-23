@@ -6,13 +6,38 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
     <string name="continue_with_xda">Продолжить с XDA</string>
+    <string name="logging_in">Вход…</string>
     <!-- LoginScreen -->
+    <string name="login">Вход</string>
+    <string name="login_info">Пожалуйста, войдите, чтобы продолжить</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Темы</string>
+    <string name="whats_new">Что нового</string>
+    <string name="watched">Просмотрено</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> ответов &#8226; <xliff:g id="views">%3$s</xliff:g> просмотров</string>
     <!-- AlertsScreen -->
+    <string name="alerts">Предупреждения</string>
     <!-- NewsScreen -->
+    <string name="news">Новости</string>
+    <string name="posted_by">Опубликовано <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
+    <string name="more">Ещё</string>
     <!-- ThreadScreen -->
+    <string name="thread">Тема</string>
+    <string name="guest">Гость</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> отреагировали на эту запись</string>
+    <string name="you_and_reacted_to">Вы и <xliff:g id="number">%1$d</xliff:g> отреагировали на эту запись</string>
+    <string name="you_reacted_to">Вы отреагировали на эту запись</string>
+    <string name="share_post_header">Посмотрите этот пост на форуме XDA:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="added_quote_list">Добавлено в цитаты!</string>
+    <string name="removed_quote_list">Удалено из цитат!</string>
     <!-- ReplyScreen -->
+    <string name="reply">Ответ</string>
+    <string name="follow_rules">Не забудьте прочитать &amp; соблюдайте правила форума XDA!</string>
     <!-- ErrorScreen -->
+    <string name="retry">Повтор</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Здесь ничего нет!</string>
+    <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Не удалось получить информацию!</string>
     <!-- ForumPreviewScreen -->
+    <string name="forum_preview">Форумы</string>
 </resources>
