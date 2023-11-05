@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepclassmembernames @com.squareup.moshi.JsonClass class * extends java.lang.Enum {
+    <fields>;
+}
