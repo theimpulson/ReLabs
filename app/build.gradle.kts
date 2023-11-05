@@ -124,14 +124,14 @@ dependencies {
     implementation("androidx.browser:browser:1.6.0")
 
     // Material
-    implementation("androidx.compose.material:material:1.5.3")
+    implementation("androidx.compose.material:material:1.5.4")
     implementation("com.google.android.material:material:1.10.0")
 
     // Hilt
     val hiltVersion = "2.48.1"
     ksp("com.google.dagger:hilt-android-compiler:$hiltVersion")
     implementation("com.google.dagger:hilt-android:$hiltVersion")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
     // Retrofit
     val retrofitVersion = "2.9.0"
