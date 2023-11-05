@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             Screen.News,
 //            Screen.ForumPreview,
             Screen.Alerts,
-            Screen.More
+//            Screen.More
         )
     }
 
