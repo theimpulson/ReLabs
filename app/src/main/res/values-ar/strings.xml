@@ -5,13 +5,39 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
+    <string name="continue_with_xda">سجل باستخدام حسابك في XDA</string>
+    <string name="logging_in">جار تسجيل الدخول…</string>
     <!-- LoginScreen -->
+    <string name="login">سجل الدخول</string>
+    <string name="login_info">الرجاء تسجيل الدخول للمتابعة</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">الموضوعات</string>
+    <string name="whats_new">ما الجديد</string>
+    <string name="watched">تمت مشاهدتها</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> الردود &#8226; <xliff:g id="views">%3$s</xliff:g> المشاهدات</string>
     <!-- AlertsScreen -->
+    <string name="alerts">الإشعارات</string>
     <!-- NewsScreen -->
+    <string name="news">الأخبار</string>
+    <string name="posted_by">تم نشره بواسطة <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
+    <string name="more">المزيد</string>
     <!-- ThreadScreen -->
+    <string name="thread">موضوع</string>
+    <string name="guest">ضيف</string>
+    <string name="reacted_to">عدد المتفاعلين <xliff:g id="number">%1$d</xliff:g></string>
+    <string name="you_and_reacted_to">انت و <xliff:g id="number">%1$d</xliff:g> آخرون تفاعلتم بهذا المنشور</string>
+    <string name="you_reacted_to">أنت تفاعلت مع هذا المنشور</string>
+    <string name="share_post_header">ألقِ نظرة علي هذا المنشور في XDA forums :\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="added_quote_list">تمت الإضافة إلي قائمة الإقتباسات.</string>
+    <string name="removed_quote_list">تمت الإزالة من قائمة الإقتباسات</string>
     <!-- ReplyScreen -->
+    <string name="reply">رد</string>
+    <string name="follow_rules">تذكر أن تقرأ &amp; و تلتزم بقواعد منتدي XDA !</string>
     <!-- ErrorScreen -->
+    <string name="retry">أعد المحاولة</string>
+    <string name="error_empty">لا شئ هنا :) <xliff:g id="exception">%1$s</xliff:g></string>
+    <string name="error_retrofit">فشل الحصول علي المعلومات :( <xliff:g id="exception">%1$s</xliff:g> </string>
     <!-- ForumPreviewScreen -->
+    <string name="forum_preview">المنتديات</string>
 </resources>
