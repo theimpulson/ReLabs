@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ SPDX-FileCopyrightText: 2023 Aayush Gupta
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- LoginButton -->
+    <string name="continue_with_xda">Συνεχίστε με XDA</string>
+    <string name="logging_in">Γίνεται σύνδεση…</string>
+    <!-- LoginScreen -->
+    <string name="login">Σύνδεση</string>
+    <string name="login_info">Παρακαλούμε συνδεθείτε για να συνεχίσετε</string>
+    <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Νήματα</string>
+    <string name="whats_new">Τι νέο υπάρχει</string>
+    <string name="watched">Υπό παρακολούθηση</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> απαντήσεις &#8226; <xliff:g id="views">%3$s</xliff:g> προβολές</string>
+    <!-- AlertsScreen -->
+    <string name="alerts">Ειδοποιήσεις</string>
+    <!-- NewsScreen -->
+    <string name="news">Νέα</string>
+    <string name="posted_by">Δημοσιεύτηκε από <xliff:g id="author">%1$s</xliff:g></string>
+    <!-- MoreScreen -->
+    <string name="more">Περισσότερα</string>
+    <!-- ThreadScreen -->
+    <string name="thread">Νήμα</string>
+    <string name="guest">Επισκέπτης</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> χρήστης(ες) αντέδρασαν σε αυτήν την ανάρτηση</string>
+    <string name="you_and_reacted_to">Εσείς και <xliff:g id="number">%1$d</xliff:g> άλλος(οι) αντέδρασαν σε αυτήν την ανάρτηση</string>
+    <string name="you_reacted_to">Αντιδράσατε σε αυτήν την ανάρτηση</string>
+    <string name="share_post_header">Δείτε αυτήν την ανάρτηση στο φόρουμ XDA:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="added_quote_list">Προστέθηκε στη λίστα παραθέσεων!</string>
+    <string name="removed_quote_list">Αφαιρέθηκε από τη λίστα παραθέσεων!</string>
+    <!-- ReplyScreen -->
+    <string name="reply">Απάντηση</string>
+    <string name="follow_rules">Θυμηθείτε να διαβάσετε &amp; να ακολουθήσετε τους Κανόνες του Φόρουμ XDA!</string>
+    <!-- ErrorScreen -->
+    <string name="retry">Δοκιμάστε ξανά</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Τίποτα εδώ!</string>
+    <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Αποτυχία λήψης πληροφοριών!</string>
+    <!-- ForumPreviewScreen -->
+    <string name="forum_preview">Φόρουμ</string>
+</resources>
