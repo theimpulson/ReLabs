@@ -19,21 +19,21 @@
     <string name="alerts">الإشعارات</string>
     <!-- NewsScreen -->
     <string name="news">الأخبار</string>
-    <string name="posted_by">تم نشره بواسطة <xliff:g id="author">%1$s</xliff:g></string>
+    <string name="posted_by">نُشِرَ بواسطة <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
     <string name="more">المزيد</string>
     <!-- ThreadScreen -->
     <string name="thread">موضوع</string>
     <string name="guest">ضيف</string>
-    <string name="reacted_to">عدد المتفاعلين <xliff:g id="number">%1$d</xliff:g></string>
+    <string name="reacted_to">عدد المتفاعلين : <xliff:g id="number">%1$d</xliff:g></string>
     <string name="you_and_reacted_to">انت و <xliff:g id="number">%1$d</xliff:g> آخرون تفاعلتم بهذا المنشور</string>
     <string name="you_reacted_to">أنت تفاعلت مع هذا المنشور</string>
     <string name="share_post_header">ألقِ نظرة علي هذا المنشور في XDA forums :\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
     <string name="added_quote_list">تمت الإضافة إلي قائمة الإقتباسات.</string>
     <string name="removed_quote_list">تمت الإزالة من قائمة الإقتباسات</string>
     <!-- ReplyScreen -->
-    <string name="reply">رد</string>
-    <string name="follow_rules">تذكر أن تقرأ &amp; و تلتزم بقواعد منتدي XDA !</string>
+    <string name="reply">إرسال الرد</string>
+    <string name="follow_rules">تذكر أن تقرأ و تلتزم بقواعد منتدي XDA !</string>
     <!-- ErrorScreen -->
     <string name="retry">أعد المحاولة</string>
     <string name="error_empty">لا شئ هنا :) <xliff:g id="exception">%1$s</xliff:g></string>
