@@ -4,6 +4,7 @@ import android.util.Log
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
+import io.aayush.relabs.network.data.node.Node
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
@@ -137,6 +138,10 @@ class XenforoRepository @Inject constructor(
 
     suspend fun postReact(postID: Int, reactID: React): PostReact? {
         return safeExecute { xenforoInterface.postReact(postID, reactID.ordinal + 1) }
+    }
+
+    suspend fun getInventory(): List<Node>? {
+        return safeExecute { xenforoInterface.getInventory() }?.devices?.map { it.Node }
     }
 
     private inline fun <T> safeExecute(block: () -> Response<T>): T? {

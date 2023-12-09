@@ -3,6 +3,7 @@ package io.aayush.relabs.network
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
+import io.aayush.relabs.network.data.devices.Devices
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
@@ -101,4 +102,7 @@ interface XenforoInterface {
         @Path("id") postID: Int,
         @Query("reaction_id") reactionID: Int
     ): Response<PostReact>
+
+    @GET("xda-devices/inventory/")
+    suspend fun getInventory(): Response<Devices>
 }
