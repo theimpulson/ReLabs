@@ -1,6 +1,7 @@
 package io.aayush.relabs.ui.components
 
 import android.os.Build
+import android.text.format.DateUtils
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +30,7 @@ import coil.request.ImageRequest
 import io.aayush.relabs.R
 import io.aayush.relabs.ui.extensions.shimmer
 import java.text.NumberFormat
+import java.util.Date
 import java.util.Locale
 
 @Composable
@@ -43,7 +45,8 @@ fun ThreadPreviewItem(
     forum: String = "",
     unread: Boolean = false,
     onClicked: () -> Unit = {},
-    loading: Boolean = false
+    loading: Boolean = false,
+    lastReplyAuthor: String = ""
 ) {
     Row(
         modifier = modifier
@@ -104,11 +107,25 @@ fun ThreadPreviewItem(
                     .shimmer(loading)
             )
             Text(
-                text = forum,
+                text = if (forum.isNotBlank()) {
+                    forum
+                } else if (lastReplyDate != 0 && lastReplyAuthor.isNotBlank()) {
+                    stringResource(
+                        id = R.string.last_reply,
+                        lastReplyAuthor,
+                        DateUtils.getRelativeTimeSpanString(
+                            lastReplyDate.toLong() * 1000L,
+                            Date().time,
+                            DateUtils.MINUTE_IN_MILLIS
+                        ).toString().lowercase()
+                    )
+                } else {
+                    String()
+                },
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Light,
                 modifier = Modifier
-                    .fillMaxWidth(if (forum.isBlank()) 0.5F else 1F)
+                    .fillMaxWidth(if (loading) 0.5F else 1F)
                     .shimmer(loading)
             )
         }

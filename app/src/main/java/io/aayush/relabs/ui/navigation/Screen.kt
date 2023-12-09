@@ -5,6 +5,7 @@
 
 package io.aayush.relabs.ui.navigation
 
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import io.aayush.relabs.R
@@ -57,6 +58,17 @@ sealed class Screen(val route: String, @StringRes val title: Int, @DrawableRes v
     ) {
         fun withID(id: Int): String {
             return this.route.replace("{${NavArg.THREAD_ID.name}}", id.toString())
+        }
+    }
+
+    data object Node : Screen(
+        route = "node_screen/{${NavArg.NODE_ID.name}}/{${NavArg.NODE_TITLE.name}}=",
+        title = R.string.node,
+        icon = R.drawable.ic_phone
+    ) {
+        fun withIDAndTitle(id: Int, title: String): String {
+            return this.route.replace("{${NavArg.NODE_ID.name}}", id.toString())
+                .replace("{${NavArg.NODE_TITLE.name}}", Uri.encode(title))
         }
     }
 

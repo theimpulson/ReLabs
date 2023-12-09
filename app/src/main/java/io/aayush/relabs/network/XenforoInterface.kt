@@ -68,6 +68,9 @@ interface XenforoInterface {
     @GET("threads/audapp-watched/")
     suspend fun getWatchedThreads(): Response<Threads>
 
+    @GET("forums/{id}/threads/")
+    suspend fun getThreadsByNode(@Path("id") nodeID: Int): Response<Threads>
+
     @POST("threads/{id}/audapp-watch")
     suspend fun watchThread(@Path("id") threadID: Int): Response<ThreadWatchResponse>
 

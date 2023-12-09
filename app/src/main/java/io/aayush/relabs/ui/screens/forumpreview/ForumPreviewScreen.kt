@@ -30,6 +30,7 @@ import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.node.Node
 import io.aayush.relabs.ui.components.NodePreviewItem
+import io.aayush.relabs.ui.navigation.Screen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -104,7 +105,15 @@ fun ForumPreviewScreen(
                             lastUpdated = node.type_data.last_post_date,
                             lastThreadTitle = node.type_data.last_thread_title,
                             unread = node.type_data.is_unread,
-                            threads = node.type_data.discussion_count
+                            threads = node.type_data.discussion_count,
+                            onClicked = {
+                                navHostController.navigate(
+                                    Screen.Node.withIDAndTitle(
+                                        node.node_id,
+                                        node.title
+                                    )
+                                )
+                            }
                         )
                     }
                 }

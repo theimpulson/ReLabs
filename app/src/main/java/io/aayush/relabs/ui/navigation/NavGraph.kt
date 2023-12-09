@@ -26,6 +26,7 @@ import io.aayush.relabs.ui.screens.forumpreview.ForumPreviewScreen
 import io.aayush.relabs.ui.screens.login.LoginScreen
 import io.aayush.relabs.ui.screens.more.MoreScreen
 import io.aayush.relabs.ui.screens.news.NewsScreen
+import io.aayush.relabs.ui.screens.node.NodeScreen
 import io.aayush.relabs.ui.screens.reply.ReplyScreen
 import io.aayush.relabs.ui.screens.thread.ThreadScreen
 import io.aayush.relabs.ui.screens.threadpreview.ThreadPreviewScreen
@@ -75,6 +76,23 @@ fun SetupNavGraph(
                 navHostController = navHostController,
                 threadID = it.arguments!!.getInt(NavArg.THREAD_ID.name),
                 viewModel = it.sharedThreadViewModel(navController = navHostController)
+            )
+        }
+        composable(
+            route = Screen.Node.route,
+            arguments = listOf(
+                navArgument(NavArg.NODE_ID.name) {
+                    type = NavType.IntType
+                },
+                navArgument(NavArg.NODE_TITLE.name) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            NodeScreen(
+                navHostController = navHostController,
+                nodeID = it.arguments!!.getInt(NavArg.NODE_ID.name),
+                nodeTitle = it.arguments!!.getString(NavArg.NODE_TITLE.name) ?: String()
             )
         }
     }

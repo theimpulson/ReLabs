@@ -92,6 +92,10 @@ class XenforoRepository @Inject constructor(
         return safeExecute { xenforoInterface.getWatchedThreads() }
     }
 
+    suspend fun getThreadsByNode(nodeID: Int): Threads? {
+        return safeExecute { xenforoInterface.getThreadsByNode(nodeID) }
+    }
+
     suspend fun watchThread(threadID: Int): ThreadWatchResponse? {
         return safeExecute { xenforoInterface.watchThread(threadID) }
     }

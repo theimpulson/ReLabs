@@ -61,4 +61,8 @@
     <string name="inventory">Inventory</string>
     <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> threads &#8226; last updated <xliff:g id="lastPostDate">%3$s</xliff:g></string>
     <string name="last_thread">Last thread: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+
+    <!-- NodeScreen -->
+    <string name="node">Node</string>
+    <string name="last_reply">Last reply: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
