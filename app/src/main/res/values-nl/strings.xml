@@ -40,4 +40,5 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Mislukt om informatie op te halen!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Forums</string>
+    <!-- NodeScreen -->
 </resources>
