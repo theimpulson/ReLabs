@@ -40,4 +40,5 @@
     <string name="error_retrofit">فشل الحصول علي المعلومات :( <xliff:g id="exception">%1$s</xliff:g> </string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">المنتديات</string>
+    <!-- NodeScreen -->
 </resources>
