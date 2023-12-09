@@ -40,4 +40,5 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Αποτυχία λήψης πληροφοριών!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Φόρουμ</string>
+    <!-- NodeScreen -->
 </resources>
