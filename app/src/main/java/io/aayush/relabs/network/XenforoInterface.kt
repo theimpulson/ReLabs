@@ -105,4 +105,7 @@ interface XenforoInterface {
 
     @GET("xda-devices/inventory/")
     suspend fun getInventory(): Response<Devices>
+
+    @GET("nodes/audapp-watched/")
+    suspend fun getWatchedNodes(): Response<Nodes>
 }

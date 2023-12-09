@@ -144,6 +144,10 @@ class XenforoRepository @Inject constructor(
         return safeExecute { xenforoInterface.getInventory() }?.devices?.map { it.Node }
     }
 
+    suspend fun getWatchedNodes(): List<Node>? {
+        return safeExecute { xenforoInterface.getWatchedNodes() }?.nodes
+    }
+
     private inline fun <T> safeExecute(block: () -> Response<T>): T? {
         return try {
             val response = block()

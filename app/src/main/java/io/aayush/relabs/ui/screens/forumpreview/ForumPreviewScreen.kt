@@ -53,11 +53,13 @@ fun ForumPreviewScreen(
 
         val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
         val inventory: List<Node>? by viewModel.inventory.collectAsStateWithLifecycle()
+        val watchedNodes: List<Node>? by viewModel.watchedNodes.collectAsStateWithLifecycle()
 
         LaunchedEffect(key1 = pagerState) {
             snapshotFlow { pagerState.currentPage }.collect { page ->
                 when (page) {
                     0 -> viewModel.getInventory()
+                    1 -> viewModel.getWatchedNodes()
                 }
             }
         }
@@ -90,7 +92,7 @@ fun ForumPreviewScreen(
                     items(
                         items = when (it) {
                             0 -> inventory ?: emptyList()
-
+                            1 -> watchedNodes ?: emptyList()
                             else -> emptyList()
                         },
                         key = { n -> n.node_id }
