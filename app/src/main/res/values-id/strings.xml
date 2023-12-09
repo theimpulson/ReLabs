@@ -40,4 +40,5 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Gagal mengambil informasi!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Forum</string>
+    <!-- NodeScreen -->
 </resources>
