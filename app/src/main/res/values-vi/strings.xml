@@ -40,4 +40,5 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Trích xuất thông tin thất bại!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Diễn đàn</string>
+    <!-- NodeScreen -->
 </resources>
