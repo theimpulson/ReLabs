@@ -42,7 +42,7 @@ fun ForumPreviewScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.forum_preview)) }) }
     ) {
-        val tabData = listOf(R.string.inventory, R.string.watched, R.string.whats_new)
+        val tabData = listOf(R.string.inventory, R.string.watched)
         val pagerState = rememberPagerState(
             initialPage = 0,
             initialPageOffsetFraction = 0f,

@@ -22,9 +22,6 @@ class ForumPreviewViewModel @Inject constructor(
     private val _inventory = MutableStateFlow<List<Node>?>(emptyList())
     val inventory = _inventory.asStateFlow()
 
-    private val _trendingNodes = MutableStateFlow<List<Node>?>(emptyList())
-    val trendingNodes = _trendingNodes.asStateFlow()
-
     private val _watchedNodes = MutableStateFlow<List<Node>?>(emptyList())
     val watchedNodes = _watchedNodes.asStateFlow()
 
