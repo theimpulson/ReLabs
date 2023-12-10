@@ -40,5 +40,10 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Chyba při načítání informací!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Fóra</string>
+    <string name="inventory">Inventář</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> vláken &#8226; naposledy aktualizováno <xliff:g id="lastPostDate">%3$s</xliff:g></string>
+    <string name="last_thread">Poslední vlákno: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
     <!-- NodeScreen -->
+    <string name="node">Uzel</string>
+    <string name="last_reply">Poslední odpověď: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
