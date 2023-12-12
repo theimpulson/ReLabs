@@ -1,4 +1,4 @@
-package io.aayush.relabs.ui.screens.forumpreview
+package io.aayush.relabs.ui.screens.nodepreview
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -35,9 +35,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
-fun ForumPreviewScreen(
+fun NodePreviewScreen(
     navHostController: NavHostController,
-    viewModel: ForumPreviewViewModel = hiltViewModel()
+    viewModel: NodePreviewViewModel = hiltViewModel()
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),

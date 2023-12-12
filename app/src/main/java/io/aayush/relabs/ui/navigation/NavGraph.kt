@@ -22,7 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import io.aayush.relabs.ui.screens.alerts.AlertsScreen
-import io.aayush.relabs.ui.screens.forumpreview.ForumPreviewScreen
+import io.aayush.relabs.ui.screens.nodepreview.NodePreviewScreen
 import io.aayush.relabs.ui.screens.login.LoginScreen
 import io.aayush.relabs.ui.screens.more.MoreScreen
 import io.aayush.relabs.ui.screens.news.NewsScreen
@@ -49,7 +49,7 @@ fun SetupNavGraph(
         composable(route = Screen.Alerts.route) { AlertsScreen(navHostController) }
         composable(route = Screen.News.route) { NewsScreen(navHostController) }
         composable(route = Screen.More.route) { MoreScreen(navHostController) }
-        composable(route = Screen.ForumPreview.route) { ForumPreviewScreen(navHostController) }
+        composable(route = Screen.NodePreview.route) { NodePreviewScreen(navHostController) }
         composable(
             route = Screen.Thread.route,
             arguments = listOf(

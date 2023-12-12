@@ -72,8 +72,8 @@ sealed class Screen(val route: String, @StringRes val title: Int, @DrawableRes v
         }
     }
 
-    data object ForumPreview : Screen(
-        route = "forum_preview_screen",
+    data object NodePreview : Screen(
+        route = "node_preview_screen",
         title = R.string.forum_preview,
         icon = R.drawable.ic_phone
     )

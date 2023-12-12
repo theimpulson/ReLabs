@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val topRoutes: List<Screen> = listOf(
             Screen.ThreadPreview,
             Screen.News,
-            Screen.ForumPreview,
+            Screen.NodePreview,
             Screen.Alerts
 //            Screen.More
         )

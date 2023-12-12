@@ -1,4 +1,4 @@
-package io.aayush.relabs.ui.screens.forumpreview
+package io.aayush.relabs.ui.screens.nodepreview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ForumPreviewViewModel @Inject constructor(
+class NodePreviewViewModel @Inject constructor(
     private val xenforoRepository: XenforoRepository
 ) : ViewModel() {
 
