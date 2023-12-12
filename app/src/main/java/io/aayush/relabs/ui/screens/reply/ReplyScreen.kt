@@ -11,19 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -40,13 +34,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.post.PostReply
+import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.PostItem
 import io.aayush.relabs.ui.navigation.Screen
 import io.aayush.relabs.ui.screens.thread.ThreadViewModel
 import io.aayush.relabs.ui.theme.XDAYellow
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 fun ReplyScreen(
     navHostController: NavHostController,
     threadID: Int,
@@ -66,19 +60,7 @@ fun ReplyScreen(
     }
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = stringResource(id = Screen.Reply.title)) },
-                navigationIcon = {
-                    IconButton(onClick = { navHostController.navigateUp() }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = ""
-                        )
-                    }
-                }
-            )
-        },
+        topBar = { MainTopAppBar(screen = Screen.Reply, navHostController = navHostController) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = { Text(text = stringResource(id = Screen.Reply.title)) },

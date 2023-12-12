@@ -11,13 +11,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -38,18 +36,20 @@ import coil.size.Scale
 import com.prof18.rssparser.model.RssItem
 import io.aayush.relabs.R
 import io.aayush.relabs.newsitem.NewsItem
+import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.extensions.shimmer
+import io.aayush.relabs.ui.navigation.Screen
 import kotlinx.coroutines.launch
 import java.util.UUID
 
 private const val TAG = "NewsScreen"
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = hiltViewModel()) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.news)) }) }
+        topBar = { MainTopAppBar(screen = Screen.News, navHostController = navHostController) }
     ) {
         val tabData = listOf(R.string.android_devs, R.string.google_9to5, R.string.arstech, R.string.xda_portal)
         val pagerState = rememberPagerState(

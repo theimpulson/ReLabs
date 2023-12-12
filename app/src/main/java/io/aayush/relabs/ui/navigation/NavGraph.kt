@@ -22,11 +22,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import io.aayush.relabs.ui.screens.alerts.AlertsScreen
-import io.aayush.relabs.ui.screens.nodepreview.NodePreviewScreen
 import io.aayush.relabs.ui.screens.login.LoginScreen
 import io.aayush.relabs.ui.screens.more.MoreScreen
 import io.aayush.relabs.ui.screens.news.NewsScreen
 import io.aayush.relabs.ui.screens.node.NodeScreen
+import io.aayush.relabs.ui.screens.nodepreview.NodePreviewScreen
 import io.aayush.relabs.ui.screens.reply.ReplyScreen
 import io.aayush.relabs.ui.screens.thread.ThreadScreen
 import io.aayush.relabs.ui.screens.threadpreview.ThreadPreviewScreen

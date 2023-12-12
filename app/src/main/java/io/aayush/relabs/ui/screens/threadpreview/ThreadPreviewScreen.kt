@@ -14,12 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,19 +33,22 @@ import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.thread.DiscussionState
 import io.aayush.relabs.network.data.thread.Thread
+import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.ThreadPreviewItem
 import io.aayush.relabs.ui.navigation.Screen
 import kotlinx.coroutines.launch
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 fun ThreadPreviewScreen(
     navHostController: NavHostController,
     viewModel: ThreadPreviewViewModel = hiltViewModel()
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TopAppBar(title = { Text(text = stringResource(id = R.string.thread_preview)) }) }
+        topBar = {
+            MainTopAppBar(screen = Screen.ThreadPreview, navHostController = navHostController)
+        }
     ) {
         val tabData = listOf(R.string.watched, R.string.whats_new)
         val pagerState = rememberPagerState(

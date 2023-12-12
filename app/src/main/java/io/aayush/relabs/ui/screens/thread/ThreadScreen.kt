@@ -15,20 +15,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -40,7 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -48,13 +43,14 @@ import androidx.navigation.NavHostController
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.ui.components.ErrorScreen
+import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.PostItem
 import io.aayush.relabs.ui.navigation.Screen
 import io.aayush.relabs.utils.Error
 import kotlinx.coroutines.launch
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 fun ThreadScreen(
     navHostController: NavHostController,
     threadID: Int,
@@ -71,46 +67,32 @@ fun ThreadScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = threadInfo?.thread?.title ?: "",
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { navHostController.navigateUp() }) {
+            MainTopAppBar(
+                screen = Screen.Thread,
+                navHostController = navHostController,
+                title = threadInfo?.thread?.title ?: String()
+            ) {
+                if (threadInfo?.thread?.thread_id != 0) {
+                    IconButton(onClick = {
+                        if (threadInfo?.thread?.is_watching == true) {
+                            viewModel.unwatchThread(threadInfo?.thread?.thread_id ?: 0)
+                        } else {
+                            viewModel.watchThread(threadInfo?.thread?.thread_id ?: 0)
+                        }
+                    }) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowBack,
+                            painter = painterResource(
+                                id = if (threadInfo?.thread?.is_watching == true) {
+                                    R.drawable.ic_watch_filled
+                                } else {
+                                    R.drawable.ic_watch
+                                }
+                            ),
                             contentDescription = ""
                         )
                     }
-                },
-                actions = {
-                    if (threadInfo?.thread?.thread_id != 0) {
-                        IconButton(onClick = {
-                            if (threadInfo?.thread?.is_watching == true) {
-                                viewModel.unwatchThread(threadInfo?.thread?.thread_id ?: 0)
-                            } else {
-                                viewModel.watchThread(threadInfo?.thread?.thread_id ?: 0)
-                            }
-                        }) {
-                            Icon(
-                                painter = painterResource(
-                                    id = if (threadInfo?.thread?.is_watching == true) {
-                                        R.drawable.ic_watch_filled
-                                    } else {
-                                        R.drawable.ic_watch
-                                    }
-                                ),
-                                contentDescription = ""
-                            )
-                        }
-                    }
                 }
-            )
+            }
         },
         floatingActionButton = {
             if (threadInfo?.thread?.discussion_open == true) {
