@@ -50,12 +50,12 @@ fun MainTopAppBar(
         actions = {
             actions()
             if (screen in MainActivity.topRoutes) {
-                IconButton(onClick = { navHostController.navigate(Screen.More.route) }) {
-                    Icon(
-                        painter = painterResource(id = Screen.More.icon),
-                        contentDescription = ""
-                    )
-                }
+//                IconButton(onClick = { navHostController.navigate(Screen.More.route) }) {
+//                    Icon(
+//                        painter = painterResource(id = Screen.More.icon),
+//                        contentDescription = ""
+//                    )
+//                }
             }
         }
     )
