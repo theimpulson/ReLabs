@@ -4,6 +4,7 @@ import io.aayush.relabs.network.data.common.Pagination
 import io.aayush.relabs.network.data.post.Post
 
 data class ThreadInfo(
+    val first_unread: Post = Post(),
     val pagination: Pagination = Pagination(),
     val posts: List<Post> = emptyList(),
     val thread: Thread = Thread()
