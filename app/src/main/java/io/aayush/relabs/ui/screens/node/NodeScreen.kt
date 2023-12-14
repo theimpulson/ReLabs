@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -22,7 +21,6 @@ import io.aayush.relabs.ui.components.ThreadPreviewItem
 import io.aayush.relabs.ui.navigation.Screen
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 fun NodeScreen(
     navHostController: NavHostController,
     nodeID: Int,
@@ -47,23 +45,31 @@ fun NodeScreen(
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                items(items = threads ?: emptyList(), key = { t -> t.thread_id }) { thread ->
-                    ThreadPreviewItem(
-                        modifier = Modifier.padding(10.dp),
-                        avatarURL = thread.User?.avatar_urls?.values?.first() ?: "",
-                        title = thread.title,
-                        author = thread.username,
-                        totalReplies = thread.reply_count,
-                        views = thread.view_count,
-                        lastReplyDate = thread.last_post_date,
-                        lastReplyAuthor = thread.last_post_username,
-                        forum = thread.Forum.title,
-                        unread = thread.is_unread,
-                        onClicked = {
-                            navHostController.navigate(Screen.Thread.withID(thread.thread_id))
-                        }
-                    )
+            if (loading) {
+                LazyColumn(modifier = Modifier.fillMaxHeight()) {
+                    items(20) {
+                        ThreadPreviewItem(modifier = Modifier.padding(10.dp), loading = true)
+                    }
+                }
+            } else {
+                LazyColumn(modifier = Modifier.fillMaxHeight()) {
+                    items(items = threads ?: emptyList(), key = { t -> t.thread_id }) { thread ->
+                        ThreadPreviewItem(
+                            modifier = Modifier.padding(10.dp),
+                            avatarURL = thread.User?.avatar_urls?.values?.first() ?: "",
+                            title = thread.title,
+                            author = thread.username,
+                            totalReplies = thread.reply_count,
+                            views = thread.view_count,
+                            lastReplyDate = thread.last_post_date,
+                            lastReplyAuthor = thread.last_post_username,
+                            forum = thread.Forum.title,
+                            unread = thread.is_unread,
+                            onClicked = {
+                                navHostController.navigate(Screen.Thread.withID(thread.thread_id))
+                            }
+                        )
+                    }
                 }
             }
         }
