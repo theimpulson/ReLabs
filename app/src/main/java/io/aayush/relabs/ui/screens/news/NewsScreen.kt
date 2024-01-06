@@ -13,8 +13,8 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -51,7 +51,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         modifier = Modifier.fillMaxSize(),
         topBar = { MainTopAppBar(screen = Screen.News, navHostController = navHostController) }
     ) {
-        val tabData = listOf(R.string.android_devs, R.string.google_9to5, R.string.arstech, R.string.xda_portal)
+        val tabData = listOf(R.string.android_devs, R.string.google_9to5, R.string.arstech)
         val pagerState = rememberPagerState(
             initialPage = 0,
             initialPageOffsetFraction = 0f,
@@ -61,7 +61,6 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         val coroutineScope = rememberCoroutineScope()
 
         val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
-        val xdaPortalFeed: List<RssItem> by viewModel.xdaPortalFeed.collectAsStateWithLifecycle()
         val arsTechFeed: List<RssItem> by viewModel.arsTechFeed.collectAsStateWithLifecycle()
         val google9to5Feed: List<RssItem> by viewModel.google9to5Feed.collectAsStateWithLifecycle()
         val androidDevsFeed: List<RssItem> by viewModel.androidDevsFeed.collectAsStateWithLifecycle()
@@ -73,14 +72,13 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                 when (page) {
                     0 -> viewModel.getAndroidDevelopersArticles()
                     1 -> viewModel.get9to5GoogleArticles()
-                    2 -> viewModel.getArsTechArticles()
-                    else -> viewModel.getXDAPortalArticles()
+                    else -> viewModel.getArsTechArticles()
                 }
             }
         }
 
         Column(modifier = Modifier.padding(it)) {
-            ScrollableTabRow(selectedTabIndex = tabIndex, edgePadding = 0.dp) {
+            TabRow(selectedTabIndex = tabIndex) {
                 tabData.fastForEachIndexed { index, _ ->
                     Tab(
                         selected = tabIndex == index,
@@ -117,8 +115,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                         items = when (it) {
                             0 -> androidDevsFeed
                             1 -> google9to5Feed
-                            2 -> arsTechFeed
-                            else -> xdaPortalFeed
+                            else -> arsTechFeed
                         },
                         key = { a -> a.guid ?: UUID.randomUUID() }
                     ) { article ->

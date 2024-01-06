@@ -20,9 +20,6 @@ class NewsViewModel @Inject constructor(
     private val _loading = MutableStateFlow(false)
     val loading = _loading.asStateFlow()
 
-    private val _xdaPortalFeed = MutableStateFlow<List<RssItem>>(emptyList())
-    val xdaPortalFeed = _xdaPortalFeed.asStateFlow()
-
     private val _arsTechFeed = MutableStateFlow<List<RssItem>>(emptyList())
     val arsTechFeed = _arsTechFeed.asStateFlow()
 
@@ -31,16 +28,6 @@ class NewsViewModel @Inject constructor(
 
     private val _androidDevsFeed = MutableStateFlow<List<RssItem>>(emptyList())
     val androidDevsFeed = _androidDevsFeed.asStateFlow()
-
-    fun getXDAPortalArticles() {
-        if (!xdaPortalFeed.value.isNullOrEmpty()) return
-        viewModelScope.launch {
-            fetch {
-                _xdaPortalFeed.value =
-                    rssNewsRepository.getXDAPortalFeed().getOrDefault(emptyList())
-            }
-        }
-    }
 
     fun get9to5GoogleArticles() {
         if (!google9to5Feed.value.isNullOrEmpty()) return
