@@ -33,7 +33,8 @@ object RetrofitModule {
         val accessToken = sharedPreferences.getString(ACCESS_TOKEN, "")
         return Interceptor { chain ->
             val builder = chain.request().newBuilder()
-            builder.header("authorization", "Bearer $accessToken")
+                .header("authorization", "Bearer $accessToken")
+                .header("User-Agent", "${System.getProperty("http.agent")} AudCommunityApp/android/0.15.41")
             return@Interceptor chain.proceed(builder.build())
         }
     }
