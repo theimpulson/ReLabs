@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Taken from official XDA app for push notifications -->
+    <string name="google_app_id" translatable="false">1:1048869167118:android:5abd815248e5161d219c5f</string>
+    <string name="gcm_defaultSenderId" translatable="false">1048869167118</string>
+    <string name="default_web_client_id" translatable="false">1048869167118-862b34jldqcfalp2ult15ddujuj0hva6.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://xda-app.firebaseio.com</string>
+    <string name="google_api_key" translatable="false">AIzaSyAm0HWvT6hv5XvJkQRTvyvgiSP0dhCH0Uw</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAm0HWvT6hv5XvJkQRTvyvgiSP0dhCH0Uw</string>
+    <string name="project_id" translatable="false">xda-app</string>
+</resources>

@@ -15,6 +15,7 @@ import javax.inject.Singleton
 object CommonModule {
 
     const val ACCESS_TOKEN = "accessToken"
+    const val FCM_TOKEN = "fcmToken"
 
     /**
      * Provides an instance of SharedPreferences

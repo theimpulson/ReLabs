@@ -100,6 +100,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // Firebase
+    implementation("com.google.firebase:firebase-messaging-ktx:23.4.0")
+
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.6")
 

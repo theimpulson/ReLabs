@@ -4,6 +4,7 @@ import android.util.Log
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.common.MarkResponse
 import io.aayush.relabs.network.data.conversation.Conversations
+import io.aayush.relabs.network.data.expo.ExpoData
 import io.aayush.relabs.network.data.node.Node
 import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostInfo
@@ -14,13 +15,17 @@ import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.ThreadWatchResponse
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
+import java.util.UUID
+import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class XenforoRepository @Inject constructor(
-    private val xenforoInterface: XenforoInterface
+    private val xenforoInterface: XenforoInterface,
+    private val expoInterface: ExpoInterface,
+    private val xdaInterface: XDAInterface
 ) {
 
     private val TAG = XenforoRepository::class.java.simpleName
@@ -130,6 +135,22 @@ class XenforoRepository @Inject constructor(
 
     suspend fun markThreadAsRead(threadID: Int): MarkResponse? {
         return safeExecute { xenforoInterface.markThreadAsRead(threadID) }
+    }
+
+    suspend fun registerPushNotifications(expoData: ExpoData): Boolean? {
+        // Get token from Expo and register that on XDA
+        val expoPushToken =
+            safeExecute { expoInterface.getExpoPushToken(expoData) }?.data?.expoPushToken
+
+        return if (!expoPushToken.isNullOrBlank()) {
+            val body = MultipartBody.Builder(UUID.randomUUID().toString())
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("token", expoPushToken)
+                .build()
+            safeExecute { xdaInterface.postExpoPushToken(body) }?.success
+        } else {
+            false
+        }
     }
 
     suspend fun postReply(
