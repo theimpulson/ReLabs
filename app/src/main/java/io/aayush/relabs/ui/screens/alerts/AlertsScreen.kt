@@ -1,5 +1,14 @@
 package io.aayush.relabs.ui.screens.alerts
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastAny
@@ -24,14 +34,28 @@ import io.aayush.relabs.ui.components.AlertItem
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.navigation.Screen
 
+private const val TAG = "AlertsScreen"
+
 @Composable
 fun AlertsScreen(
     navHostController: NavHostController,
     viewModel: AlertsViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
     val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
     val alerts: List<UserAlert>? by viewModel.alerts.collectAsStateWithLifecycle()
     val postInfo: PostInfo by viewModel.postInfo.collectAsStateWithLifecycle()
+
+    val permissionRequestLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { Log.i(TAG, "Notification permission: $it") }
+    )
+
+    LaunchedEffect(key1 = Unit) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionRequestLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
 
     LaunchedEffect(key1 = postInfo) {
         if (postInfo.post.thread_id != 0) {
@@ -44,6 +68,12 @@ fun AlertsScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             MainTopAppBar(screen = Screen.Alerts, navHostController = navHostController) {
+                IconButton(onClick = { openNotificationSettings(context) }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_notifications_edit),
+                        contentDescription = ""
+                    )
+                }
                 IconButton(
                     onClick = { viewModel.markAllAlerts(read = true) },
                     enabled = alerts?.fastAny { it.read_date == 0 } == true
@@ -80,4 +110,14 @@ fun AlertsScreen(
             }
         }
     }
+}
+
+@SuppressLint("InlinedApi")
+private fun openNotificationSettings(context: Context) {
+    val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+        putExtra("app_package", context.packageName)
+        putExtra("app_uid", context.applicationInfo.uid)
+        putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+    }
+    context.startActivity(intent)
 }

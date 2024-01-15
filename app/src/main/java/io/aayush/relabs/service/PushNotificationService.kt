@@ -9,6 +9,7 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -72,6 +73,7 @@ class PushNotificationService : FirebaseMessagingService(),
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
         Log.i(TAG, "Got FCM push notification!")
+        if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) return
 
         val pendingIntent = PendingIntent.getActivity(
             this,
