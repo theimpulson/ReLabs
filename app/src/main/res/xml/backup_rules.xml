@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ SPDX-FileCopyrightText: 2023 Aayush Gupta
   ~ SPDX-License-Identifier: Apache-2.0
   -->
@@ -15,4 +16,5 @@
    <include domain="sharedpref" path="."/>
    <exclude domain="sharedpref" path="device.xml"/>
 -->
+    <exclude domain="sharedpref" path="encrypted_shared_preferences.xml" />
 </full-backup-content>

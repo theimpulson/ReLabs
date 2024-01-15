@@ -3,6 +3,8 @@ package io.aayush.relabs.utils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +24,17 @@ object CommonModule {
      */
     @Singleton
     @Provides
-    fun provideSharedPrefInstance(@ApplicationContext context: Context): SharedPreferences {
-        return context.getSharedPreferences(context.packageName, Context.MODE_PRIVATE)
+    fun provideSharedPrefInstance(
+        @ApplicationContext context: Context,
+        masterKey: MasterKey
+    ): SharedPreferences {
+        return EncryptedSharedPreferences.create(
+            context,
+            "encrypted_shared_preferences",
+            masterKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
     }
 
     @Singleton
@@ -36,5 +47,13 @@ object CommonModule {
     @Provides
     fun provideDesignQuoteSpan(): DesignQuoteSpan {
         return DesignQuoteSpan()
+    }
+
+    @Singleton
+    @Provides
+    fun provideMasterKey(@ApplicationContext context: Context): MasterKey {
+        return MasterKey.Builder(context)
+            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+            .build()
     }
 }

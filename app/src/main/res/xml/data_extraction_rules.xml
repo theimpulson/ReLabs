@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ SPDX-FileCopyrightText: 2023 Aayush Gupta
   ~ SPDX-License-Identifier: Apache-2.0
   -->
@@ -14,6 +15,7 @@
         <include .../>
         <exclude .../>
         -->
+        <exclude domain="sharedpref" path="encrypted_shared_preferences.xml" />
     </cloud-backup>
     <!--
     <device-transfer>
@@ -21,4 +23,5 @@
         <exclude .../>
     </device-transfer>
     -->
+    <exclude domain="sharedpref" path="encrypted_shared_preferences.xml" />
 </data-extraction-rules>

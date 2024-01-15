@@ -100,6 +100,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // EncryptedSharedPreferences
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+
     // Firebase
     implementation("com.google.firebase:firebase-messaging-ktx:23.4.0")
 
