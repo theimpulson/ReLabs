@@ -52,7 +52,7 @@ fun UserHeader(user: User) {
     ) {
         SubcomposeAsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data(user.profile_banner_urls.values.first()?.ifBlank { "" })
+                .data("")
                 .crossfade(true)
                 .scale(Scale.FIT)
                 .build(),
@@ -70,7 +70,7 @@ fun UserHeader(user: User) {
         ) {
             SubcomposeAsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(user.avatar_urls.values.first()?.ifBlank { R.drawable.ic_account_w })
+                    .data(user.avatar.data.medium)
                     .placeholder(R.drawable.ic_account_w)
                     .crossfade(true)
                     .build(),
@@ -88,12 +88,10 @@ fun UserHeader(user: User) {
                     .clip(CircleShape)
             )
             Spacer(modifier = Modifier.height(10.dp))
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(text = user.username, fontSize = 25.sp, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.width(5.dp))
-                if (user.is_staff) {
+                if (user.isModerator) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_mod),
                         contentDescription = "",
@@ -103,7 +101,7 @@ fun UserHeader(user: User) {
             }
             Spacer(modifier = Modifier.height(5.dp))
             Text(
-                text = user.user_title,
+                text = user.title,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center

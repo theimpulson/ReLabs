@@ -4,5 +4,5 @@ import io.aayush.relabs.network.data.common.Pagination
 
 data class Threads(
     val pagination: Pagination = Pagination(),
-    val threads: List<Thread> = emptyList()
+    val threads: List<Thread> = listOf()
 )

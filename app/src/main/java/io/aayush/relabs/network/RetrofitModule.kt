@@ -6,7 +6,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.aayush.relabs.utils.CommonModule.ACCESS_TOKEN
-import javax.inject.Named
 import javax.inject.Singleton
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -20,17 +19,6 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideXenforoInterface(@Named("OkHttpClient") okHttpClient: OkHttpClient): XenforoInterface {
-        return Retrofit.Builder()
-            .baseUrl(XenforoInterface.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create(XenforoInterface::class.java)
-    }
-
-    @Singleton
-    @Provides
     fun provideExpoInterface(): ExpoInterface {
         return Retrofit.Builder()
             .baseUrl(ExpoInterface.BASE_URL)
@@ -41,7 +29,7 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideXDAInterface(@Named("OkHttpClientForXDA") okHttpClient: OkHttpClient): XDAInterface {
+    fun provideXDAInterface(okHttpClient: OkHttpClient): XDAInterface {
         return Retrofit.Builder()
             .baseUrl(XDAInterface.BASE_URL)
             .client(okHttpClient)
@@ -50,21 +38,10 @@ object RetrofitModule {
             .create(XDAInterface::class.java)
     }
 
-    @Named("OkHttpClientForXDA")
     @Singleton
     @Provides
     fun provideOkHttpClientForXDA(sharedPreferences: SharedPreferences): OkHttpClient {
         val interceptor = GetInterceptor(sharedPreferences, true)
-        return OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-    }
-
-    @Named("OkHttpClient")
-    @Singleton
-    @Provides
-    fun provideOkHttpClient(sharedPreferences: SharedPreferences): OkHttpClient {
-        val interceptor = GetInterceptor(sharedPreferences)
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()

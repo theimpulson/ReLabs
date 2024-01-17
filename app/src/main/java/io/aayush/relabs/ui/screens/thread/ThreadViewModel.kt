@@ -55,7 +55,7 @@ class ThreadViewModel @Inject constructor(
     }
 
     fun getPosts(page: Int) {
-        val threadID = _threadInfo.value?.thread?.thread_id
+        val threadID = _threadInfo.value?.thread?.id
         if (threadID != null && threadID != 0) {
             viewModelScope.launch(Dispatchers.IO) {
                 val response = xenforoRepository.getThreadInfo(
@@ -70,7 +70,7 @@ class ThreadViewModel @Inject constructor(
 
     fun reactToPost(page: Int, post: Post) {
         viewModelScope.launch {
-            val react = xenforoRepository.postReact(post.post_id, React.Like)
+            val react = xenforoRepository.postReact(post.id, React.Like)
             if (react?.success == true) getPosts(page + 1)
         }
     }
@@ -80,8 +80,8 @@ class ThreadViewModel @Inject constructor(
             val header = postsToQuote.map {
                 context.getString(
                     R.string.quote,
-                    it.User?.username,
-                    it.post_id,
+                    it.user?.username,
+                    it.id,
                     it.user_id,
                     it.message
                 )

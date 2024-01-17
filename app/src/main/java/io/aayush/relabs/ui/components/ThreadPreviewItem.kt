@@ -41,7 +41,7 @@ fun ThreadPreviewItem(
     author: String = "",
     totalReplies: Int = 0,
     views: Int = 0,
-    lastReplyDate: Int = 0,
+    lastReplyDate: Long = 0,
     forum: String = "",
     unread: Boolean = false,
     onClicked: () -> Unit = {},
@@ -109,12 +109,12 @@ fun ThreadPreviewItem(
             Text(
                 text = if (forum.isNotBlank()) {
                     forum
-                } else if (lastReplyDate != 0 && lastReplyAuthor.isNotBlank()) {
+                } else if (lastReplyDate != 0L && lastReplyAuthor.isNotBlank()) {
                     stringResource(
                         id = R.string.last_reply,
                         lastReplyAuthor,
                         DateUtils.getRelativeTimeSpanString(
-                            lastReplyDate.toLong() * 1000L,
+                            lastReplyDate,
                             Date().time,
                             DateUtils.MINUTE_IN_MILLIS
                         ).toString().lowercase()

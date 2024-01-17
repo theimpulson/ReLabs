@@ -31,7 +31,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
-import io.aayush.relabs.network.data.thread.DiscussionState
 import io.aayush.relabs.network.data.thread.Thread
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.ThreadPreviewItem
@@ -99,27 +98,23 @@ fun ThreadPreviewScreen(
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(
                         items = when (it) {
-                            0 ->
-                                watchedThreads
-                                    ?.filter { t -> t.discussion_state == DiscussionState.VISIBLE }
-                                    ?: emptyList()
-
+                            0 -> watchedThreads ?: emptyList()
                             else -> trendingThreads ?: emptyList()
                         },
-                        key = { t -> t.thread_id }
+                        key = { t -> t.id }
                     ) { thread ->
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
-                            avatarURL = thread.User?.avatar_urls?.values?.first() ?: "",
+                            avatarURL = thread.user.avatar.data.medium,
                             title = thread.title,
-                            author = thread.username,
+                            author = thread.user.username,
                             totalReplies = thread.reply_count,
                             views = thread.view_count,
-                            lastReplyDate = thread.last_post_date,
-                            forum = thread.Forum.title,
-                            unread = thread.is_unread,
+                            lastReplyDate = thread.last_post_at.long,
+                            forum = thread.node.title,
+                            unread = thread.isUnread,
                             onClicked = {
-                                navHostController.navigate(Screen.Thread.withID(thread.thread_id))
+                                navHostController.navigate(Screen.Thread.withID(thread.id))
                             }
                         )
                     }

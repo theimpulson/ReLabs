@@ -33,7 +33,7 @@ fun NodePreviewItem(
     title: String = "",
     company: String = "",
     threads: Int = 0,
-    lastUpdated: Int = 0,
+    lastUpdated: Long = 0,
     lastThreadTitle: String = "",
     unread: Boolean = false,
     onClicked: () -> Unit = {},
@@ -73,9 +73,9 @@ fun NodePreviewItem(
                         id = R.string.company_threads_lastPostDate,
                         company,
                         NumberFormat.getInstance(Locale.getDefault()).format(threads),
-                        if (lastUpdated != 0) {
+                        if (lastUpdated != 0L) {
                             DateUtils.getRelativeTimeSpanString(
-                                lastUpdated.toLong() * 1000L,
+                                lastUpdated,
                                 Date().time,
                                 DateUtils.MINUTE_IN_MILLIS
                             ).toString().lowercase()

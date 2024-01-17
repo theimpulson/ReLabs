@@ -36,10 +36,10 @@ fun AlertItem(
     modifier: Modifier = Modifier,
     avatarURL: String = "",
     title: String = "\n\n",
-    date: Int = 0,
+    date: Long = 0,
     unread: Boolean = false,
     onClicked: () -> Unit = {},
-    loading: Boolean = false
+    loading: Boolean = false,
 ) {
     Row(
         modifier = modifier.clickable { onClicked() },
@@ -81,9 +81,9 @@ fun AlertItem(
                     .shimmer(loading)
             )
             Text(
-                text = if (date != 0) {
+                text = if (date != 0L) {
                     DateUtils.getRelativeTimeSpanString(
-                        date.toLong() * 1000L,
+                        date,
                         Date().time,
                         DateUtils.MINUTE_IN_MILLIS
                     ).toString()
@@ -93,7 +93,7 @@ fun AlertItem(
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Light,
                 modifier = Modifier
-                    .fillMaxWidth(if (date == 0) 0.25F else 1F)
+                    .fillMaxWidth(if (date == 0L) 0.25F else 1F)
                     .shimmer(loading)
             )
         }

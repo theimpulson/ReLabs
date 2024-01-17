@@ -97,20 +97,20 @@ fun NodePreviewScreen(
                             1 -> watchedNodes ?: emptyList()
                             else -> emptyList()
                         },
-                        key = { n -> n.node_id }
+                        key = { n -> n.id }
                     ) { node ->
                         NodePreviewItem(
                             modifier = Modifier.padding(10.dp),
                             title = node.title,
-                            company = node.breadcrumbs.firstOrNull()?.title ?: String(),
-                            lastUpdated = node.type_data.last_post_date,
-                            lastThreadTitle = node.type_data.last_thread_title,
-                            unread = node.type_data.is_unread,
-                            threads = node.type_data.discussion_count,
+                            company = node.breadcrumb_data.values.firstOrNull()?.title ?: String(),
+                            lastUpdated = node.node_type_data.last_post_date.long,
+                            lastThreadTitle = node.node_type_data.last_thread_title,
+                            unread = node.node_type_data.isUnread,
+                            threads = node.node_type_data.discussion_count,
                             onClicked = {
                                 navHostController.navigate(
                                     Screen.Node.withIDAndTitle(
-                                        node.node_id,
+                                        node.id,
                                         node.title
                                     )
                                 )

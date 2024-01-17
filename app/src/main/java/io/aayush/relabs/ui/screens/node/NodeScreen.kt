@@ -53,20 +53,20 @@ fun NodeScreen(
                 }
             } else {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                    items(items = threads ?: emptyList(), key = { t -> t.thread_id }) { thread ->
+                    items(items = threads ?: emptyList(), key = { t -> t.id }) { thread ->
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
-                            avatarURL = thread.User?.avatar_urls?.values?.first() ?: "",
+                            avatarURL = thread.user.avatar.data.medium,
                             title = thread.title,
-                            author = thread.username,
+                            author = thread.user.username,
                             totalReplies = thread.reply_count,
                             views = thread.view_count,
-                            lastReplyDate = thread.last_post_date,
+                            lastReplyDate = thread.last_post_at.long,
                             lastReplyAuthor = thread.last_post_username,
-                            forum = thread.Forum.title,
-                            unread = thread.is_unread,
+                            forum = thread.node.title,
+                            unread = thread.isUnread,
                             onClicked = {
-                                navHostController.navigate(Screen.Thread.withID(thread.thread_id))
+                                navHostController.navigate(Screen.Thread.withID(thread.id))
                             }
                         )
                     }

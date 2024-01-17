@@ -76,7 +76,7 @@ fun AlertsScreen(
                 }
                 IconButton(
                     onClick = { viewModel.markAllAlerts(read = true) },
-                    enabled = alerts?.fastAny { it.read_date == 0 } == true
+                    enabled = alerts?.fastAny { it.read_at.long == 0L } == true
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_done_all),
@@ -96,13 +96,13 @@ fun AlertsScreen(
         }
 
         LazyColumn(modifier = Modifier.padding(it)) {
-            items(items = alerts ?: emptyList(), key = { a -> a.alert_id }) { userAlert ->
+            items(items = alerts ?: emptyList(), key = { a -> a.id }) { userAlert ->
                 AlertItem(
                     modifier = Modifier.padding(10.dp),
-                    avatarURL = userAlert.User?.avatar_urls?.values?.first() ?: "",
-                    title = userAlert.alert_text,
-                    date = userAlert.event_date,
-                    unread = userAlert.read_date == 0,
+                    avatarURL = userAlert.user.avatar.data.medium,
+                    title = userAlert.message,
+                    date = userAlert.created_at.long,
+                    unread = userAlert.read_at.long == 0L,
                     onClicked = {
                         viewModel.getPostInfo(userAlert.content_id)
                     }

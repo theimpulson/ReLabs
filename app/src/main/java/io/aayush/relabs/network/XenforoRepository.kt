@@ -1,18 +1,15 @@
 package io.aayush.relabs.network
 
 import android.util.Log
+import io.aayush.relabs.network.data.common.Success
 import io.aayush.relabs.network.data.alert.Alerts
-import io.aayush.relabs.network.data.common.MarkResponse
-import io.aayush.relabs.network.data.conversation.Conversations
 import io.aayush.relabs.network.data.expo.ExpoData
 import io.aayush.relabs.network.data.node.Node
-import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.react.React
 import io.aayush.relabs.network.data.thread.ThreadInfo
-import io.aayush.relabs.network.data.thread.ThreadWatchResponse
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import java.util.UUID
@@ -23,7 +20,6 @@ import javax.inject.Singleton
 
 @Singleton
 class XenforoRepository @Inject constructor(
-    private val xenforoInterface: XenforoInterface,
     private val expoInterface: ExpoInterface,
     private val xdaInterface: XDAInterface
 ) {
@@ -31,11 +27,11 @@ class XenforoRepository @Inject constructor(
     private val TAG = XenforoRepository::class.java.simpleName
 
     suspend fun getCurrentUser(): Me? {
-        return safeExecute { xenforoInterface.getCurrentUser() }
+        return safeExecute { xdaInterface.getCurrentUser() }
     }
 
-    suspend fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null): MarkResponse? {
-        return safeExecute { xenforoInterface.markAllAlerts(read, viewed) }
+    suspend fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null): Success? {
+        return safeExecute { xdaInterface.markAllAlerts(read, viewed) }
     }
 
     suspend fun getAlerts(
@@ -44,29 +40,7 @@ class XenforoRepository @Inject constructor(
         unviewed: Boolean? = null,
         unread: Boolean? = null
     ): Alerts? {
-        return safeExecute { xenforoInterface.getAlerts(page, cutoff, unviewed, unread) }
-    }
-
-    suspend fun getConversations(
-        page: Int? = null,
-        starter_id: Int? = null,
-        receiver_id: Int? = null,
-        starred: Boolean? = null,
-        unread: Boolean? = null
-    ): Conversations? {
-        return safeExecute {
-            xenforoInterface.getConversations(
-                page,
-                starter_id,
-                receiver_id,
-                starred,
-                unread
-            )
-        }
-    }
-
-    suspend fun getNodes(): Nodes? {
-        return safeExecute { xenforoInterface.getNodes() }
+        return safeExecute { xdaInterface.getAlerts(page, cutoff, unviewed, unread) }
     }
 
     suspend fun getThreads(
@@ -80,7 +54,7 @@ class XenforoRepository @Inject constructor(
         direction: String? = null
     ): Threads? {
         return safeExecute {
-            xenforoInterface.getThreads(
+            xdaInterface.getThreads(
                 page,
                 prefix_id,
                 starter_id,
@@ -94,19 +68,19 @@ class XenforoRepository @Inject constructor(
     }
 
     suspend fun getWatchedThreads(): Threads? {
-        return safeExecute { xenforoInterface.getWatchedThreads() }
+        return safeExecute { xdaInterface.getWatchedThreads() }
     }
 
     suspend fun getThreadsByNode(nodeID: Int): Threads? {
-        return safeExecute { xenforoInterface.getThreadsByNode(nodeID) }
+        return safeExecute { xdaInterface.getThreadsByNode(nodeID) }
     }
 
-    suspend fun watchThread(threadID: Int): ThreadWatchResponse? {
-        return safeExecute { xenforoInterface.watchThread(threadID) }
+    suspend fun watchThread(threadID: Int): Success? {
+        return safeExecute { xdaInterface.watchThread(threadID) }
     }
 
-    suspend fun unwatchThread(threadID: Int): ThreadWatchResponse? {
-        return safeExecute { xenforoInterface.unwatchThread(threadID) }
+    suspend fun unwatchThread(threadID: Int): Success? {
+        return safeExecute { xdaInterface.unwatchThread(threadID) }
     }
 
     suspend fun getThreadInfo(
@@ -118,7 +92,7 @@ class XenforoRepository @Inject constructor(
         order: String? = null
     ): ThreadInfo? {
         return safeExecute {
-            xenforoInterface.getThreadInfo(
+            xdaInterface.getThreadInfo(
                 id,
                 with_posts,
                 page,
@@ -130,11 +104,11 @@ class XenforoRepository @Inject constructor(
     }
 
     suspend fun getPostInfo(id: Int): PostInfo? {
-        return safeExecute { xenforoInterface.getPostInfo(id) }
+        return safeExecute { xdaInterface.getPostInfo(id) }
     }
 
-    suspend fun markThreadAsRead(threadID: Int): MarkResponse? {
-        return safeExecute { xenforoInterface.markThreadAsRead(threadID) }
+    suspend fun markThreadAsRead(threadID: Int): Success? {
+        return safeExecute { xdaInterface.markThreadAsRead(threadID) }
     }
 
     suspend fun registerPushNotifications(expoData: ExpoData): Boolean? {
@@ -158,19 +132,19 @@ class XenforoRepository @Inject constructor(
         message: String,
         attachmentKey: String? = null
     ): PostReply? {
-        return safeExecute { xenforoInterface.postReply(threadID, message, attachmentKey) }
+        return safeExecute { xdaInterface.postReply(threadID, message, attachmentKey) }
     }
 
     suspend fun postReact(postID: Int, reactID: React): PostReact? {
-        return safeExecute { xenforoInterface.postReact(postID, reactID.ordinal + 1) }
+        return safeExecute { xdaInterface.postReact(postID, reactID.ordinal + 1) }
     }
 
     suspend fun getInventory(): List<Node>? {
-        return safeExecute { xenforoInterface.getInventory() }?.devices?.map { it.Node }
+        return safeExecute { xdaInterface.getInventory() }?.devices?.map { it.Node }
     }
 
     suspend fun getWatchedNodes(): List<Node>? {
-        return safeExecute { xenforoInterface.getWatchedNodes() }?.nodes
+        return safeExecute { xdaInterface.getWatchedNodes() }?.nodes
     }
 
     private inline fun <T> safeExecute(block: () -> Response<T>): T? {

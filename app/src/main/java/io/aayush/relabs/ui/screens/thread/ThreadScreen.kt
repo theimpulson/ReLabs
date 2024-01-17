@@ -72,17 +72,17 @@ fun ThreadScreen(
                 navHostController = navHostController,
                 title = threadInfo?.thread?.title ?: String()
             ) {
-                if (threadInfo?.thread?.thread_id != 0) {
+                if (threadInfo?.thread?.id != 0) {
                     IconButton(onClick = {
-                        if (threadInfo?.thread?.is_watching == true) {
-                            viewModel.unwatchThread(threadInfo?.thread?.thread_id ?: 0)
+                        if (threadInfo?.thread?.isWatched == true) {
+                            viewModel.unwatchThread(threadInfo?.thread?.id ?: 0)
                         } else {
-                            viewModel.watchThread(threadInfo?.thread?.thread_id ?: 0)
+                            viewModel.watchThread(threadInfo?.thread?.id ?: 0)
                         }
                     }) {
                         Icon(
                             painter = painterResource(
-                                id = if (threadInfo?.thread?.is_watching == true) {
+                                id = if (threadInfo?.thread?.isWatched == true) {
                                     R.drawable.ic_watch_filled
                                 } else {
                                     R.drawable.ic_watch
@@ -95,7 +95,7 @@ fun ThreadScreen(
             }
         },
         floatingActionButton = {
-            if (threadInfo?.thread?.discussion_open == true) {
+            if (threadInfo?.thread?.is_open == true) {
                 ExtendedFloatingActionButton(
                     text = { Text(text = stringResource(id = Screen.Reply.title)) },
                     icon = {
@@ -195,18 +195,17 @@ fun ThreadScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     items(
-                        items = viewModel.posts.getOrElse(it) { emptyList() }
-                            ?.filter { p -> p.message_state != "deleted" } ?: emptyList(),
-                        key = { p -> p.post_id }
+                        items = viewModel.posts.getOrElse(it) { emptyList() } ?: emptyList(),
+                        key = { p -> p.id }
                     ) { post ->
                         PostItem(
                             post = post,
                             linkTransformationMethod = viewModel.linkTransformationMethod,
                             designQuoteSpan = viewModel.designQuoteSpan,
-                            isThreadOwner = post.User?.username == threadInfo?.thread?.User?.username,
-                            isThreadOpen = threadInfo?.thread?.discussion_open ?: true,
+                            isThreadOwner = post.user?.username == threadInfo?.thread?.user?.username,
+                            isThreadOpen = threadInfo?.thread?.is_open ?: true,
                             reactionScore = post.reaction_score,
-                            reacted = post.is_reacted_to,
+                            reacted = post.reaction != null,
                             quoted = post in postsToQuote,
                             onReact = { viewModel.reactToPost(pagerState.settledPage, post) },
                             onQuote = {
@@ -236,7 +235,7 @@ fun ThreadScreen(
                                     action = Intent.ACTION_SEND
                                     putExtra(
                                         Intent.EXTRA_TEXT,
-                                        context.getString(R.string.share_post_header, post.view_url)
+                                        context.getString(R.string.share_post_header, post.permalink)
                                     )
                                     type = "text/plain"
                                 }

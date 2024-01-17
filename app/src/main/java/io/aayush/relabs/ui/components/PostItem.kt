@@ -94,7 +94,7 @@ fun PostItem(
             ) {
                 SubcomposeAsyncImage(
                     model = ImageRequest.Builder(LocalContext.current)
-                        .data(post.User?.avatar_urls?.values?.first() ?: R.drawable.ic_account_w)
+                        .data(post.user?.avatar?.data?.medium?.ifBlank { R.drawable.ic_account_w } ?: R.drawable.ic_account_w)
                         .placeholder(R.drawable.ic_account_w)
                         .crossfade(true)
                         .build(),
@@ -122,7 +122,7 @@ fun PostItem(
                         horizontalArrangement = Arrangement.spacedBy(5.dp, Alignment.Start)
                     ) {
                         Text(
-                            text = post.User?.username ?: stringResource(id = R.string.guest),
+                            text = post.user?.username ?: stringResource(id = R.string.guest),
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
@@ -136,16 +136,16 @@ fun PostItem(
                             )
                         }
                     }
-                    if (post.User?.user_title != null) {
+                    if (post.user?.title != null) {
                         Text(
-                            text = post.User.user_title,
+                            text = post.user.title,
                             fontSize = 13.sp,
-                            color = post.User.userTitle.color
+                            color = post.user.userTitle.color
                         )
                     }
                     Text(
                         text = DateUtils.getRelativeTimeSpanString(
-                            post.post_date.toLong() * 1000L,
+                            post.created_at.long,
                             Date().time,
                             DateUtils.MINUTE_IN_MILLIS
                         ).toString(),
@@ -167,7 +167,7 @@ fun PostItem(
                 update = {
                     it.setTextColor(Color.White.toArgb())
                     it.text = HtmlCompat.fromHtml(
-                        post.message_parsed
+                        post.message_html
                             // XenForo doesn't applies line break after quote while vbulletin did
                             .replace("</blockquote>", "</blockquote><br />")
                             .replace("</blockquote><br /><br />", "</blockquote><br />"),
