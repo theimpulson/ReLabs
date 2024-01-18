@@ -51,7 +51,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         modifier = Modifier.fillMaxSize(),
         topBar = { MainTopAppBar(screen = Screen.News, navHostController = navHostController) }
     ) {
-        val tabData = listOf(R.string.android_devs, R.string.google_9to5, R.string.arstech, R.string.xda_portal)
+        val tabData = listOf(R.string.google_9to5, R.string.arstech, R.string.android_devs, R.string.xda_portal)
         val pagerState = rememberPagerState(
             initialPage = 0,
             initialPageOffsetFraction = 0f,
@@ -71,9 +71,9 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
         LaunchedEffect(key1 = pagerState) {
             snapshotFlow { pagerState.currentPage }.collect { page ->
                 when (page) {
-                    0 -> viewModel.getAndroidDevelopersArticles()
-                    1 -> viewModel.get9to5GoogleArticles()
-                    2 -> viewModel.getArsTechArticles()
+                    0 -> viewModel.get9to5GoogleArticles()
+                    1 -> viewModel.getArsTechArticles()
+                    2 -> viewModel.getAndroidDevelopersArticles()
                     else -> viewModel.getXDAPortalArticles()
                 }
             }
@@ -115,9 +115,9 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                 LazyColumn {
                     items(
                         items = when (it) {
-                            0 -> androidDevsFeed
-                            1 -> google9to5Feed
-                            2 -> arsTechFeed
+                            0 -> google9to5Feed
+                            1 -> arsTechFeed
+                            2 -> androidDevsFeed
                             else -> xdaPortalFeed
                         },
                         key = { a -> a.guid ?: UUID.randomUUID() }
