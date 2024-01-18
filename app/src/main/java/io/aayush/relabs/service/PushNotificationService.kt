@@ -17,7 +17,7 @@ import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import io.aayush.relabs.MainActivity
 import io.aayush.relabs.R
-import io.aayush.relabs.network.XenforoRepository
+import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.expo.ExpoData
 import io.aayush.relabs.utils.CommonModule.ACCESS_TOKEN
 import io.aayush.relabs.utils.CommonModule.FCM_TOKEN
@@ -40,7 +40,7 @@ class PushNotificationService : FirebaseMessagingService(),
     private val serviceScope = CoroutineScope(Dispatchers.IO + parentJob)
 
     @Inject
-    lateinit var xenforoRepository: XenforoRepository
+    lateinit var xdaRepository: XDARepository
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -100,7 +100,7 @@ class PushNotificationService : FirebaseMessagingService(),
         if (accessToken.isNotBlank() && fcmToken.isNotBlank()) {
             serviceScope.launch {
                 Log.i(TAG, "Registering FCM push notifications")
-                xenforoRepository.registerPushNotifications(ExpoData(fcmToken))
+                xdaRepository.registerPushNotifications(ExpoData(fcmToken))
             }
         }
     }

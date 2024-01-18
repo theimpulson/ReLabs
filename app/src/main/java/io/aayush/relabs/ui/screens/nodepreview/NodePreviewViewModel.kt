@@ -3,7 +3,7 @@ package io.aayush.relabs.ui.screens.nodepreview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.aayush.relabs.network.XenforoRepository
+import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.node.Node
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NodePreviewViewModel @Inject constructor(
-    private val xenforoRepository: XenforoRepository
+    private val xdaRepository: XDARepository
 ) : ViewModel() {
 
     private val _loading = MutableStateFlow(false)
@@ -28,14 +28,14 @@ class NodePreviewViewModel @Inject constructor(
     fun getInventory() {
         if (!inventory.value.isNullOrEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
-            fetch { _inventory.value = xenforoRepository.getInventory() }
+            fetch { _inventory.value = xdaRepository.getInventory() }
         }
     }
 
     fun getWatchedNodes() {
         if (!watchedNodes.value.isNullOrEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
-            fetch { _watchedNodes.value = xenforoRepository.getWatchedNodes() }
+            fetch { _watchedNodes.value = xdaRepository.getWatchedNodes() }
         }
     }
 

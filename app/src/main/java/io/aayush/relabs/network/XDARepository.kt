@@ -19,12 +19,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class XenforoRepository @Inject constructor(
+class XDARepository @Inject constructor(
     private val expoInterface: ExpoInterface,
     private val xdaInterface: XDAInterface
 ) {
 
-    private val TAG = XenforoRepository::class.java.simpleName
+    private val TAG = XDARepository::class.java.simpleName
 
     suspend fun getCurrentUser(): Me? {
         return safeExecute { xdaInterface.getCurrentUser() }

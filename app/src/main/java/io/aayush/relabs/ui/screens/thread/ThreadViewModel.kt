@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.aayush.relabs.R
-import io.aayush.relabs.network.XenforoRepository
+import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.post.Post
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.React
@@ -27,7 +27,7 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak") // false positive, see https://github.com/google/dagger/issues/3253
 class ThreadViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val xenforoRepository: XenforoRepository,
+    private val xdaRepository: XDARepository,
     val linkTransformationMethod: LinkTransformationMethod,
     val designQuoteSpan: DesignQuoteSpan
 ) : ViewModel() {
@@ -45,7 +45,7 @@ class ThreadViewModel @Inject constructor(
 
     fun getThreadInfo(threadID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = xenforoRepository.getThreadInfo(threadID, with_posts = true)
+            val response = xdaRepository.getThreadInfo(threadID, with_posts = true)
             _threadInfo.value = response
             _posts.add(response?.posts)
 
@@ -58,7 +58,7 @@ class ThreadViewModel @Inject constructor(
         val threadID = _threadInfo.value?.thread?.id
         if (threadID != null && threadID != 0) {
             viewModelScope.launch(Dispatchers.IO) {
-                val response = xenforoRepository.getThreadInfo(
+                val response = xdaRepository.getThreadInfo(
                     threadID,
                     with_posts = true,
                     page = page
@@ -70,7 +70,7 @@ class ThreadViewModel @Inject constructor(
 
     fun reactToPost(page: Int, post: Post) {
         viewModelScope.launch {
-            val react = xenforoRepository.postReact(post.id, React.Like)
+            val react = xdaRepository.postReact(post.id, React.Like)
             if (react?.success == true) getPosts(page + 1)
         }
     }
@@ -88,27 +88,27 @@ class ThreadViewModel @Inject constructor(
             }
             val footer = context.getString(R.string.sent_from, Build.MODEL)
             _postReply.value =
-                xenforoRepository.postReply(threadID, "${header.joinToString("")}${message}$footer")
+                xdaRepository.postReply(threadID, "${header.joinToString("")}${message}$footer")
         }
     }
 
     fun markThreadAsRead(threadID: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            xenforoRepository.markThreadAsRead(threadID)
+            xdaRepository.markThreadAsRead(threadID)
         }
     }
 
     fun watchThread(threadID: Int) {
         Log.d("AAYUSH", "OK $threadID")
         viewModelScope.launch {
-            val response = xenforoRepository.watchThread(threadID)
+            val response = xdaRepository.watchThread(threadID)
             if (response?.success == true) getThreadInfo(threadID)
         }
     }
 
     fun unwatchThread(threadID: Int) {
         viewModelScope.launch {
-            val response = xenforoRepository.unwatchThread(threadID)
+            val response = xdaRepository.unwatchThread(threadID)
             if (response?.success == true) getThreadInfo(threadID)
         }
     }

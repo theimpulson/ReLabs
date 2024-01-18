@@ -3,7 +3,7 @@ package io.aayush.relabs.ui.screens.more
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.aayush.relabs.network.XenforoRepository
+import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.user.Me
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MoreViewModel @Inject constructor(
-    private val xenforoRepository: XenforoRepository
+    private val xdaRepository: XDARepository
 ) : ViewModel() {
 
     private val _currentUser = MutableStateFlow<Me?>(Me())
@@ -24,7 +24,7 @@ class MoreViewModel @Inject constructor(
 
     private fun getCurrentUser() {
         viewModelScope.launch {
-            _currentUser.value = xenforoRepository.getCurrentUser()
+            _currentUser.value = xdaRepository.getCurrentUser()
         }
     }
 }

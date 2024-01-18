@@ -3,7 +3,7 @@ package io.aayush.relabs.ui.screens.threadpreview
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.aayush.relabs.network.XenforoRepository
+import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.thread.Thread
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ThreadPreviewViewModel @Inject constructor(
-    private val xenforoRepository: XenforoRepository
+    private val xdaRepository: XDARepository
 ) : ViewModel() {
 
     private val _loading = MutableStateFlow(false)
@@ -28,14 +28,14 @@ class ThreadPreviewViewModel @Inject constructor(
     fun getTrendingThreads() {
         if (!trendingThreads.value.isNullOrEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
-            fetch { _trendingThreads.value = xenforoRepository.getThreads()?.threads }
+            fetch { _trendingThreads.value = xdaRepository.getThreads()?.threads }
         }
     }
 
     fun getWatchedThreads() {
         if (!watchedThreads.value.isNullOrEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
-            fetch { _watchedThreads.value = xenforoRepository.getWatchedThreads()?.threads }
+            fetch { _watchedThreads.value = xdaRepository.getWatchedThreads()?.threads }
         }
     }
 
