@@ -76,7 +76,7 @@ fun AlertsScreen(
                 }
                 IconButton(
                     onClick = { viewModel.markAllAlerts(read = true) },
-                    enabled = alerts?.fastAny { it.read_at.long == 0L } == true
+                    enabled = alerts?.fastAny { it.read_at == null } == true
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_done_all),
@@ -102,7 +102,7 @@ fun AlertsScreen(
                     avatarURL = userAlert.user.avatar.data.medium,
                     title = userAlert.message,
                     date = userAlert.created_at.long,
-                    unread = userAlert.read_at.long == 0L,
+                    unread = userAlert.read_at == null,
                     onClicked = {
                         viewModel.getPostInfo(userAlert.content_id)
                     }
