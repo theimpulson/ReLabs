@@ -107,6 +107,7 @@ fun NodePreviewScreen(
                             lastThreadTitle = node.node_type_data.last_thread_title,
                             unread = node.node_type_data.isUnread,
                             threads = node.node_type_data.discussion_count,
+                            iconURL = node.xda.iconUrl ?: "",
                             onClicked = {
                                 navHostController.navigate(
                                     Screen.Node.withIDAndTitle(

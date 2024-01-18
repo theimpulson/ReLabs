@@ -1,7 +1,7 @@
 package io.aayush.relabs.ui.components
 
+import android.os.Build
 import android.text.format.DateUtils
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,11 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.ImageLoader
+import coil.compose.SubcomposeAsyncImage
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
+import coil.request.ImageRequest
 import io.aayush.relabs.R
 import io.aayush.relabs.ui.extensions.shimmer
 import java.text.NumberFormat
@@ -37,7 +43,8 @@ fun NodePreviewItem(
     lastThreadTitle: String = "",
     unread: Boolean = false,
     onClicked: () -> Unit = {},
-    loading: Boolean = false
+    loading: Boolean = false,
+    iconURL: String = ""
 ) {
     Row(
         modifier = modifier
@@ -46,12 +53,25 @@ fun NodePreviewItem(
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.Start
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.ic_phone),
+        SubcomposeAsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(iconURL.ifBlank { R.drawable.ic_phone })
+                .placeholder(R.drawable.ic_phone)
+                .crossfade(true)
+                .build(),
+            imageLoader = ImageLoader.Builder(LocalContext.current)
+                .components {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        add(ImageDecoderDecoder.Factory())
+                    } else {
+                        add(GifDecoder.Factory())
+                    }
+                }.build(),
             contentDescription = "",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .requiredSize(48.dp)
-                .clip(RoundedCornerShape(20.dp))
+                .clip(RoundedCornerShape(5.dp))
                 .shimmer(loading)
         )
         Spacer(modifier = Modifier.width(10.dp))
