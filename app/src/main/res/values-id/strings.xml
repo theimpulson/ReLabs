@@ -40,5 +40,6 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Gagal mengambil informasi!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Forum</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> utas &#8226; terakhir diperbarui <xliff:g id="lastPostDate">%3$s</xliff:g></string>
     <!-- NodeScreen -->
 </resources>
