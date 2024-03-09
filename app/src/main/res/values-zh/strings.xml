@@ -5,7 +5,10 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
+    <string name="continue_with_xda">以XDA繼續</string>
+    <string name="logging_in">已成功登入。</string>
     <!-- LoginScreen -->
+    <string name="login">登入</string>
     <!-- ThreadPreviewScreen -->
     <!-- AlertsScreen -->
     <!-- NewsScreen -->
