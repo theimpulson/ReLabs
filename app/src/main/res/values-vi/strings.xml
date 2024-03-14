@@ -41,5 +41,9 @@
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Diễn đàn</string>
     <string name="inventory">Tồn kho</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> chủ đề &#8226; cập nhật lần cuối <xliff:g id="lastPostDate">%3$s</xliff:g></string>
+    <string name="last_thread">Chủ đề cuối cùng: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
     <!-- NodeScreen -->
+    <string name="node">Nút</string>
+    <string name="last_reply">Trả lời cuối cùng: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
