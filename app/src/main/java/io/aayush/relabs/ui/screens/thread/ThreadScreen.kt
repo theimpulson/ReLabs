@@ -15,10 +15,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -159,7 +160,7 @@ fun ThreadScreen(
                     },
                     enabled = pagerState.settledPage != 0
                 ) {
-                    Icon(imageVector = Icons.Filled.KeyboardArrowLeft, contentDescription = "")
+                    Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription = "")
                 }
 
                 Text(text = "${pagerState.settledPage + 1}/${pagerState.pageCount}")
@@ -172,7 +173,7 @@ fun ThreadScreen(
                     },
                     enabled = pagerState.settledPage + 1 != threadInfo?.pagination?.last_page
                 ) {
-                    Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "")
+                    Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = "")
                 }
 
                 IconButton(
@@ -187,7 +188,7 @@ fun ThreadScreen(
                 }
             }
 
-            Divider(thickness = 1.dp)
+            HorizontalDivider(thickness = 1.dp)
 
             HorizontalPager(state = pagerState) {
                 LazyColumn(

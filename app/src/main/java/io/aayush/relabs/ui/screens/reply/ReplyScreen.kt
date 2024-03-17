@@ -14,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -110,7 +111,7 @@ fun ReplyScreen(
                 shape = RoundedCornerShape(10.dp)
             )
             if (viewModel.postsToQuote.isNotEmpty()) {
-                Divider(modifier = Modifier.padding(15.dp))
+                HorizontalDivider(modifier = Modifier.padding(15.dp))
                 Column(
                     modifier = Modifier.padding(horizontal = 15.dp),
                     verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.Top)
