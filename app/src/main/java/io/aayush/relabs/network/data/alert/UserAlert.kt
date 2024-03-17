@@ -4,9 +4,9 @@ import io.aayush.relabs.network.data.common.DateTime
 import io.aayush.relabs.network.data.user.User
 
 data class UserAlert(
-    val action: String = String(),
+    val action: Action = Action.REACTION,
     val content_id: Int = 0,
-    val content_type: String = String(),
+    val content_type: ContentType = ContentType.POST,
     val created_at: DateTime = DateTime(),
     val id: Int = 0,
     val isViewed: Boolean = false,
