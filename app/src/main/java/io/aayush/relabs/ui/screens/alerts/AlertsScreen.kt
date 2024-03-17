@@ -99,7 +99,7 @@ fun AlertsScreen(
             items(items = alerts ?: emptyList(), key = { a -> a.id }) { userAlert ->
                 AlertItem(
                     modifier = Modifier.padding(10.dp),
-                    avatarURL = userAlert.user.avatar.data.medium,
+                    avatarURL = userAlert.user?.avatar?.data?.medium ?: String(),
                     title = userAlert.message,
                     date = userAlert.created_at.long,
                     unread = userAlert.read_at == null,

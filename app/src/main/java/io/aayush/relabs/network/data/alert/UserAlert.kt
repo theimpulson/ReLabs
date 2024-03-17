@@ -12,7 +12,7 @@ data class UserAlert(
     val isViewed: Boolean = false,
     val message: String = String(),
     val read_at: DateTime? = DateTime(),
-    val url: String = String(),
-    val user: User = User(),
+    val url: String? = String(),
+    val user: User? = User(),
     val viewed_at: DateTime = DateTime()
 )
