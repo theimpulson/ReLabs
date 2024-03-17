@@ -28,6 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
+import io.aayush.relabs.network.data.alert.ContentType
 import io.aayush.relabs.network.data.alert.UserAlert
 import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.ui.components.AlertItem
@@ -104,7 +105,9 @@ fun AlertsScreen(
                     date = userAlert.created_at.long,
                     unread = userAlert.read_at == null,
                     onClicked = {
-                        viewModel.getPostInfo(userAlert.content_id)
+                        if (userAlert.content_type == ContentType.POST) {
+                            viewModel.getPostInfo(userAlert.content_id)
+                        }
                     }
                 )
             }
