@@ -5,7 +5,7 @@ data class Node(
     val description: String = String(),
     val display_order: Int = 0,
     val id: Int = 0,
-    val kind: String = String(),
+    val kind: Kind = Kind.FORUM,
     val lft: Int = 0,
     val node_data: NodeData = NodeData(),
     val node_type_data: NodeTypeData = NodeTypeData(),
