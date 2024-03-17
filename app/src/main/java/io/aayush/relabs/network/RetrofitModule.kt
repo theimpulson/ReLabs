@@ -1,10 +1,12 @@
 package io.aayush.relabs.network
 
 import android.content.SharedPreferences
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.aayush.relabs.network.adapter.singletoarray.SingleToArrayAdapter
 import io.aayush.relabs.utils.CommonModule.ACCESS_TOKEN
 import javax.inject.Singleton
 import okhttp3.Interceptor
@@ -29,13 +31,21 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideXDAInterface(okHttpClient: OkHttpClient): XDAInterface {
+    fun provideXDAInterface(okHttpClient: OkHttpClient, moshi: Moshi): XDAInterface {
         return Retrofit.Builder()
             .baseUrl(XDAInterface.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(XDAInterface::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMoshiInstance(): Moshi {
+        return Moshi.Builder()
+            .add(SingleToArrayAdapter.factory)
+            .build()
     }
 
     @Singleton

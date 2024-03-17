@@ -26,6 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import io.aayush.relabs.R
+import io.aayush.relabs.network.data.node.Kind
 import io.aayush.relabs.network.data.node.Node
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.NodePreviewItem
@@ -99,14 +100,17 @@ fun NodePreviewScreen(
                         },
                         key = { n -> n.id }
                     ) { node ->
+                        // TODO: Figure out API for browsing vBulletin categories
+                        if (node.kind != Kind.FORUM) return@items
+
                         NodePreviewItem(
                             modifier = Modifier.padding(10.dp),
                             title = node.title,
                             company = node.breadcrumb_data.values.firstOrNull()?.title ?: String(),
-                            lastUpdated = node.node_type_data.last_post_date.long,
-                            lastThreadTitle = node.node_type_data.last_thread_title,
-                            unread = node.node_type_data.isUnread,
-                            threads = node.node_type_data.discussion_count,
+                            lastUpdated = node.node_type_data.firstOrNull()?.last_post_date?.long ?: 0,
+                            lastThreadTitle = node.node_type_data.firstOrNull()?.last_thread_title ?: "",
+                            unread = node.node_type_data.firstOrNull()?.isUnread ?: false,
+                            threads = node.node_type_data.firstOrNull()?.discussion_count ?: 0,
                             iconURL = node.xda.iconUrl ?: "",
                             onClicked = {
                                 navHostController.navigate(
