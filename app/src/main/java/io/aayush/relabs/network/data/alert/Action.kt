@@ -16,5 +16,17 @@ enum class Action {
     FOLLOWING,
 
     @Json(name = "report_resolved")
-    REPORT_RESOLVED
+    REPORT_RESOLVED,
+
+    @Json(name = "report_rejected")
+    REPORT_REJECTED,
+
+    @Json(name = "quote")
+    QUOTE,
+
+    @Json(name = "post_delete")
+    POST_DELETED,
+
+    @Json(name = "post_edit")
+    POST_EDITED
 }
