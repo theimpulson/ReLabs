@@ -28,5 +28,8 @@ enum class Action {
     POST_DELETED,
 
     @Json(name = "post_edit")
-    POST_EDITED
+    POST_EDITED,
+
+    @Json(name = "mention")
+    MENTION
 }
