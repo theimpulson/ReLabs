@@ -34,5 +34,8 @@ enum class Action {
     MENTION,
 
     @Json(name = "audav_level_up")
-    LEVEL_UP
+    LEVEL_UP,
+
+    @Json(name = "forumwatch_insert")
+    FORUM_UPDATE
 }
