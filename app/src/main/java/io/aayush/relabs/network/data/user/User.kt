@@ -5,7 +5,7 @@ import io.aayush.relabs.network.data.common.DateTime
 
 data class User(
     val alert_mode: String = String(),
-    val avatar: Avatar = Avatar(),
+    val avatar: Avatar? = Avatar(),
     val canFollow: Boolean = false,
     val canIgnore: Boolean = false,
     val canReport: Boolean = false,

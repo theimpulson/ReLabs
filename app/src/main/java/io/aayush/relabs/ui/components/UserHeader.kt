@@ -70,7 +70,7 @@ fun UserHeader(user: User) {
         ) {
             SubcomposeAsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(user.avatar.data.medium)
+                    .data(user.avatar?.data?.medium?.ifBlank { R.drawable.ic_account_w } ?: R.drawable.ic_account_w)
                     .placeholder(R.drawable.ic_account_w)
                     .crossfade(true)
                     .build(),

@@ -56,7 +56,7 @@ fun NodeScreen(
                     items(items = threads ?: emptyList(), key = { t -> t.id }) { thread ->
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
-                            avatarURL = thread.user.avatar.data.medium,
+                            avatarURL = thread.user.avatar?.data?.medium ?: String(),
                             title = thread.title,
                             author = thread.user.username,
                             totalReplies = thread.reply_count,
