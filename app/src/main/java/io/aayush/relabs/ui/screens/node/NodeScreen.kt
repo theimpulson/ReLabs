@@ -63,7 +63,6 @@ fun NodeScreen(
                             views = thread.view_count,
                             lastReplyDate = thread.last_post_at.long,
                             lastReplyAuthor = thread.last_post_username,
-                            forum = thread.node.title,
                             unread = thread.isUnread,
                             onClicked = {
                                 navHostController.navigate(Screen.Thread.withID(thread.id))
