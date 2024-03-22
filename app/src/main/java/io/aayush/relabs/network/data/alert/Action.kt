@@ -31,5 +31,8 @@ enum class Action {
     POST_EDITED,
 
     @Json(name = "mention")
-    MENTION
+    MENTION,
+
+    @Json(name = "audav_level_up")
+    LEVEL_UP
 }
