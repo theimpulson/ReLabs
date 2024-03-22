@@ -78,7 +78,7 @@ fun ThreadPreviewItem(
         )
         Spacer(modifier = Modifier.width(10.dp))
         Column(
-            verticalArrangement = Arrangement.spacedBy(5.dp, Alignment.Top),
+            verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top),
             horizontalAlignment = Alignment.Start
         ) {
             Text(
