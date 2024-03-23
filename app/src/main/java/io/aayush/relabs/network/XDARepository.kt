@@ -1,6 +1,7 @@
 package io.aayush.relabs.network
 
 import android.util.Log
+import androidx.paging.PagingData
 import io.aayush.relabs.network.data.common.Success
 import io.aayush.relabs.network.data.alert.Alerts
 import io.aayush.relabs.network.data.expo.ExpoData
@@ -9,9 +10,12 @@ import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.react.React
+import io.aayush.relabs.network.data.thread.Thread
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
+import io.aayush.relabs.network.paging.GenericPagingSource.Companion.createPager
+import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -71,8 +75,11 @@ class XDARepository @Inject constructor(
         return safeExecute { xdaInterface.getWatchedThreads() }
     }
 
-    suspend fun getThreadsByNode(nodeID: Int): Threads? {
-        return safeExecute { xdaInterface.getThreadsByNode(nodeID) }
+    fun getThreadsByNode(nodeID: Int): Flow<PagingData<Thread>> {
+        return createPager { page ->
+            val threads = safeExecute { xdaInterface.getThreadsByNode(nodeID, page) }
+            threads?.let { if (page == 1) it.sticky + it.threads else it.threads }.orEmpty()
+        }.flow
     }
 
     suspend fun watchThread(threadID: Int): Success? {

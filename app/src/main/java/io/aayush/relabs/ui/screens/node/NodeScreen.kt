@@ -1,21 +1,19 @@
 package io.aayush.relabs.ui.screens.node
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import io.aayush.relabs.network.data.thread.Thread
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.ThreadPreviewItem
 import io.aayush.relabs.ui.navigation.Screen
@@ -27,12 +25,8 @@ fun NodeScreen(
     nodeTitle: String = String(),
     viewModel: NodeViewModel = hiltViewModel()
 ) {
-    val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
-    val threads: List<Thread>? by viewModel.threads.collectAsStateWithLifecycle()
 
-    LaunchedEffect(key1 = Unit) {
-        viewModel.getThreads(nodeID)
-    }
+    val threads = viewModel.getThreads(nodeID).collectAsLazyPagingItems()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -44,16 +38,27 @@ fun NodeScreen(
             )
         }
     ) {
-        Column(modifier = Modifier.padding(it)) {
-            if (loading) {
-                LazyColumn(modifier = Modifier.fillMaxHeight()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(it)
+        ) {
+            when (threads.loadState.refresh) {
+                is LoadState.Error -> {
+                    // TODO: Handle first load error
+                }
+                is LoadState.Loading -> {
                     items(20) {
                         ThreadPreviewItem(modifier = Modifier.padding(10.dp), loading = true)
                     }
                 }
-            } else {
-                LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                    items(items = threads ?: emptyList(), key = { t -> t.id }) { thread ->
+                else -> {
+                    items(
+                        count = threads.itemCount,
+                        key = threads.itemKey { t -> t.id },
+                        contentType = threads.itemContentType { "Threads" }
+                    ) { index ->
+                        val thread = threads[index] ?: return@items
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
                             avatarURL = thread.user.avatar?.data?.medium ?: String(),
