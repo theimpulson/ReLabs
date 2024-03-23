@@ -32,11 +32,22 @@ android {
         manifestPlaceholders["appAuthRedirectScheme"] = "com.xda.labs.play.native"
     }
 
+    signingConfigs {
+        create("aosp") {
+            // Generated from the AOSP testkey:
+            // https://android.googlesource.com/platform/build/+/refs/tags/android-11.0.0_r29/target/product/security/testkey.pk8
+            keyAlias = "testkey"
+            keyPassword = "testkey"
+            storeFile = file("testkey.jks")
+            storePassword = "testkey"
+        }
+    }
+
     buildTypes {
         register("continuous") {
             initWith(getByName("release"))
             applicationIdSuffix = ".continuous"
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("aosp")
         }
         release {
             isMinifyEnabled = false
