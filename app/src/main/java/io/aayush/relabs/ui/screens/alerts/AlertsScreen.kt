@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -27,6 +26,10 @@ import androidx.compose.ui.util.fastAny
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import io.aayush.relabs.R
 import io.aayush.relabs.network.data.alert.ContentType
 import io.aayush.relabs.network.data.alert.UserAlert
@@ -43,8 +46,8 @@ fun AlertsScreen(
     viewModel: AlertsViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val loading: Boolean by viewModel.loading.collectAsStateWithLifecycle()
-    val alerts: List<UserAlert>? by viewModel.alerts.collectAsStateWithLifecycle()
+
+    val alerts = viewModel.getAlerts().collectAsLazyPagingItems()
     val postInfo: PostInfo by viewModel.postInfo.collectAsStateWithLifecycle()
 
     val permissionRequestLauncher = rememberLauncherForActivityResult(
@@ -76,8 +79,8 @@ fun AlertsScreen(
                     )
                 }
                 IconButton(
-                    onClick = { viewModel.markAllAlerts(read = true) },
-                    enabled = alerts?.fastAny { it.read_at == null } == true
+                    onClick = { viewModel.markAllAlerts(read = true); alerts.refresh() },
+                    enabled = alerts.itemSnapshotList.items.fastAny { it.read_at == null }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_done_all),
@@ -87,29 +90,38 @@ fun AlertsScreen(
             }
         }
     ) {
-        if (loading) {
-            LazyColumn(modifier = Modifier.padding(it)) {
-                items(20) {
-                    AlertItem(modifier = Modifier.padding(10.dp), loading = true)
-                }
-            }
-            return@Scaffold
-        }
-
         LazyColumn(modifier = Modifier.padding(it)) {
-            items(items = alerts ?: emptyList(), key = { a -> a.id }) { userAlert ->
-                AlertItem(
-                    modifier = Modifier.padding(10.dp),
-                    avatarURL = userAlert.user?.avatar?.data?.medium ?: String(),
-                    title = userAlert.message,
-                    date = userAlert.created_at.long,
-                    unread = userAlert.read_at == null,
-                    onClicked = {
-                        if (userAlert.content_type == ContentType.POST) {
-                            viewModel.getPostInfo(userAlert.content_id)
-                        }
+            when (alerts.loadState.refresh) {
+                is LoadState.Error -> {
+                    // TODO: Handle first load error
+                }
+                is LoadState.Loading -> {
+                    items(20) {
+                        AlertItem(modifier = Modifier.padding(10.dp), loading = true)
                     }
-                )
+                }
+
+                else -> {
+                    items(
+                        count = alerts.itemCount,
+                        key = alerts.itemKey { a -> a.id },
+                        contentType = alerts.itemContentType { UserAlert::class.java }
+                    ) { index ->
+                        val userAlert = alerts[index] ?: return@items
+                        AlertItem(
+                            modifier = Modifier.padding(10.dp),
+                            avatarURL = userAlert.user?.avatar?.data?.medium ?: String(),
+                            title = userAlert.message,
+                            date = userAlert.created_at.long,
+                            unread = userAlert.read_at == null,
+                            onClicked = {
+                                if (userAlert.content_type == ContentType.POST) {
+                                    viewModel.getPostInfo(userAlert.content_id)
+                                }
+                            }
+                        )
+                    }
+                }
             }
         }
     }

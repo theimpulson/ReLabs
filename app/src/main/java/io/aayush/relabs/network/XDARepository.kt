@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.paging.PagingData
 import io.aayush.relabs.network.data.common.Success
 import io.aayush.relabs.network.data.alert.Alerts
+import io.aayush.relabs.network.data.alert.UserAlert
 import io.aayush.relabs.network.data.expo.ExpoData
 import io.aayush.relabs.network.data.node.Node
 import io.aayush.relabs.network.data.post.PostInfo
@@ -38,13 +39,10 @@ class XDARepository @Inject constructor(
         return safeExecute { xdaInterface.markAllAlerts(read, viewed) }
     }
 
-    suspend fun getAlerts(
-        page: Int? = null,
-        cutoff: Int? = null,
-        unviewed: Boolean? = null,
-        unread: Boolean? = null
-    ): Alerts? {
-        return safeExecute { xdaInterface.getAlerts(page, cutoff, unviewed, unread) }
+    fun getAlerts(): Flow<PagingData<UserAlert>> {
+        return createPager { page ->
+            safeExecute { xdaInterface.getAlerts(page) }?.alerts.orEmpty()
+        }.flow
     }
 
     suspend fun getThreads(
