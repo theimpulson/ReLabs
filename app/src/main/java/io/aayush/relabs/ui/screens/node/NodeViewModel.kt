@@ -25,7 +25,11 @@ class NodeViewModel @Inject constructor(
     fun getThreads(nodeID: Int) {
         if (!threads.value.isNullOrEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
-            fetch { _threads.value = xdaRepository.getThreadsByNode(nodeID)?.threads }
+            fetch {
+                _threads.value = xdaRepository.getThreadsByNode(nodeID)?.let {
+                    it.sticky + it.threads
+                }?.distinctBy { it.id }
+            }
         }
     }
 
