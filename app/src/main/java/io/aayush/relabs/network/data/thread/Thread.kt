@@ -31,6 +31,7 @@ data class Thread(
     val last_post_username: String = String(),
     val node: Node = Node(),
     val permalink: String = String(),
+    val prefix: Prefix? = Prefix.UNAVAILABLE,
     val poll: Poll = Poll(),
     val replyUrl: String = String(),
     val reply_count: Int = 0,
