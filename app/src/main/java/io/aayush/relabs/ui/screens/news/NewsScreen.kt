@@ -3,7 +3,7 @@ package io.aayush.relabs.ui.screens.news
 import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
@@ -21,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -30,14 +30,10 @@ import androidx.core.text.HtmlCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import coil.size.Scale
 import com.prof18.rssparser.model.RssItem
 import io.aayush.relabs.R
-import io.aayush.relabs.newsitem.NewsItem
 import io.aayush.relabs.ui.components.MainTopAppBar
-import io.aayush.relabs.ui.extensions.shimmer
+import io.aayush.relabs.ui.components.NewsItem
 import io.aayush.relabs.ui.navigation.Screen
 import kotlinx.coroutines.launch
 import java.util.UUID
@@ -101,18 +97,16 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                 if (loading) {
                     LazyColumn {
                         items(20) {
-                            // TODO: Drop figma & relay
-                            NewsItem(
-                                modifier = Modifier
-                                    .padding(vertical = 10.dp, horizontal = 10.dp)
-                                    .shimmer(true)
-                            )
+                            NewsItem(modifier = Modifier.padding(10.dp), loading = true)
                         }
                     }
                     return@HorizontalPager
                 }
 
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier.padding(10.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
+                ) {
                     items(
                         items = when (it) {
                             0 -> google9to5Feed
@@ -123,18 +117,7 @@ fun NewsScreen(navHostController: NavHostController, viewModel: NewsViewModel = 
                         key = { a -> a.guid ?: UUID.randomUUID() }
                     ) { article ->
                         NewsItem(
-                            modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp),
-                            backgroundColor = if (isSystemInDarkTheme()) {
-                                MaterialTheme.colorScheme.onSecondary
-                            } else {
-                                MaterialTheme.colorScheme.secondary
-                            },
-                            thumbnail = rememberAsyncImagePainter(
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data(article.image)
-                                    .scale(Scale.FIT)
-                                    .build()
-                            ),
+                            thumbnail = article.image ?: "",
                             headline = article.title ?: "",
                             description = HtmlCompat.fromHtml(
                                 article.description?.replace(Regex("(<(/)img>)|(<img.+?>)"), "")

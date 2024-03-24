@@ -10,5 +10,4 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.22-1.0.17" apply false
     id("org.jlleitschuh.gradle.ktlint") version "12.0.3" apply false
     id("com.google.dagger.hilt.android") version "2.51" apply false
-    id("com.google.relay") version "0.3.11" apply false
 }
