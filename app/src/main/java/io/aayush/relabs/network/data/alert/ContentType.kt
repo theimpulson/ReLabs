@@ -10,5 +10,8 @@ enum class ContentType {
     POST,
 
     @Json(name = "user")
-    USER
+    USER,
+
+    @Json(name = "adlb_leaderboard")
+    LEADERBOARD
 }

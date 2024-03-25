@@ -37,5 +37,8 @@ enum class Action {
     LEVEL_UP,
 
     @Json(name = "forumwatch_insert")
-    FORUM_UPDATE
+    FORUM_UPDATE,
+
+    @Json(name = "reached")
+    REACHED
 }
