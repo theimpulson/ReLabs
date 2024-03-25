@@ -57,8 +57,8 @@ fun ThreadPreviewScreen(
         val tabIndex = pagerState.currentPage
         val coroutineScope = rememberCoroutineScope()
 
-        val watchedThreads = viewModel.getWatchedThreads().collectAsLazyPagingItems()
-        val trendingThreads = viewModel.getTrendingThreads().collectAsLazyPagingItems()
+        val watchedThreads = viewModel.watchedThreads.collectAsLazyPagingItems()
+        val trendingThreads = viewModel.trendingThreads.collectAsLazyPagingItems()
 
         Column(modifier = Modifier.padding(it)) {
             TabRow(selectedTabIndex = tabIndex) {
