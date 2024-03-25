@@ -25,6 +25,9 @@ enum class Prefix {
     @Json(name = "[Resolved]")
     RESOLVED,
 
+    @Json(name = "[Closed]")
+    CLOSED,
+
     // Default
     UNAVAILABLE
 }
