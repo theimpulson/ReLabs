@@ -30,6 +30,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import io.aayush.relabs.R
+import io.aayush.relabs.network.data.thread.State
 import io.aayush.relabs.network.data.thread.Thread
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.ThreadPreviewItem
@@ -100,6 +101,8 @@ fun ThreadPreviewScreen(
                                 contentType = currentThreads.itemContentType { Thread::class.java },
                             ) { index ->
                                 val thread = currentThreads[index] ?: return@items
+                                if (thread.state != State.VISIBLE) return@items
+
                                 ThreadPreviewItem(
                                     modifier = Modifier.padding(10.dp),
                                     avatarURL = thread.user?.avatar?.data?.medium ?: String(),

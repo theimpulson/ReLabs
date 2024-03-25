@@ -15,6 +15,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
+import io.aayush.relabs.network.data.thread.State
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.ThreadPreviewItem
 import io.aayush.relabs.ui.navigation.Screen
@@ -64,6 +65,8 @@ fun NodeScreen(
                         contentType = threads.itemContentType { "Threads" }
                     ) { index ->
                         val thread = threads[index] ?: return@items
+                        if (thread.state != State.VISIBLE) return@items
+
                         ThreadPreviewItem(
                             modifier = Modifier.padding(10.dp),
                             avatarURL = thread.user?.avatar?.data?.medium ?: String(),
