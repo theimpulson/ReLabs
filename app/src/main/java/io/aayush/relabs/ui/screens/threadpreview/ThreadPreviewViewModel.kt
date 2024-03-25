@@ -18,6 +18,17 @@ class ThreadPreviewViewModel @Inject constructor(
     private val xdaRepository: XDARepository
 ) : ViewModel() {
 
+    private val _searchResults = MutableStateFlow<PagingData<Thread>>(PagingData.empty())
+    val searchResults = _searchResults.asStateFlow()
+
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
+
+    private val _shouldShowSearchResults = MutableStateFlow(false)
+    val shouldShowSearchResults = _shouldShowSearchResults.asStateFlow()
+
+    val isSearching = MutableStateFlow(false)
+
     private val _trendingThreads = MutableStateFlow<PagingData<Thread>>(PagingData.empty())
     val trendingThreads = _trendingThreads.asStateFlow()
 
@@ -47,6 +58,25 @@ class ThreadPreviewViewModel @Inject constructor(
                 .cachedIn(viewModelScope)
                 .collect {
                     _watchedThreads.value = it
+                }
+        }
+    }
+
+    fun updateQuery(query: String) {
+        _searchQuery.value = query
+        if (query.isBlank()) _shouldShowSearchResults.value = false
+    }
+
+    fun search(query: String) {
+        _searchQuery.value = query
+        _shouldShowSearchResults.value = query.isNotBlank()
+
+        viewModelScope.launch {
+            xdaRepository.getSearchResultsForThreads(query)
+                .distinctUntilChanged()
+                .cachedIn(viewModelScope)
+                .collect {
+                    _searchResults.value = it
                 }
         }
     }

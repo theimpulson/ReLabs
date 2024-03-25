@@ -44,6 +44,7 @@
     <string name="share_post_header">Check out this post on XDA forum:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
     <string name="added_quote_list">Added to quote list!</string>
     <string name="removed_quote_list">Removed from quote list!</string>
+    <string name="search_hint_threads">Search XDA for threads</string>
 
     <!-- ReplyScreen -->
     <string name="reply">Reply</string>

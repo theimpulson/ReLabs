@@ -7,6 +7,10 @@ import io.aayush.relabs.network.data.node.Nodes
 import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
+import io.aayush.relabs.network.data.search.Order
+import io.aayush.relabs.network.data.search.PostSearch
+import io.aayush.relabs.network.data.search.SearchResultNode
+import io.aayush.relabs.network.data.search.SearchResultThread
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
@@ -105,4 +109,25 @@ interface XDAInterface {
 
     @POST("audapp-push-subscriptions")
     suspend fun postExpoPushToken(@Body body: RequestBody): Response<Success>
+
+    @POST("audapp-search")
+    suspend fun postSearch(
+        @Query("keywords") query: String,
+        @Query("search_type") type: String,
+        @Query("c[container_only]") searchThreadConstraint: Int? = null,
+        @Query("c[title_only]") searchTitleConstraint: Int? = null,
+        @Query("order") order: String = Order.RELEVANCE.value,
+    ): Response<PostSearch>
+
+    @GET("audapp-search/{id}")
+    suspend fun getSearchResultsForThread(
+        @Path("id") searchID: Int,
+        @Query("page") page: Int? = null,
+    ): Response<SearchResultThread>
+
+    @GET("audapp-search/{id}")
+    suspend fun getSearchResultsForNode(
+        @Path("id") searchID: Int,
+        @Query("page") page: Int? = null,
+    ): Response<SearchResultNode>
 }

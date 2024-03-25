@@ -11,12 +11,14 @@ import io.aayush.relabs.network.data.post.PostInfo
 import io.aayush.relabs.network.data.post.PostReply
 import io.aayush.relabs.network.data.react.PostReact
 import io.aayush.relabs.network.data.react.React
+import io.aayush.relabs.network.data.search.Type
 import io.aayush.relabs.network.data.thread.Thread
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.network.data.thread.Threads
 import io.aayush.relabs.network.data.user.Me
 import io.aayush.relabs.network.paging.GenericPagingSource.Companion.createPager
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import java.util.UUID
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -134,6 +136,34 @@ class XDARepository @Inject constructor(
 
     suspend fun getWatchedNodes(): List<Node>? {
         return safeExecute { xdaInterface.getWatchedNodes() }?.nodes
+    }
+
+    fun getSearchResultsForThreads(query: String): Flow<PagingData<Thread>> {
+        return createPager { page ->
+            val search = safeExecute { xdaInterface.postSearch(query, Type.THREAD.value) }?.search
+
+            if (search != null && search.id != 0) {
+                safeExecute {
+                    xdaInterface.getSearchResultsForThread(search.id, page)
+                }?.results.orEmpty()
+            } else {
+                emptyList()
+            }
+        }.flow
+    }
+
+    fun getSearchResultsForNodes(query: String): Flow<PagingData<Node>> {
+        return createPager { page ->
+            val search = safeExecute { xdaInterface.postSearch(query, Type.NODE.value) }?.search
+
+            if (search != null && search.id != 0) {
+                safeExecute {
+                    xdaInterface.getSearchResultsForNode(search.id, page)
+                }?.results.orEmpty()
+            } else {
+                emptyList()
+            }
+        }.flow
     }
 
     private inline fun <T> safeExecute(block: () -> Response<T>): T? {
