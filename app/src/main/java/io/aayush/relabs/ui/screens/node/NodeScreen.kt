@@ -68,7 +68,7 @@ fun NodeScreen(
                             modifier = Modifier.padding(10.dp),
                             avatarURL = thread.user?.avatar?.data?.medium ?: String(),
                             title = thread.title,
-                            author = thread.user?.username ?: String(),
+                            author = thread.user?.username,
                             totalReplies = thread.reply_count,
                             views = thread.view_count,
                             lastReplyDate = thread.last_post_at.long,

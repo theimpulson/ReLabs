@@ -38,7 +38,7 @@ fun ThreadPreviewItem(
     modifier: Modifier = Modifier,
     avatarURL: String = "",
     title: String = "",
-    author: String = "",
+    author: String? = "",
     totalReplies: Int = 0,
     views: Int = 0,
     lastReplyDate: Long = 0,
@@ -90,10 +90,10 @@ fun ThreadPreviewItem(
                     .shimmer(loading)
             )
             Text(
-                text = if (author.isNotBlank()) {
+                text = if (author == null || author.isNotBlank()) {
                     stringResource(
                         id = R.string.author_replies_creationDate,
-                        author,
+                        author ?: stringResource(id = R.string.guest),
                         NumberFormat.getInstance(Locale.getDefault()).format(totalReplies),
                         NumberFormat.getInstance(Locale.getDefault()).format(views)
                     )
@@ -103,7 +103,7 @@ fun ThreadPreviewItem(
                 fontSize = 14.sp,
                 fontWeight = if (unread) FontWeight.Normal else FontWeight.Light,
                 modifier = Modifier
-                    .fillMaxWidth(if (author.isBlank()) 0.75F else 1F)
+                    .fillMaxWidth(if (author.isNullOrBlank()) 0.75F else 1F)
                     .shimmer(loading)
             )
             Text(
