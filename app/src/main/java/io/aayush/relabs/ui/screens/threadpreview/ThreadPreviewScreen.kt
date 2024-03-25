@@ -102,9 +102,9 @@ fun ThreadPreviewScreen(
                                 val thread = currentThreads[index] ?: return@items
                                 ThreadPreviewItem(
                                     modifier = Modifier.padding(10.dp),
-                                    avatarURL = thread.user.avatar?.data?.medium ?: String(),
+                                    avatarURL = thread.user?.avatar?.data?.medium ?: String(),
                                     title = thread.title,
-                                    author = thread.user.username,
+                                    author = thread.user?.username ?: String(),
                                     totalReplies = thread.reply_count,
                                     views = thread.view_count,
                                     lastReplyDate = thread.last_post_at.long,

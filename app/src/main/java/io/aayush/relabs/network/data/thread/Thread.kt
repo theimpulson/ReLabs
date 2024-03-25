@@ -39,7 +39,7 @@ data class Thread(
     val state: State = State.VISIBLE,
     val thread_type: String = String(),
     val title: String = String(),
-    val user: User = User(),
+    val user: User? = User(),
     val userVote: Boolean = false,
     val view_count: Int = 0,
     val voteUrl: String = String(),
