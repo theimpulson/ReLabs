@@ -54,7 +54,7 @@ interface XDAInterface {
     ): Response<Threads>
 
     @GET("threads/audapp-watched/")
-    suspend fun getWatchedThreads(): Response<Threads>
+    suspend fun getWatchedThreads(@Query("page") page: Int? = null): Response<Threads>
 
     @GET("forums/{id}/threads/")
     suspend fun getThreadsByNode(

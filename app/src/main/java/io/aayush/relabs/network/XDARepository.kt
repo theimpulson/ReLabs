@@ -45,32 +45,16 @@ class XDARepository @Inject constructor(
         }.flow
     }
 
-    suspend fun getThreads(
-        page: Int? = null,
-        prefix_id: Int? = null,
-        starter_id: Int? = null,
-        last_days: Int? = null,
-        unread: Boolean? = null,
-        thread_type: String? = null,
-        order: String? = null,
-        direction: String? = null
-    ): Threads? {
-        return safeExecute {
-            xdaInterface.getThreads(
-                page,
-                prefix_id,
-                starter_id,
-                last_days,
-                unread,
-                thread_type,
-                order,
-                direction
-            )
-        }
+    fun getThreads(): Flow<PagingData<Thread>> {
+        return createPager { page ->
+            safeExecute { xdaInterface.getThreads(page) }?.threads.orEmpty()
+        }.flow
     }
 
-    suspend fun getWatchedThreads(): Threads? {
-        return safeExecute { xdaInterface.getWatchedThreads() }
+    fun getWatchedThreads(): Flow<PagingData<Thread>> {
+        return createPager { page ->
+            safeExecute { xdaInterface.getWatchedThreads(page) }?.threads.orEmpty()
+        }.flow
     }
 
     fun getThreadsByNode(nodeID: Int): Flow<PagingData<Thread>> {
