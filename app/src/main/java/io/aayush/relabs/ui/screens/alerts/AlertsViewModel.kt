@@ -9,8 +9,9 @@ import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.alert.UserAlert
 import io.aayush.relabs.network.data.post.PostInfo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,14 +20,25 @@ class AlertsViewModel @Inject constructor(
     private val xdaRepository: XDARepository
 ) : ViewModel() {
 
+    private val _alerts = MutableStateFlow<PagingData<UserAlert>>(PagingData.empty())
+    val alerts = _alerts.asStateFlow()
+
     val postInfo = MutableStateFlow(PostInfo())
 
     init {
+        getAlerts()
         markAllAlerts(viewed = true)
     }
 
-    fun getAlerts(): Flow<PagingData<UserAlert>> {
-        return xdaRepository.getAlerts().cachedIn(viewModelScope)
+    private fun getAlerts() {
+        viewModelScope.launch {
+            xdaRepository.getAlerts()
+                .distinctUntilChanged()
+                .cachedIn(viewModelScope)
+                .collect {
+                    _alerts.value = it
+                }
+        }
     }
 
     fun markAllAlerts(read: Boolean? = null, viewed: Boolean? = null) {

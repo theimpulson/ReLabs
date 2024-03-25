@@ -47,7 +47,7 @@ fun AlertsScreen(
 ) {
     val context = LocalContext.current
 
-    val alerts = viewModel.getAlerts().collectAsLazyPagingItems()
+    val alerts = viewModel.alerts.collectAsLazyPagingItems()
     val postInfo: PostInfo by viewModel.postInfo.collectAsStateWithLifecycle()
 
     val permissionRequestLauncher = rememberLauncherForActivityResult(
