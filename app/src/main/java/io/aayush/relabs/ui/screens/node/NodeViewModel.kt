@@ -8,6 +8,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.thread.Thread
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,7 +19,17 @@ class NodeViewModel @Inject constructor(
     private val xdaRepository: XDARepository
 ) : ViewModel() {
 
-    fun getThreads(nodeID: Int): Flow<PagingData<Thread>> {
-        return xdaRepository.getThreadsByNode(nodeID).cachedIn(viewModelScope)
+    private val _threads = MutableStateFlow<PagingData<Thread>>(PagingData.empty())
+    val threads = _threads.asStateFlow()
+
+    fun getThreads(nodeID: Int) {
+        viewModelScope.launch {
+            xdaRepository.getThreadsByNode(nodeID)
+                .distinctUntilChanged()
+                .cachedIn(viewModelScope)
+                .collect {
+                    _threads.value = it
+                }
+        }
     }
 }

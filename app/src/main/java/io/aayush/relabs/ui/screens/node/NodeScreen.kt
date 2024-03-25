@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -26,7 +27,11 @@ fun NodeScreen(
     viewModel: NodeViewModel = hiltViewModel()
 ) {
 
-    val threads = viewModel.getThreads(nodeID).collectAsLazyPagingItems()
+    val threads = viewModel.threads.collectAsLazyPagingItems()
+
+    LaunchedEffect(key1 = Unit) {
+        if (threads.itemSnapshotList.isEmpty()) viewModel.getThreads(nodeID)
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
