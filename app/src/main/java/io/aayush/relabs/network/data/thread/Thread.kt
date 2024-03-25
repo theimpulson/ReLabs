@@ -36,7 +36,7 @@ data class Thread(
     val replyUrl: String = String(),
     val reply_count: Int = 0,
     val reportUrl: String = String(),
-    val state: String = String(),
+    val state: State = State.VISIBLE,
     val thread_type: String = String(),
     val title: String = String(),
     val user: User = User(),
