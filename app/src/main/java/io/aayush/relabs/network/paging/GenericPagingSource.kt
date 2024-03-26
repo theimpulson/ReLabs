@@ -8,21 +8,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class GenericPagingSource<T : Any>(
-    private val totalPages: Int? = null,
-    private val block: suspend (Int) -> List<T>
+    private val block: suspend (Int) -> Map<Int?, List<T>>
 ) : PagingSource<Int, T>() {
 
     companion object {
         private const val DEFAULT_PAGE_SIZE = 20
 
         fun <T : Any> createPager(
-            totalPages: Int? = null,
             pageSize: Int = DEFAULT_PAGE_SIZE,
             enablePlaceholders: Boolean = false,
-            block: suspend (Int) -> List<T>
+            block: suspend (Int) -> Map<Int?, List<T>> // Total pages & List of data
         ): Pager<Int, T> = Pager(
             config = PagingConfig(enablePlaceholders = enablePlaceholders, pageSize = pageSize),
-            pagingSourceFactory = { GenericPagingSource(totalPages, block) }
+            pagingSourceFactory = { GenericPagingSource(block) }
         )
     }
 
@@ -31,10 +29,11 @@ class GenericPagingSource<T : Any>(
         return try {
             withContext(Dispatchers.IO) {
                 val response = block(page)
+                val totalPages = response.keys.firstOrNull() ?: 1
                 LoadResult.Page(
-                    data = response,
+                    data = response.values.first(),
                     prevKey = if (page == 1) null else page - 1,
-                    nextKey = if (totalPages != null && page == totalPages) null else page + 1
+                    nextKey = if (page == totalPages) null else page + 1
                 )
             }
         } catch (e: Exception) {

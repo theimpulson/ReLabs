@@ -43,26 +43,35 @@ class XDARepository @Inject constructor(
 
     fun getAlerts(): Flow<PagingData<UserAlert>> {
         return createPager { page ->
-            safeExecute { xdaInterface.getAlerts(page) }?.alerts.orEmpty()
+            val response = safeExecute { xdaInterface.getAlerts(page) }
+            mapOf(response?.pagination?.last_page to response?.alerts.orEmpty())
         }.flow
     }
 
     fun getThreads(): Flow<PagingData<Thread>> {
         return createPager { page ->
-            safeExecute { xdaInterface.getThreads(page) }?.threads.orEmpty()
+            val response = safeExecute { xdaInterface.getThreads(page) }
+            mapOf(response?.pagination?.last_page to response?.threads.orEmpty())
         }.flow
     }
 
     fun getWatchedThreads(): Flow<PagingData<Thread>> {
         return createPager { page ->
-            safeExecute { xdaInterface.getWatchedThreads(page) }?.threads.orEmpty()
+            val response = safeExecute { xdaInterface.getWatchedThreads(page) }
+            mapOf(response?.pagination?.last_page to response?.threads.orEmpty())
         }.flow
     }
 
     fun getThreadsByNode(nodeID: Int): Flow<PagingData<Thread>> {
         return createPager { page ->
-            val threads = safeExecute { xdaInterface.getThreadsByNode(nodeID, page) }
-            threads?.let { if (page == 1) it.sticky + it.threads else it.threads }.orEmpty()
+            val response = safeExecute { xdaInterface.getThreadsByNode(nodeID, page) }
+            mapOf(
+                Pair(
+                    response?.pagination?.last_page,
+                    response?.let { if (page == 1) it.sticky + it.threads else it.threads }
+                        .orEmpty()
+                )
+            )
         }.flow
     }
 
@@ -143,11 +152,10 @@ class XDARepository @Inject constructor(
             val search = safeExecute { xdaInterface.postSearch(query, Type.THREAD.value) }?.search
 
             if (search != null && search.id != 0) {
-                safeExecute {
-                    xdaInterface.getSearchResultsForThread(search.id, page)
-                }?.results.orEmpty()
+                val res = safeExecute { xdaInterface.getSearchResultsForThread(search.id, page) }
+                mapOf(res?.pagination?.last_page to res?.results.orEmpty())
             } else {
-                emptyList()
+                emptyMap()
             }
         }.flow
     }
@@ -157,11 +165,10 @@ class XDARepository @Inject constructor(
             val search = safeExecute { xdaInterface.postSearch(query, Type.NODE.value) }?.search
 
             if (search != null && search.id != 0) {
-                safeExecute {
-                    xdaInterface.getSearchResultsForNode(search.id, page)
-                }?.results.orEmpty()
+                val res = safeExecute { xdaInterface.getSearchResultsForNode(search.id, page) }
+                mapOf(res?.pagination?.last_page to res?.results.orEmpty())
             } else {
-                emptyList()
+                emptyMap()
             }
         }.flow
     }
