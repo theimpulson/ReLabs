@@ -35,8 +35,8 @@ import io.aayush.relabs.R
 import io.aayush.relabs.ui.components.MainTopAppBar
 import io.aayush.relabs.ui.components.NewsItem
 import io.aayush.relabs.ui.navigation.Screen
-import kotlinx.coroutines.launch
 import java.util.UUID
+import kotlinx.coroutines.launch
 
 private const val TAG = "NewsScreen"
 

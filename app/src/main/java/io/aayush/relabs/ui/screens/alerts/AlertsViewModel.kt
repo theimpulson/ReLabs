@@ -8,12 +8,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.aayush.relabs.network.XDARepository
 import io.aayush.relabs.network.data.alert.UserAlert
 import io.aayush.relabs.network.data.post.PostInfo
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class AlertsViewModel @Inject constructor(

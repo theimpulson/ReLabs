@@ -17,11 +17,11 @@ import io.aayush.relabs.network.data.react.React
 import io.aayush.relabs.network.data.thread.ThreadInfo
 import io.aayush.relabs.utils.DesignQuoteSpan
 import io.aayush.relabs.utils.LinkTransformationMethod
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 @SuppressLint("StaticFieldLeak") // false positive, see https://github.com/google/dagger/issues/3253

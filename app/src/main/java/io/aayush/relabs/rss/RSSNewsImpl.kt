@@ -4,10 +4,10 @@ import android.util.Log
 import com.prof18.rssparser.RssParser
 import com.prof18.rssparser.model.RssItem
 import io.aayush.relabs.rss.data.RssFeed
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Singleton
 class RSSNewsImpl @Inject constructor(

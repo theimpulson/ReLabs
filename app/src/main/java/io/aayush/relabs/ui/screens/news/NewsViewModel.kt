@@ -6,10 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.prof18.rssparser.model.RssItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.aayush.relabs.rss.RSSNewsRepository
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
