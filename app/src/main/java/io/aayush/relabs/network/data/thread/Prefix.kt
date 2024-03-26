@@ -28,6 +28,12 @@ enum class Prefix {
     @Json(name = "[Closed]")
     CLOSED,
 
+    @Json(name = "Software Development")
+    SOFTWARE_DEVELOPMENT,
+
+    @Json(name = "Hardware Development")
+    HARDWARE_DEVELOPMENT,
+
     // Default
     UNAVAILABLE
 }
