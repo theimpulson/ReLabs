@@ -21,6 +21,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface XDAInterface {
 
@@ -114,8 +115,6 @@ interface XDAInterface {
     suspend fun postSearch(
         @Query("keywords") query: String,
         @Query("search_type") type: String,
-        @Query("c[container_only]") searchThreadConstraint: Int? = null,
-        @Query("c[title_only]") searchTitleConstraint: Int? = null,
         @Query("order") order: String = Order.RELEVANCE.value,
     ): Response<PostSearch>
 
