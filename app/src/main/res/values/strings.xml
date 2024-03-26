@@ -19,6 +19,7 @@
     <string name="whats_new">What\'s new</string>
     <string name="watched">Watched</string>
     <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> replies &#8226; <xliff:g id="views">%3$s</xliff:g> views</string>
+    <string name="search_hint_threads">Search XDA for threads</string>
 
     <!-- AlertsScreen -->
     <string name="alerts">Alerts</string>
@@ -44,7 +45,6 @@
     <string name="share_post_header">Check out this post on XDA forum:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
     <string name="added_quote_list">Added to quote list!</string>
     <string name="removed_quote_list">Removed from quote list!</string>
-    <string name="search_hint_threads">Search XDA for threads</string>
 
     <!-- ReplyScreen -->
     <string name="reply">Reply</string>
@@ -62,6 +62,7 @@
     <string name="inventory">Inventory</string>
     <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> threads &#8226; last updated <xliff:g id="lastPostDate">%3$s</xliff:g></string>
     <string name="last_thread">Last thread: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+    <string name="search_hint_forum">Search XDA for forums &amp; devices</string>
 
     <!-- NodeScreen -->
     <string name="node">Node</string>
