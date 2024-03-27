@@ -15,6 +15,7 @@
     <string name="whats_new">Was ist neu?</string>
     <string name="watched">Abonniert</string>
     <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> Antworten &#8226; <xliff:g id="views">%3$s</xliff:g> Aufrufe</string>
+    <string name="search_hint_threads">Durchsuche XDA nach Threads</string>
     <!-- AlertsScreen -->
     <string name="alerts">Meldungen</string>
     <!-- NewsScreen -->
@@ -41,5 +42,10 @@
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Foren</string>
     <string name="inventory">Inventar</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> Threads &#8226; zuletzt upgedatet <xliff:g id="lastPostDate">%3$s</xliff:g></string>
+    <string name="last_thread">Letzter Thread: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+    <string name="search_hint_forum">Durchsuche XDA nach Geräteforen &amp;</string>
     <!-- NodeScreen -->
+    <string name="node">Netzknoten</string>
+    <string name="last_reply">Letzte Antwort: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
