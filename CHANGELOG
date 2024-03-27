@@ -1,3 +1,10 @@
+Changelog : v0.0.5 (6)
+• Support for searching threads and forums
+• Support for pagination to browser more than 20 threads/forums
+• Multiple bug fixes
+• Translation updates
+• UI and UX improvements
+
 Changelog : v0.0.4 (5)
 • Support for push notifications using Firebase
 • Added support for browsing watched forums and devices
