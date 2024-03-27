@@ -40,5 +40,6 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Fehler beim Abrufen von Informationen!</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Foren</string>
+    <string name="inventory">Inventar</string>
     <!-- NodeScreen -->
 </resources>
