@@ -15,10 +15,11 @@
     <string name="whats_new">Nouveautés</string>
     <string name="watched">Surveillé</string>
     <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> réponses &#8226; <xliff:g id="views">%3$s</xliff:g> vues</string>
+    <string name="search_hint_threads">Rechercher des sujets sur XDA</string>
     <!-- AlertsScreen -->
     <string name="alerts">Alertes</string>
     <!-- NewsScreen -->
-    <string name="news">Portal</string>
+    <string name="news">Actualités</string>
     <string name="posted_by">Posté par <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
     <string name="more">Plus</string>
@@ -40,5 +41,11 @@
     <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Échec de la récupération des informations !</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Forums</string>
+    <string name="inventory">Répertoire</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> fils de discussion &#8226; dernière mise à jour <xliff:g id="lastPostDate">%3$s</xliff:g></string>
+    <string name="last_thread">Dernier fil de discussion: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+    <string name="search_hint_forum">Rechercher sur XDA pour les forums &amp; appareils</string>
     <!-- NodeScreen -->
+    <string name="node">Serveur</string>
+    <string name="last_reply">Dernière réponse : <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
