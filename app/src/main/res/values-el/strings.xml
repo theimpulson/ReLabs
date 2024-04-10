@@ -15,6 +15,7 @@
     <string name="whats_new">Τι νέο υπάρχει</string>
     <string name="watched">Υπό παρακολούθηση</string>
     <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> απαντήσεις &#8226; <xliff:g id="views">%3$s</xliff:g> προβολές</string>
+    <string name="search_hint_threads">Αναζήτηση XDA για νήματα</string>
     <!-- AlertsScreen -->
     <string name="alerts">Ειδοποιήσεις</string>
     <!-- NewsScreen -->
@@ -43,6 +44,7 @@
     <string name="inventory">Αποθέματα</string>
     <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> νήματα &#8226; ενημερώθηκαν τελευταία φορά <xliff:g id="lastPostDate">%3$s</xliff:g></string>
     <string name="last_thread">Τελευταίο νήμα: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+    <string name="search_hint_forum">Αναζήτηση XDA για φόρουμ &amp; συσκευές</string>
     <!-- NodeScreen -->
     <string name="node">Κόμβος</string>
     <string name="last_reply">Τελευταία απάντηση: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
