@@ -1,7 +1,9 @@
 package io.aayush.relabs.network.data.expo
 
+import com.squareup.moshi.JsonClass
 import java.util.UUID
 
+@JsonClass(generateAdapter = true)
 data class ExpoData(
     val deviceToken: String,
     val deviceId: String = UUID.randomUUID().toString(),

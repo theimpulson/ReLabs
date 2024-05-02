@@ -1,8 +1,10 @@
 package io.aayush.relabs.network.data.node
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.common.Avatar
 import io.aayush.relabs.network.data.common.DateTime
 
+@JsonClass(generateAdapter = true)
 data class NodeTypeData(
     val canCreateThread: Boolean = false,
     val canIgnore: Boolean = false,

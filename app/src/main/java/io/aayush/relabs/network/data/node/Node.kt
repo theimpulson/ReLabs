@@ -1,7 +1,9 @@
 package io.aayush.relabs.network.data.node
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.adapter.singletoarray.SingleToArray
 
+@JsonClass(generateAdapter = true)
 data class Node(
     val depth: Int = 0,
     val description: String = String(),

@@ -1,10 +1,12 @@
 package io.aayush.relabs.network.data.thread
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.common.DateTime
 import io.aayush.relabs.network.data.node.Node
 import io.aayush.relabs.network.data.post.Post
 import io.aayush.relabs.network.data.user.User
 
+@JsonClass(generateAdapter = true)
 data class Thread(
     val apiVoteUrl: String = String(),
     val canDelete: Boolean = false,
@@ -32,7 +34,7 @@ data class Thread(
     val node: Node = Node(),
     val permalink: String = String(),
     val prefix: Prefix? = Prefix.UNAVAILABLE,
-    val poll: Poll = Poll(),
+    val poll: Poll? = Poll(),
     val replyUrl: String = String(),
     val reply_count: Int = 0,
     val reportUrl: String = String(),

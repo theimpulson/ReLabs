@@ -1,7 +1,9 @@
 package io.aayush.relabs.network.data.devices
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.node.Node
 
+@JsonClass(generateAdapter = true)
 data class Device(
     val Node: Node = Node(),
     val description: String = String(),

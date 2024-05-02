@@ -1,10 +1,12 @@
 package io.aayush.relabs.network.data.post
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.common.DateTime
 import io.aayush.relabs.network.data.react.ReactionCount
 import io.aayush.relabs.network.data.react.ReactionUser
 import io.aayush.relabs.network.data.user.User
 
+@JsonClass(generateAdapter = true)
 data class Post(
     val apiVoteUrl: String = String(),
     val attach_count: Int = 0,

@@ -1,7 +1,9 @@
 package io.aayush.relabs.network.data.search
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.common.DateTime
 
+@JsonClass(generateAdapter = true)
 data class Search(
     val created_at: DateTime = DateTime(),
     val id: Int = 0,

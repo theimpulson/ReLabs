@@ -1,8 +1,10 @@
 package io.aayush.relabs.network.data.common
 
+import com.squareup.moshi.JsonClass
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+@JsonClass(generateAdapter = true)
 data class DateTime(
     val atomic: String = "1970-01-01T00:00:00+00:00",
     val formatted: String = "January 1, 1970 at 0:00 AM"

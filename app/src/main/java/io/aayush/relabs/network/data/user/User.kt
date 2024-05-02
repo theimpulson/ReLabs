@@ -1,8 +1,10 @@
 package io.aayush.relabs.network.data.user
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.common.Avatar
 import io.aayush.relabs.network.data.common.DateTime
 
+@JsonClass(generateAdapter = true)
 data class User(
     val alert_mode: String = String(),
     val avatar: Avatar? = Avatar(),

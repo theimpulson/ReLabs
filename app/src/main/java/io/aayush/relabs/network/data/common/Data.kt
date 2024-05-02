@@ -2,7 +2,9 @@ package io.aayush.relabs.network.data.common
 
 import androidx.compose.ui.graphics.Color
 import androidx.core.graphics.toColorInt
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Data(
     val background_color: String? = String(),
     val large: String = String(),

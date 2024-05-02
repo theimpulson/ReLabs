@@ -1,7 +1,9 @@
 package io.aayush.relabs.network.data.post
 
+import com.squareup.moshi.JsonClass
 import io.aayush.relabs.network.data.common.DateTime
 
+@JsonClass(generateAdapter = true)
 data class Attachment(
     val canView: Boolean = false,
     val created_at: DateTime = DateTime(),
@@ -11,6 +13,6 @@ data class Attachment(
     val id: Int = 0,
     val isImage: Boolean = false,
     val permalink: String = String(),
-    val thumbnail: String = String(),
+    val thumbnail: String? = String(),
     val width: Int? = 0
 )
