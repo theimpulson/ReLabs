@@ -15,6 +15,7 @@
     <string name="whats_new">ما الجديد</string>
     <string name="watched">تمت مشاهدتها</string>
     <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> الردود &#8226; <xliff:g id="views">%3$s</xliff:g> المشاهدات</string>
+    <string name="search_hint_threads">البحث في XDA عن المواضيع</string>
     <!-- AlertsScreen -->
     <string name="alerts">الإشعارات</string>
     <!-- NewsScreen -->
@@ -40,5 +41,11 @@
     <string name="error_retrofit">فشل الحصول علي المعلومات :( <xliff:g id="exception">%1$s</xliff:g> </string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">المنتديات</string>
+    <string name="inventory">المخزون</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> الخيوط &#8226; آخر تحديث <xliff:g id="lastPostDate">%3$s</xliff:g></string>
+    <string name="last_thread">الموضوع الأخير: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+    <string name="search_hint_forum">البحث عن XDA للمنتديات &amp; الأجهزة</string>
     <!-- NodeScreen -->
+    <string name="node">العقدة</string>
+    <string name="last_reply">الرد الأخير: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
