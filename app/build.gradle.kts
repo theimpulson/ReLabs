@@ -113,7 +113,7 @@ dependencies {
     implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
 
     // Firebase
-    implementation("com.google.firebase:firebase-messaging-ktx:23.4.1")
+    implementation("com.google.firebase:firebase-messaging-ktx:24.0.0")
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
@@ -141,7 +141,7 @@ dependencies {
 
     // Material
     implementation("androidx.compose.material:material:1.6.7")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.12.0")
 
     // Hilt
     val hiltVersion = "2.51.1"
@@ -158,7 +158,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // Coroutines
-    val coroutinesVersion = "1.8.0"
+    val coroutinesVersion = "1.8.1"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
