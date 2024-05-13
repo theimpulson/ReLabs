@@ -27,8 +27,20 @@
     <string name="thread">Wątek</string>
     <string name="guest">Gość</string>
     <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> osoba/y zareagowały na ten post</string>
+    <string name="you_and_reacted_to">Ty i <xliff:g id="number">%1$d</xliff:g> inne osoby zareagowały na ten post</string>
+    <string name="you_reacted_to">Zareagowałeś/aś na ten post</string>
+    <string name="share_post_header">Zobacz ten post na XDA:\n\n<xliff:g id="post_url">%1$s</xliff:g></string>
+    <string name="added_quote_list">Dodano do listy cytatów!</string>
+    <string name="removed_quote_list">Usunięto z listy cytatów!</string>
     <!-- ReplyScreen -->
+    <string name="reply">Odpowiedz</string>
+    <string name="follow_rules">Pamiętaj, aby przeczytać i postępować zgodnie z zasadami forum XDA!</string>
     <!-- ErrorScreen -->
+    <string name="retry">Spróbuj ponownie</string>
+    <string name="error_empty"><xliff:g id="exception">%1$s</xliff:g> Nic tu nie ma!</string>
+    <string name="error_retrofit"><xliff:g id="exception">%1$s</xliff:g> Nie udało się pobrać informacji!</string>
     <!-- ForumPreviewScreen -->
+    <string name="forum_preview">Forum</string>
+    <string name="inventory">Twoje urządzenia</string>
     <!-- NodeScreen -->
 </resources>
