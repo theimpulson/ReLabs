@@ -42,5 +42,9 @@
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Forum</string>
     <string name="inventory">Twoje urządzenia</string>
+    <string name="company_threads_lastPostDate"><xliff:g id="company">%1$s</xliff:g> &#8226; <xliff:g id="threads">%2$s</xliff:g> wątki &#8226; ostatnio zaktualizowane <xliff:g id="lastPostDate">%3$s</xliff:g></string>
+    <string name="last_thread">Ostatni wątek: <xliff:g id="lastThreadTitle">%1$s</xliff:g></string>
+    <string name="search_hint_forum">Szukaj forów i urządzeń</string>
     <!-- NodeScreen -->
+    <string name="last_reply">Ostatnia odpowiedź: <xliff:g id="lastThreadTitle">%1$s</xliff:g> (<xliff:g id="lastPostDate">%2$s</xliff:g>)</string>
 </resources>
