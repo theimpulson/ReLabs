@@ -5,12 +5,28 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
+    <string name="continue_with_xda">Kontynuuj z XDA</string>
+    <string name="logging_in">Logowanie…</string>
     <!-- LoginScreen -->
+    <string name="login">Zaloguj się</string>
+    <string name="login_info">Zaloguj się, aby kontynuować</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Wątki</string>
+    <string name="whats_new">Co nowego</string>
+    <string name="watched">Obserwowane</string>
+    <string name="author_replies_creationDate"><xliff:g id="author">%1$s</xliff:g> &#8226; <xliff:g id="replies">%2$s</xliff:g> odpowiedzi &#8226; <xliff:g id="views">%3$s</xliff:g> wyświetleń</string>
+    <string name="search_hint_threads">Szukaj wątków w XDA</string>
     <!-- AlertsScreen -->
+    <string name="alerts">Alerty</string>
     <!-- NewsScreen -->
+    <string name="news">Aktualności</string>
+    <string name="posted_by">Wysłano przez <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
+    <string name="more">Więcej</string>
     <!-- ThreadScreen -->
+    <string name="thread">Wątek</string>
+    <string name="guest">Gość</string>
+    <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> osoba/y zareagowały na ten post</string>
     <!-- ReplyScreen -->
     <!-- ErrorScreen -->
     <!-- ForumPreviewScreen -->
