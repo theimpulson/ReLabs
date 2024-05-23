@@ -122,7 +122,7 @@ dependencies {
     implementation("net.openid:appauth:0.11.1")
 
     // LifeCycle
-    val lifecycleVersion = "2.7.0"
+    val lifecycleVersion = "2.8.0"
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
@@ -163,7 +163,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // Paging3
-    val pagingVersion = "3.2.1"
+    val pagingVersion = "3.3.0"
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
     implementation("androidx.paging:paging-compose:$pagingVersion")
 }
