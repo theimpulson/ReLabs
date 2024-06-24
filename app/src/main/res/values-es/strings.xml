@@ -5,20 +5,28 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- LoginButton -->
+    <string name="logging_in">Iniciando sesión…</string>
     <!-- LoginScreen -->
     <string name="login">Iniciar sesión</string>
+    <string name="login_info">Por favor, inicie sesión para continuar</string>
     <!-- ThreadPreviewScreen -->
+    <string name="thread_preview">Temas</string>
     <string name="whats_new">Novedades</string>
+    <string name="watched">Visto</string>
     <!-- AlertsScreen -->
     <!-- NewsScreen -->
     <string name="news">Noticias</string>
+    <string name="posted_by">Publicado por <xliff:g id="author">%1$s</xliff:g></string>
     <!-- MoreScreen -->
+    <string name="more">Más</string>
     <!-- ThreadScreen -->
+    <string name="guest">Invitado</string>
     <string name="reacted_to"><xliff:g id="number">%1$d</xliff:g> personas han reaccionado a esta publicación</string>
     <string name="you_reacted_to">Has reaccionado a esta publicación</string>
     <!-- ReplyScreen -->
     <string name="reply">Responder</string>
     <!-- ErrorScreen -->
+    <string name="retry">Reintentar</string>
     <!-- ForumPreviewScreen -->
     <string name="forum_preview">Foros</string>
     <!-- NodeScreen -->
