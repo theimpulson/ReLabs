@@ -40,5 +40,8 @@ enum class Action {
     FORUM_UPDATE,
 
     @Json(name = "reached")
-    REACHED
+    REACHED,
+
+    @Json(name = "question_solution")
+    SOLUTION
 }
