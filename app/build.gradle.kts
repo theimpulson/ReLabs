@@ -12,6 +12,10 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+val gitHash: String
+    get() = project.providers.exec { commandLine("git", "rev-parse", "--short", "HEAD") }
+        .standardOutput.asText.get().trim()
+
 android {
     namespace = "io.aayush.relabs"
     compileSdk = 34
@@ -47,6 +51,7 @@ android {
         register("continuous") {
             initWith(getByName("release"))
             applicationIdSuffix = ".continuous"
+            versionNameSuffix = "-$gitHash"
             signingConfig = signingConfigs.getByName("aosp")
         }
         release {
