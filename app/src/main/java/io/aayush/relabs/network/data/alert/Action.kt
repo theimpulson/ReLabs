@@ -43,5 +43,8 @@ enum class Action {
     REACHED,
 
     @Json(name = "question_solution")
-    SOLUTION
+    SOLUTION,
+
+    @Json(name = "nearly_reached")
+    NEARLY_REACHED
 }
