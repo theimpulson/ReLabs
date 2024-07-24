@@ -13,5 +13,8 @@ enum class ContentType {
     USER,
 
     @Json(name = "adlb_leaderboard")
-    LEADERBOARD
+    LEADERBOARD,
+
+    @Json(name = "conversation_message")
+    MESSAGE
 }
